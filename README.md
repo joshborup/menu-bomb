@@ -9,7 +9,17 @@
 
 
 - Components
-  - menu items
+  - User Login
+    - Customer Registration
+    - Restaurant Registration
+  - Restaurant Dashboard
+  - Menu Wizard/Creator
+  - shared
+    - Header
+    - Footer
+    - menu items
+    - buttons
+    - 
   - 
 
 - Redux
