@@ -12,7 +12,8 @@ function isValid(name, email, phone) {
     };
   }
 
-export default class RestaurantRegister extends Component {
+// Registration Component to gather the appropriate data for registration as a Restaurant
+export default class RegisterRestaurant extends Component {
     constructor(){
         super()
         
