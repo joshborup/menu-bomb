@@ -1,15 +1,17 @@
-CREATE TABLE restaurant (
+CREATE TABLE user (
   id SERIAL PIMARY KEY,
-  name TEXT NOT NULL,
-  phone INTEGER NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
   email TEXT NOT NULL,
-  address TEXT NOT NULL,
-  contact_first_name TEXT NOT NULL,
-  contact_last_name TEXT NOT NULL
+  phone INTEGER NOT NULL,
+  address_1 TEXT NOT NULL,
+  address_2 TEXT,
+  user_type TEXT NOT NULL,
+  password TEXT NOT NULL
 );
-CREATE TABLE restaurant_profiles (
+CREATE TABLE restaurant_profile (
   id SERIAL PIMARY KEY,
-  restaurant_id TEXT REFERENCES restaurant(id),
+  user_id TEXT REFERENCES user(id),
   description TEXT,
   logo_url TEXT,
   delivers BOOLEAN,
