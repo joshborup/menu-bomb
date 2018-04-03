@@ -6,7 +6,7 @@ module.exports = {
     const { description, logoURL, backgroundURL, delivers, alcohol } = req.body;
 
     db.add_restaurant_profile_data(userId, description, logoURL, backgroundURL, delivers, alcohol).then( profile => {
-      res.json(profile);
+      res.json(profile[0]);
     }).catch( err => {
       console.log('restaurant controller - addProfileData err: ', err);
       res.status(400).send();
