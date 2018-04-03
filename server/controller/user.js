@@ -77,6 +77,13 @@ module.exports = {
     logout: (req, res)=> {
         req.session.destroy();
         res.status(200).send('logged out');
+    },
+    data: (req, res) => {
+        const db = req.app.get('db');
+
+        db.get_user(req.session.user.email).then(response => {
+            res.status(200).send(response)
+        })
     }
 }
 
