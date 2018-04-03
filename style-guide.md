@@ -9,9 +9,10 @@
     - font-family: 'Merriweather', serif;
 
 ## Colors
-- Background:
-- Buttons:
-- Header and Footer:
-- Body text:
-- Header text:
-- Accent/other:
+- Base Background: #963135
+- Inner Container Background: #F8F6EA
+- Buttons: #FFA23F
+- Header and Footer: #5EBCD1
+- Body text: #171736
+- Header text: #171736
+- Accent/other: #765237
