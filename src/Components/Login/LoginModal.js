@@ -2,19 +2,16 @@ import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import axios from 'axios';
 import './loginModal.css';
 
-/**
- * Dialog with action buttons. The actions are passed in as an array of React objects,
- * in this example [FlatButtons](/#/components/flat-button).
- *
- * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
- */
 export default class DialogExampleModal extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             open: false,
+            email: '',
+            password: ''
           };
     }
 
@@ -25,6 +22,25 @@ export default class DialogExampleModal extends Component {
   handleClose = () => {
     this.setState({open: false});
   };
+
+  handleEmail = (email) => {
+    this.setState({
+        email: email
+    })
+  }
+
+  handlePassword = (password) => {
+    this.setState({
+        password: password
+    })
+  }
+
+  loginButton = () => {
+    axios.post('/login', {email: this.state.email, password: this.state.password}).then(response => {
+        console.log(response.data)
+        window.location.href = response.data.userType;
+    })
+  }
 
   render() {
 
@@ -47,20 +63,19 @@ export default class DialogExampleModal extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
           contentStyle={customContentStyle}
-          titleStyle={titleStyle}
-          
+          titleStyle={titleStyle} 
         >
         <div className='login-modal-content'>
           <div className='modal-login'>
                 <div>
                     <span>Email</span>
-                    <input type='email'/>
+                    <input onChange={(e)=> this.handleEmail(e.target.value)} value={this.state.email} type='email'/>
                 </div>
                 <div>
                     <span>Password</span>
-                    <input type='password' />
+                    <input onChange={(e)=> this.handlePassword(e.target.value)} value={this.state.password} type='password' />
                 </div>
-                <button className='btn'> Login </button>
+                <button onClick={()=> this.loginButton()} className='btn'> Login </button>
             </div>
             <div className='modal-register'>
                 <h1>Register</h1>
