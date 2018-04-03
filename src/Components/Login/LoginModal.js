@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
+import { connect } from 'react-redux';
+import { fetchLoginEmail } from '../../redux/reducer';
 import axios from 'axios';
 import './loginModal.css';
 
-export default class DialogExampleModal extends Component {
+class DialogExampleModal extends Component {
     constructor(props){
         super(props)
         this.state = {
             open: false,
-            email: '',
+            loginEmail: '',
             password: ''
           };
     }
@@ -37,6 +37,7 @@ export default class DialogExampleModal extends Component {
 
   loginButton = () => {
     axios.post('/login', {email: this.state.email, password: this.state.password}).then(response => {
+        this.props.fetchLoginEmail(response.data.email);
         console.log(response.data)
         window.location.href = response.data.userType;
     })
@@ -94,3 +95,16 @@ export default class DialogExampleModal extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+        loginEmail: state.loginEmail
+    }
+}
+
+const mapDispatchToProps = {
+    fetchLoginEmail: fetchLoginEmail
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DialogExampleModal)
