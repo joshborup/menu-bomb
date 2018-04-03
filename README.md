@@ -1,4 +1,18 @@
-
+# NAMING CONVENTIONS
+- Methods
+  - camelCase
+- CSS Classes
+  - kebab-case
+  - Use namespace of components
+    - 
+- Properties
+  - camelCase
+- Functions
+  - camelCase
+- Variables
+  - camelCase
+- SQL variables
+  - snake_case
 
 # FRONT END
 - Libraries
@@ -9,12 +23,20 @@
 
 
 - Components
-  - menu items
+  - User Login
+    - Customer Registration
+    - Restaurant Registration
+  - Restaurant Dashboard
+  - Menu Wizard/Creator
+  - shared
+    - Header
+    - Footer
+    - menu items
+    - buttons
+    - 
   - 
 
 - Redux
-
-- 
 
 # BACK END
 
@@ -26,7 +48,6 @@
   - pg-simple-connect
   - dotenv
   
-
 - Endpoints
 
 - Controllers

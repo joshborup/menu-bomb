@@ -1,0 +1,85 @@
+INSERT INTO user (first_name, last_name, email, phone, address_1, address_2, user_type, password)
+VALUES('Jordan', 'Bush', 'jordanmbush@gmail.com', 1231231234, '123 N St.', 'Suite 150', 'restaurant', 'testPassword')
+('Anna', 'Lewandowski', 'annalewandowski@gmail.com', 1231231234, '123 N St.', 'Building E', 'restaurant', 'testPassword')
+('Josh', 'Borup', 'joshborup@gmail.com', 1231231234, '123 N St.', NULL, 'restaurant', 'testPassword')
+('Will', 'Dodson', 'willdidson@gmail.com', 1231231234, '123 N St.', NULL, 'customer', 'testPassword')
+('Jerry', 'Springer', 'jerryspringer@gmail.com', 4561231234, '456 N St.', NULL, 'customer', 'testPassword')
+('Kelly', 'Springer', 'kellyspringer@gmail.com', 4561231234, '456 N St.', NULL, 'customer', 'testPassword');
+
+INSERT INTO restaurant_profile (user_id, description, logo_url, background_url, delivers, alcohol)
+VALUES(0, 'The Best Burrito Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'http://cdn-image.foodandwine.com/sites/default/files/1501607996/opentable-scenic-restaurants-marine-room-FT-BLOG0818.jpg', 'yes', 'no')
+(1, 'The Best Sandwich Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_734,q_60,w_1920/v1/clients/fortwayne/restaurants_header_slide_2_86f7b8a6-81ba-46c7-9685-91ea117c0705.jpg', 'no', 'yes')
+(2, 'The Best Crepes Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://static.tacdn.com/TripAdvisorInsights/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg', 'yes', 'yes');
+
+INSERT INTO restaurant_hours (restaurant_id, day, open_time, close_time)
+VALUES(0, 0, 07:00:00, 18:00:00)
+(0, 1, 07:00:00, 18:00:00)
+(0, 2, 07:00:00, 18:00:00)
+(0, 3, 07:00:00, 18:00:00)
+(0, 4, 07:00:00, 18:00:00)
+(0, 5, 07:00:00, 20:00:00)
+(0, 6, 07:00:00, 20:00:00)
+(1, 1, 07:00:00, 20:00:00)
+(1, 2, 07:00:00, 20:00:00)
+(1, 3, 07:00:00, 20:00:00)
+(1, 4, 07:00:00, 20:00:00)
+(1, 5, 07:00:00, 22:00:00)
+(2, 0, 12:00:00, 20:00:00)
+(2, 5, 12:00:00, 02:00:00)
+(2, 6, 12:00:00, 24:00:00);
+
+INSERT INTO menu_item (restaurant_id, name, price, description, image_url, category_id)
+VALUES(0, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 1)
+(0, 'Fries', 20.25, 'Deep fried patato sticks', 'https://cms.splendidtable.org/sites/default/files/styles/w2000/public/french-fries.jpg?itok=FS-YwUYH', 2)
+(0, 'Shake', 20.25, 'Better than a twirk', 'http://www.eatformula.com/wp-content/uploads/2017/03/Second-MilkShake-Recipe-575x428.jpg', 3)
+(0, 'Rootbeer', 20.25, 'Rootbeer', 'https://www.dsvendinginc.com/images/product/medium/8917.jpg', 0)
+(0, 'Coca-Cola', 20.25, 'Coca-Cola', 'https://s-i.huffpost.com/gen/765642/images/o-COKE-MYANMAR-facebook.jpg', 0)
+(0, 'Sprite', 20.25, 'Sprite', 'https://cdn.shopify.com/s/files/1/0959/7176/products/sprite-logo_1024x1024.jpg?v=1454413466', 0)
+(0, 'Cheesecake', 20.25, 'Sweet and delicious', 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/12/9/0/FNK_Cheesecake_s4x3.jpg.rend.hgtvcom.616.462.suffix/1387411272847.jpeg', 4)
+(0, 'Ribeye Steak', 20.25, '10oz of mouth watering charbroiled goodness', 'https://s3.amazonaws.com/anovarecipes/images/finish_step/20171028_165329.jpg', 1)
+(0, 'Shrimp', 20.25, '10 peices of crazy good crustaceans', 'http://tiphero.com/wp-content/uploads/2017/03/Honey-Garlic-Shrimp-FI-750x364.jpg', 5)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(1, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0)
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://www.redrobin.com/content/dam/web/menu/2015-june/gourmet-cheeseburger-1100.jpg', 0);
+
+INSERT INTO customer_profile (user_id)
+VALUES(0)
+(1)
+(2);
+
+INSERT INTO order_items (menu_item_id, order_id, quantity, notes)
+VALUES();
+
+INSERT INTO order (customer_id, total, open, pickup_time, order_time)
+VALUES();
+
+INSERT INTO category (restaurant_id, name)
+VALUES(0, 'Drinks')
+(0, 'Entre')
+(0, 'Sides')
+(0, 'Cool Treats')
+(0, 'Desserts')
+(0, 'Sea Food')
+(1, 'Drinks')
+(1, 'Entre')
+(1, 'Sides')
+(1, 'Cool Treats')
+(1, 'Desserts')
+(1, 'Sea Food')
+(2, 'Drinks')
+(2, 'Entre')
+(2, 'Sides')
+(2, 'Cool Treats')
+(2, 'Desserts')
+(2, 'Sea Food');
+
