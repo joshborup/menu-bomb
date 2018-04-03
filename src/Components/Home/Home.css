@@ -1,0 +1,37 @@
+.home-container {
+    background-color: #963135;
+}
+
+.home-inner-container {
+    max-width: 1200px;
+    background-color: #F8F6EA;
+    margin: 0 auto;
+}
+
+.home-hero-text{
+    font-family: 'Merriweather', serif;
+    font-size: 65px;
+    margin-top: 50px;
+    color: #171736;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #F8F6EA;
+    background-color: #F8F6EA30;
+    padding: 50px;
+}
+
+/* .home-hero-text {
+    font-family: 'Merriweather', serif;
+    font-size: 40px;
+    color: 50px;
+    background-color: #F8F6EA30;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #F8F6EA;
+} */
+
+.home-hero {
+    background-image: url('./assets/restaurant-img.jpeg');
+    z-index: -1;
+    background-position: center;
+    height: 400px;
+    border: 1px solid transparent;
+}

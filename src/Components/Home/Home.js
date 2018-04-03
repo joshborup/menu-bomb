@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
+import './Home.css';
 
 class Home extends Component {
 
@@ -8,8 +9,9 @@ class Home extends Component {
     return (
         <div className="home-container">
             <div className="home-inner-container">
-                <h1 className="home-hero-text">Build your brand.</h1>
-                <h1 className="home-hero-text">Sell more food.</h1>
+                <div className="home-hero">
+                    <h1 className="home-hero-text">Build your brand. Sell more food.</h1>
+                </div>
             </div>
         </div>
     );
