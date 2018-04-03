@@ -1,4 +1,18 @@
-
+# NAMING CONVENTIONS
+- Methods
+  - camelCase
+- CSS Classes
+  - kebab-case
+  - Use namespace of components
+    - 
+- Properties
+  - camelCase
+- Functions
+  - camelCase
+- Variables
+  - camelCase
+- SQL variables
+  - snake_case
 
 # FRONT END
 - Libraries
@@ -24,8 +38,6 @@
 
 - Redux
 
-- 
-
 # BACK END
 
 - Modules
@@ -36,7 +48,6 @@
   - pg-simple-connect
   - dotenv
   
-
 - Endpoints
 
 - Controllers
