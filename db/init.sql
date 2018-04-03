@@ -1,60 +1,70 @@
-CREATE TABLE user (
+
+CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   email TEXT NOT NULL,
-  phone INTEGER NOT NULL,
+  phone TEXT NOT NULL,
   address_1 TEXT NOT NULL,
   address_2 TEXT,
   user_type TEXT NOT NULL,
   password TEXT NOT NULL
 );
-CREATE TABLE restaurant_profile (
+
+CREATE TABLE restaurant_profiles (
   id SERIAL PRIMARY KEY,
-  user_id TEXT REFERENCES user(id),
+  user_id INTEGER REFERENCES users(id),
   description TEXT,
   logo_url TEXT,
   background_url TEXT,
   delivers BOOLEAN,
   alcohol BOOLEAN
 );
-CREATE TABLE restaurant_hours (
+
+CREATE TABLE business_hours (
   id SERIAL PRIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurant_profile(id),
-  open_time DATE,
-  close_time DATE
+  restaurant_id INTEGER REFERENCES restaurant_profiles(id),
+  day INTEGER NOT NULL,
+  open_time TIME NOT NULL,
+  close_time TIME NOT NULL
 );
-CREATE TABLE menu_item (
+
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurant_profile(id),
+  restaurant_id INTEGER REFERENCES restaurant_profiles(id),
+  name TEXT NOT NULL
+);
+
+CREATE TABLE menu_items (
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER REFERENCES restaurant_profiles(id),
   name TEXT NOT NULL,
   price NUMERIC,
   description TEXT,
   image_url TEXT,
-  category_id INTEGER REFERENCES category(id)
+  category_id INTEGER REFERENCES categories(id)
 );
-CREATE TABLE customer_profile (
+
+CREATE TABLE customer_profiles (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES user(id)
+  user_id INTEGER REFERENCES users(id)
 );
-CREATE TABLE order_items (
+
+CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
-  menu_item_id INTEGER REFERENCES menu_item(id),
-  order_id INTEGER REFERENCES order(id),
-  quantity INTEGER NOT NULL,
-  notes TEXT
-);
-CREATE TABLE order (
-  id SERIAL PRIMARY KEY,
-  customer_id TEXT REFERENCES customer_profile(id),
+  restaurant_id INTEGER REFERENCES restaurant_profiles(id),
+  customer_id INTEGER REFERENCES customer_profiles(id),
   total NUMERIC,
   open BOOLEAN,
-  pickup_time DATE,
-  order_time DATE
+  order_time DATE,
+  pickup_time DATE
 );
-CREATE TABLE category (
+
+CREATE TABLE order_items (
   id SERIAL PRIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurant_profile(id),
-  name TEXT NOT NULL
+  menu_item_id INTEGER REFERENCES menu_items(id),
+  order_id INTEGER REFERENCES orders(id),
+  quantity INTEGER NOT NULL,
+  notes TEXT
 );
 
