@@ -1,5 +1,5 @@
 CREATE TABLE user (
-  id SERIAL PIMARY KEY,
+  id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   email TEXT NOT NULL,
@@ -10,53 +10,51 @@ CREATE TABLE user (
   password TEXT NOT NULL
 );
 CREATE TABLE restaurant_profile (
-  id SERIAL PIMARY KEY,
+  id SERIAL PRIMARY KEY,
   user_id TEXT REFERENCES user(id),
   description TEXT,
   logo_url TEXT,
+  background_url TEXT,
   delivers BOOLEAN,
   alcohol BOOLEAN
 );
 CREATE TABLE restaurant_hours (
-  id SERIAL PIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurant(id),
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER REFERENCES restaurant_profile(id),
   open_time DATE,
   close_time DATE
 );
 CREATE TABLE menu_item (
-  id SERIAL PIMARY KEY,
-  restaurant_id INTEGER REFERENCES restaurant(id),
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER REFERENCES restaurant_profile(id),
   name TEXT NOT NULL,
-  cost NUMERIC,
+  price NUMERIC,
   description TEXT,
   image_url TEXT,
-  menu_category INTEGER
+  category_id INTEGER REFERENCES category(id)
 );
-CREATE TABLE customer (
-  id SERIAL PIMARY KEY,
-  first_name TEXT NOT NULL,
-  last_name TEXT NOT NULL,
-  email TEXT NOT NULL,
-  phone TEXT NOT NULL,
-  address TEXT
+CREATE TABLE customer_profile (
+  id SERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES user(id)
 );
 CREATE TABLE order_items (
-  id SERIAL PIMARY KEY,
-  menu_item_id TEXT,
-)
-CREATE TABLE orders (
-  id SERIAL PIMARY KEY,
-  customer_id TEXT,
-)
-CREATE TABLE reservations (
-  id SERIAL PIMARY KEY,
-  customer_id TEXT,
-)
+  id SERIAL PRIMARY KEY,
+  menu_item_id INTEGER REFERENCES menu_item(id),
+  order_id INTEGER REFERENCES order(id),
+  quantity INTEGER NOT NULL,
+  notes TEXT
+);
+CREATE TABLE order (
+  id SERIAL PRIMARY KEY,
+  customer_id TEXT REFERENCES customer_profile(id),
+  total NUMERIC,
+  open BOOLEAN,
+  pickup_time DATE,
+  order_time DATE
+);
+CREATE TABLE category (
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER REFERENCES restaurant_profile(id),
+  name TEXT NOT NULL
+);
 
-
-
--- email|logo_url|open_time|cost|email|quantity||date/time
--- address|delivers?|close_time|description|phone|||
--- contact_first_name|alcohol? Heck yeah!||image_url|address|||
--- contact_last_name|weed? Ja Man!||menu_type||||
--- |||menu_category||||
