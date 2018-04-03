@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:700|Montserrat|Shrikhand');
+.site-name {
+    font-size: 40px;
+    font-family: Montserrat;
+    color:white;
+}
+
+.header-container a{
+    text-decoration: none;
+    font-family: Montserrat;
+}
