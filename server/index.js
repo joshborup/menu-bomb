@@ -15,6 +15,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
     app.set('db', db)
 })
 
+
 //session connection
 app.use(session({
     secret: process.env.SESSION_SECRET,
