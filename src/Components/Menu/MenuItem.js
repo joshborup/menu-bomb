@@ -48,28 +48,30 @@ const H3 = styled.div`
   font-weight: bold;
 `
 const Price = styled.div`
-position: absolute;
-z-index: 1;
-top: 0;
-right: 0;
-padding: 5px;
-background-color: #ffffffa3;
-border-radius: 5px;
-margin: 5px;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  background-color: #ffffffa3;
+  border-radius: 5px;
+  margin: 5px;
 `
 
 export default class MenuItem extends Component{
-  constructor(props) {
-    super(props);
+  constructor(props){
+    super(props)
     this.state = {
-    }
+
+    };
   }
+
 
   render() {
     const {name, price, description, imageurl, category, id} = this.props.item;
     console.log('props: ', this.props)
     return (
-      <Wrapper key={`item-${id}`} className='menu-item-container'>
+      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={this.props.handleOpen}>
         <InnerBox>
           <FlexRow>
             <H3>{name}</H3>

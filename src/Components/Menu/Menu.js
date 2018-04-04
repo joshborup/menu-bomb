@@ -23,10 +23,9 @@ export default class Menu extends Component {
       super(props)
       this.state = {
       }
-      this.getMenuCategories = this.getMenuCategories.bind(this);
   }
 
-  getMenuCategories() {
+  getMenuCategories = () => {
     if(this.props.menuItems) {
       // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
       let uniqueCategories = Array.from(new Set(this.props.menuItems.map( item => item.category)));
@@ -36,15 +35,15 @@ export default class Menu extends Component {
         let itemsByCategory = this.props.menuItems.filter( item => item.category === category);
         console.log('itemsByCategory: ', itemsByCategory)
         menu.push(
-          <MenuCategory menuItems={itemsByCategory} category={category}/>
+          <MenuCategory menuItems={itemsByCategory} category={category} handleOpen={this.props.handleOpen}/>
         )
       }
-      
       return menu;
     }
-
     return null;
   }
+
+  
   
   render() {
     const menu = this.getMenuCategories();
