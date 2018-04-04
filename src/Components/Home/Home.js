@@ -9,6 +9,7 @@ import takeOutImg from './assets/take-out.jpg';
 import cookImg from './assets/cook.jpeg';
 import SvgIcon from 'material-ui';
 
+import Footer from '../Shared/Footer';
 
 class Home extends Component {
 
@@ -58,6 +59,7 @@ class Home extends Component {
                     <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
   }

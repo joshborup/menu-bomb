@@ -8,7 +8,10 @@ function isValid(name, email, phone) {
         name: name.length === 0,
         email: email.length === 0,
         phone: phone.length !== 10,
-        address1: address1.length === 0
+        address1: address1.length === 0,
+        address2: address2.length === 0,
+        firstName: firstName.length === 0,
+        lastName: lastName.length ===0,
     };
   }
 
@@ -83,6 +86,7 @@ export default class RegisterRestaurant extends Component {
                 return !isDisabled;
             }
             // Returning !isDisabled will allow our submit button to be selected
+            // disregard this code at this point it is unfinished, but eventually display a red border around fields with errors
             handleBlur = (field) => (event) => {
                 this.setState({
                 touched: { ...this.state.touched, [field]: true },

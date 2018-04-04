@@ -1,0 +1,63 @@
+.orders-container p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.orders-display > div {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.orders-display > div h1 {
+    font-size: 32px;
+    font-family: Montserrat;
+}
+
+.orders-display > div > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.open-orders {
+    background: #EDECED;
+    padding: 10px;
+    width: 100%;
+    margin: 10px 0px;
+    min-height: 500px;
+    border-radius: 3px;
+}
+
+.individual-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    background: white;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.35);
+    min-height: 80px;
+}
+
+.individual-order > div:first-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.individual-order > div:first-child  img {
+    width: 100px;
+}
+
+.open-orders > *+* {
+    margin: 10px 0px;
+}
