@@ -3,6 +3,9 @@ import LoginModal from '../Login/LoginModal'
 import {Link} from 'react-router-dom';
 import Logo from './logo.png'
 import styled from "styled-components";
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { fetchUserData } from '../../redux/reducer';
 import './header.css';
 
 
@@ -41,16 +44,32 @@ const ListItem = styled.li`
     margin: 0px 10px;
     color: white;
     font-size: 20px;
+    
 `
 
-export default class Header extends Component {
+class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
 
         }
+    }
 
+    componentDidMount(){
+        axios.get('/api/user-data').then(response => {
+            console.log(response.data[0])
+ 
+            //setting user session in redux for conditionally rendering links bases on usertype
+             this.props.fetchUserData(response.data[0])
+        })
+    }
 
+    logout = () => {
+        axios.post('/logout').then(response => {
+            if(response.data == "logged out"){
+                window.location.href = '/'
+            }
+        })
     }
     render() {
         return (
@@ -68,7 +87,9 @@ export default class Header extends Component {
                     <FlexRow>
                         <LinksContainer>
                         <Link to='/'><ListItem>Home</ListItem></Link>
-                            <ListItem><LoginModal/></ListItem>
+                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
+                            {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
+                            {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
@@ -76,3 +97,15 @@ export default class Header extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user,
+    }
+}
+
+const mapDispatchToProps = {
+    fetchUserData: fetchUserData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

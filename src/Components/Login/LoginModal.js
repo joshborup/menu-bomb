@@ -11,7 +11,8 @@ class DialogExampleModal extends Component {
         this.state = {
             open: false,
             loginEmail: '',
-            password: ''
+            password: '',
+            errorMessage: ''
           };
     }
 
@@ -36,12 +37,40 @@ class DialogExampleModal extends Component {
   }
 
   loginButton = () => {
+    this.setState({
+        errorMessage:''
+    })
     axios.post('/login', {email: this.state.email, password: this.state.password}).then(response => {
         this.props.fetchLoginEmail(response.data.email);
         console.log(response.data)
-        window.location.href = response.data.userType;
+        if(response.data.userType){
+        window.location.href = `${response.data.userType}/orders`;
+        } else {
+            this.setState({
+                errorMessage: 'Somthing went wrong, please try again'
+            })
+        }
     })
   }
+
+  loginButtonPress = (e) => {
+        if(e.key == 'Enter'){
+            this.setState({
+                errorMessage:''
+            })
+            axios.post('/login', {email: this.state.email, password: this.state.password}).then(response => {
+                this.props.fetchLoginEmail(response.data.email);
+                console.log(response.data)
+                if(response.data.userType){
+                window.location.href = `${response.data.userType}/orders`;
+                } else {
+                    this.setState({
+                        errorMessage: 'Somthing went wrong, please try again'
+                    })
+                }
+            })
+        }
+    }
 
   render() {
 
@@ -67,7 +96,7 @@ class DialogExampleModal extends Component {
           titleStyle={titleStyle} 
         >
         <div className='login-modal-content'>
-          <div className='modal-login'>
+          <div onKeyPress={(e) => this.loginButtonPress(e)} className='modal-login'>
                 <div>
                     <span>Email</span>
                     <input onChange={(e)=> this.handleEmail(e.target.value)} value={this.state.email} type='email'/>
@@ -76,6 +105,7 @@ class DialogExampleModal extends Component {
                     <span>Password</span>
                     <input onChange={(e)=> this.handlePassword(e.target.value)} value={this.state.password} type='password' />
                 </div>
+                {this.state.errorMessage}
                 <button onClick={()=> this.loginButton()} className='btn'> Login </button>
             </div>
             <div className='modal-register'>
