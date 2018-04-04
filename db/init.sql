@@ -14,6 +14,7 @@ CREATE TABLE users (
 CREATE TABLE restaurant_profiles (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
+  name TEXT NOT NULL,
   description TEXT,
   logo_url TEXT,
   background_url TEXT,
