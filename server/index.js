@@ -39,8 +39,7 @@ app.post('/logout', user.logout);
 app.post('/api/profile-data', restaurant.addProfileData);
 app.get('/api/user-data', user.data);
 app.get('/api/menu-items/:id', menu.getMenuItems);
-
-app.get('/api/get-order-by-id', orders.customer )
+app.get('/api/get-order-by-id', orders.customer );
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));
