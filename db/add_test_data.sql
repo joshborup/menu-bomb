@@ -28,7 +28,7 @@ VALUES(1, 0, '07:00:00', '18:00:00'),
 (3, 5, '12:00:00', '02:00:00'),
 (3, 6, '12:00:00', '24:00:00');
 
-INSERT INTO categories (restaurant_id, name)
+INSERT INTO categories (restaurant_id, category)
 VALUES(1, 'Drinks'),
 (1, 'Entre'),
 (1, 'Sides'),
