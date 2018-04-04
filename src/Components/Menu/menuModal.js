@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import './../Login/loginModal.css';
+import currency from 'currency.js';
 
 export default class DialogExampleModal extends Component {
 constructor(props){
-    super(props)
-    this.state = {
+  super(props)
+  this.state = {
 
-    };
+  };
 }
 
   
@@ -15,13 +16,13 @@ constructor(props){
   render() {
 
     const customContentStyle = {
-        width: '100%',
-        maxWidth: '400px',
-        textAlign:'center'
-      };
+      width: '100%',
+      maxWidth: '400px',
+      textAlign:'center'
+    };
 
     const titleStyle = {
-        padding: '10px'
+      padding: '10px'
     }
 
     return (
@@ -36,27 +37,13 @@ constructor(props){
         >
         <div className='menu-modal-content'>
           <div className='modal-menu'>
-                <div>
-                    <span>Email</span>
-                    <input />
-                </div>
-                <div>
-                    <span>Password</span>
-                    <input />
-                </div>
-                <button> Login </button>
+            <div>
+              <h1>{this.props.selectedItem.name}</h1>
+              <h2>{currency(this.props.selectedItem.price).format(true)}</h2>
+              <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <div className='modal-register'>
-                <h1>Register</h1>
-                <div>
-                    <button className='btn'>
-                        Customer
-                    </button>
-                    <button className='btn'>
-                        Restaurant
-                    </button>
-                </div>
-            </div>
+            <button> Add to Order </button>
+          </div>
         </div>
         </Dialog>
       </div>
