@@ -26,28 +26,35 @@ export default class MenuCategory extends Component {
       this.state = {
 
       }
-      this.getMenuItems = this.getMenuItems.bind(this);
+      // this.getMenuItems = this.getMenuItems.bind(this);
   }
   componentDidMount() {
-    axios.get('/api/menu')
-  }
-  getMenuItems() {
-    if(this.props.menu) {
-      return this.props.menuItems.map( item => {
-        return (
-          <MenuItem item={item} />
-        )
+    const restaurantId = (window.location.href).split('/').pop();
+    console.log('restaurantId: ', restaurantId)
+    axios.get('/api/menu-items').then( menuItems => {
+      this.setState({
+        menuItems: menuItems.data
       })
-    }
+    })
   }
+  // getMenuItems() {
+  //   if(true) {
+  //     return this.props.menuItems.map( item => {
+  //       // return (
+  //       //   // <MenuItem item={item} />
+  //       // )
+  //     })
+  //   }
+  // }
   
   render() {
-    const menuItems = this.getMenuItems();
+    // const menuItems = this.getMenuItems();
+    const menuItems = 'test';
     return (
       <Wrapper className='menu-container-container'>
         <InnerBox>
-          <h2>{this.props.menuItems[0].category}</h2>
-          <MenuItems />
+          {/* <h2>{this.props.menuItems[0].category}</h2> */}
+          {/* <MenuItems /> */}
         </InnerBox>
       </Wrapper>
     );

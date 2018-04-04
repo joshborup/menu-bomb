@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import styled from "styled-components";
 import currency from "currency.js";
 
@@ -24,19 +25,30 @@ const FlexRow = styled.div`
   align-items: center;
 `
 
-export function MenuItem(name, price, description, image_url){
-  
-  return (
-    <Wrapper className='menu-item-container'>
-      <InnerBox>
-        <FlexRow>
-          <h3>{name}</h3><span>{currency(price).format(true)}</span>
-          <div>{description}</div>
-        </FlexRow>
-        <FlexRow>
-          <img src={imageUrl} alt='scrumptious food' />
-        </FlexRow>
-      </InnerBox>
-    </Wrapper>
-  );
+export default class MenuItem extends Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'Burger',
+      price: 2,
+      description: 'fsajklf',
+      image_url: 'sfjdaklsaf.png'
+    }
+  }
+
+  render() {
+    return (
+      <Wrapper className='menu-item-container'>
+        <InnerBox>
+          <FlexRow>
+            <h3>{this.state.name}</h3><span>{currency(this.state.price).format(true)}</span>
+            <div>{this.state.description}</div>
+          </FlexRow>
+          <FlexRow>
+            <img src={this.state.imageUrl} alt='scrumptious food' />
+          </FlexRow>
+        </InnerBox>
+      </Wrapper>
+    );
+  }
 }
