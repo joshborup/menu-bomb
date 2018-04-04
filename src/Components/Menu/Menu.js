@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
-import MenuItem from './MenuItem';
-import './menuCategory.css';
-
+import MenuCategory from './MenuCategory';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -12,46 +10,48 @@ const Wrapper = styled.div`
 `
 const InnerBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
   background-color: #5EBCD1;
   height: 100%;
   justify-content: space-between;
 `
-const FlexRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-`
 
-class Menu extends Component {
+export default class Menu extends Component {
   constructor(props){
       super(props)
       this.state = {
-
       }
-      this.getMenuItems = this.getMenuItems.bind(this);
+      this.getMenuCategories = this.getMenuCategories.bind(this);
   }
 
-  getMenuItems() {
-    if(this.props.menu) {
-      return this.props.menuItems.map( item => {
-        return (
-          <MenuItem item={item} />
+  getMenuCategories() {
+    if(this.props.menuItems) {
+      // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
+      let uniqueCategories = Array.from(new Set(this.props.menuItems.map( item => item.category)));
+      
+      const menu = [];
+      for(let category of uniqueCategories) {
+        let itemsByCategory = this.props.menuItems.filter( item => item.category === category);
+        console.log('itemsByCategory: ', itemsByCategory)
+        menu.push(
+          <MenuCategory menuItems={itemsByCategory} category={category}/>
         )
-      })
+      }
+      
+      return menu;
     }
+
+    return null;
   }
   
   render() {
-    const menuItems = this.getMenuItems();
+    const menu = this.getMenuCategories();
     return (
-      <Wrapper className='menu-container'>
+      <Wrapper className='menu-category-container'>
         <InnerBox>
-          <h2>{this.props.menuItems[0].category}</h2>
-          {menuItems || 'Loading...'}
+          {menu ? menu : 'Loading...'}
         </InnerBox>
       </Wrapper>
     );

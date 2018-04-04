@@ -1,62 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import Menu from './Menu';
+import menu from './menu.css';
 
-const Wrapper = styled.div`
-  height: 100px;
-  width: 100%;
-  background-color: #5EBCD1;
-  box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
-  overflow:hidden;
-`
-const InnerBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-  margin: 0 auto;
-  background-color: #5EBCD1;
-  height: 100%;
-  justify-content: space-between;
-`
-
-export default class MenuCategory extends Component {
-  constructor(props){
-      super(props)
+export default class MenuContainer extends Component {
+  constructor(){
+      super()
       this.state = {
-
+        menuItems: null
       }
-      // this.getMenuItems = this.getMenuItems.bind(this);
   }
   componentDidMount() {
     const restaurantId = (window.location.href).split('/').pop();
     console.log('restaurantId: ', restaurantId)
-    axios.get('/api/menu-items').then( menuItems => {
+    axios.get(`/api/menu-items/${restaurantId}`).then( menuItems => {
       this.setState({
         menuItems: menuItems.data
       })
+    }).catch( err => {
+      console.log('get menu-items err: ', err);
     })
   }
-  // getMenuItems() {
-  //   if(true) {
-  //     return this.props.menuItems.map( item => {
-  //       // return (
-  //       //   // <MenuItem item={item} />
-  //       // )
-  //     })
-  //   }
-  // }
+  
   
   render() {
-    // const menuItems = this.getMenuItems();
-    const menuItems = 'test';
     return (
-      <Wrapper className='menu-container-container'>
-        <InnerBox>
-          {/* <h2>{this.props.menuItems[0].category}</h2> */}
-          {/* <MenuItems /> */}
-        </InnerBox>
-      </Wrapper>
+      <div class='menu-container-component'>
+        {this.state.menuItems && <Menu menuItems={this.state.menuItems} />}
+      </div>
     );
   }
 }
