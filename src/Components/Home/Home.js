@@ -3,6 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './Home.css';
 import Header from '../Shared/Header';
+import Footer from '../Shared/Footer';
 
 class Home extends Component {
 
@@ -23,6 +24,7 @@ class Home extends Component {
                     <div className="home-content-text-4">Restaurant staff can view and manage orders placed online through the convenient Restaurant Dashboard</div>
                 </div>
             </div>
+            <Footer />
         </div>
     );
   }
