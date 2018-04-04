@@ -3,12 +3,16 @@ import axios from 'axios';
 import styled from "styled-components";
 import Menu from './Menu';
 import menu from './menu.css';
+import Modal from './menuModal';
 
 export default class MenuContainer extends Component {
   constructor(){
       super()
       this.state = {
-        menuItems: null
+        menuItems: null,
+        open: false,
+        loginEmail: '',
+        password: '',
       }
   }
   componentDidMount() {
@@ -23,11 +27,19 @@ export default class MenuContainer extends Component {
     })
   }
   
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
   
   render() {
     return (
       <div class='menu-container-component'>
-        {this.state.menuItems && <Menu menuItems={this.state.menuItems} />}
+        <Modal modalStatus={this.state.open} handleClose={this.handleClose}/>
+        {this.state.menuItems && <Menu menuItems={this.state.menuItems} handleClose={this.handleClose} handleOpen={this.handleOpen}/>}
       </div>
     );
   }
