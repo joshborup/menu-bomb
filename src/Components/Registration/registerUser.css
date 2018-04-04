@@ -1,0 +1,93 @@
+.register-user-container a {
+    text-decoration: none;
+    color: white;
+}
+
+.register-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: rgba(0,0,0,0.15) solid 1px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-weight: 900px;
+}
+
+.register-user > *+* {
+    margin: 10px 0px;
+}
+
+.register-user > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+
+.register-user span {
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900px;
+}
+
+.register-user input {
+    height: 35px;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    background: #E6E6E6;
+    font-size: 16px;
+}
+
+.register-user-content .user-register >div{
+    max-width: 300px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+
+
+/*buttons*/
+
+
+.register-user-content .btn {
+    height: 40px;
+    width: 120px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
+    font-weight: 600px;
+    transition: .4;
+}
+
+.register-user-content .btn:active {
+    box-shadow: none;
+
+}
+
+.register-user-content .btn:focus {
+    outline: none;
+}
+.register-user-content .register-user .btn {
+    background: #50BAF9;
+}
+
+
+.register-user-content .user-register .btn {
+    background: #FB6A6D;
+}
+
+.register-user-content .user-register h1 {
+    color: rgba(0, 0, 0, 0.87);
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: 400;
+}
