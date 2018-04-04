@@ -42,6 +42,7 @@ const Image = styled.img`
   float: right;
   position: absolute;
   right: 0;
+  top: 0;
 `
 const H3 = styled.div`
   font-size: 15px;
@@ -71,7 +72,7 @@ export default class MenuItem extends Component{
     const {name, price, description, imageurl, category, id} = this.props.item;
     console.log('props: ', this.props)
     return (
-      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={this.props.handleOpen}>
+      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={(e) => this.props.handleOpen(this.props.item)}>
         <InnerBox>
           <FlexRow>
             <H3>{name}</H3>
