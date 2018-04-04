@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
-const lR = require('./controller/loginRegister');
+const user = require('./controller/user');
 const restaurant = require('./controller/restaurant');
 const menu = require('./controller/menu');
 require('dotenv').config();
@@ -32,9 +32,12 @@ app.use(session({
 
 
 // ENDPOINTS
-app.post('/register', lR.register);
-app.post('/login', lR.login);
-app.post('/logout', lR.logout);
-app.post('/profile-data', restaurant.addProfileData);
+app.post('/register', user.register);
+app.post('/login',  user.login);
+app.post('/logout', user.logout);
+app.post('/api/profile-data', restaurant.addProfileData);
+app.get('/api/user-data', user.data);
 app.get('/api/menu-items/:id', menu.getMenuItems);
-app.listen(4000, ()=> console.log('listening on port 4000'))
+
+const PORT = 4000;
+app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));
