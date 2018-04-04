@@ -14,6 +14,7 @@ CREATE TABLE users (
 CREATE TABLE restaurant_profiles (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users(id),
+  name TEXT NOT NULL,
   description TEXT,
   logo_url TEXT,
   background_url TEXT,
@@ -32,7 +33,7 @@ CREATE TABLE business_hours (
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   restaurant_id INTEGER REFERENCES restaurant_profiles(id),
-  name TEXT NOT NULL
+  category TEXT NOT NULL
 );
 
 CREATE TABLE menu_items (
