@@ -1,11 +1,16 @@
 var initialState = {
     user: '',
-    loginEmail:''
+    loginEmail:'',
+    cart: {
+        cart: [],
+        total: 0
+    }
 }
 
 // user data action
 const FETCH_USER_DATA = 'FETCH_USER_DATA';
 const FETCH_LOGIN_EMAIL = 'FETCH_LOGIN_EMAIL';
+const FETCH_CART = 'FETCH_CART';
 
 export default function(state=initialState, action){
     switch(action.type){
@@ -16,6 +21,10 @@ export default function(state=initialState, action){
         case FETCH_LOGIN_EMAIL:
     
             return {...state, loginEmail: action.payload};
+
+        case FETCH_CART:
+
+            return {...state, cart: action.payload};
 
         default:
 
@@ -35,6 +44,13 @@ export function fetchLoginEmail(email){
     return {
         type: FETCH_LOGIN_EMAIL,
         payload: email
+    }
+}
+
+export function fetchCart(cart){
+    return {
+        type: FETCH_CART,
+        payload: cart
     }
 }
 
