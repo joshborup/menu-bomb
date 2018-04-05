@@ -1,0 +1,35 @@
+.account-container {
+    padding-top: 20px;
+}
+
+.account-container > div {
+
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.account-container > div h1 {
+    font-size: 32px;
+    font-family: Montserrat;
+    margin-bottom: 10px;
+}
+
+.account-container .account-info {
+    padding: 10px;
+    width: 100%;
+    background: #edeced;
+    border-radius: 3px;
+}
+
+.account-container .account-info > div {
+    background: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
