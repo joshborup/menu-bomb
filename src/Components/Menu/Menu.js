@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   background-color: #5EBCD1;
   box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   overflow:hidden;
+  min-height: 100vh;
 `
 const InnerBox = styled.div`
   display: flex;
