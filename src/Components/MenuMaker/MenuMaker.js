@@ -6,19 +6,18 @@ export default class MenuMakerContainer extends Component {
   constructor(){
       super()
       this.state = {
-        menuItems: null,
-        open: false,
-        selectedItem: {}
+
       }
   }
   componentDidMount() {
-
   }
   
 
   render() {
     return (
       <div class='menu-maker-component'>
+        <input value={this.props.newCategory} onChange={(e) => this.props.handleStatePropChanges('newCategory', e.target.value)} ></input>
+        <button onClick={}></button>
       </div>
     );
   }

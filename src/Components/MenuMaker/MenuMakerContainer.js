@@ -7,7 +7,8 @@ export default class MenuMakerContainer extends Component {
   constructor(){
       super()
       this.state = {
-
+        menuCategories: [],
+        newCategory: ''
       }
   }
 
@@ -15,10 +16,16 @@ export default class MenuMakerContainer extends Component {
 
   }
 
+  handleStatePropChanges = (prop, val) => {
+    this.setState({
+      [prop]: val,
+    })
+  }
+  
   render() {
     return (
       <div class='menu-maker-container-component'>
-        <MenuMaker />
+        <MenuMaker newCategory={this.state.newCategory} handleStatePropChanges={this.handleStatePropChanges} />
       </div>
     );
   }
