@@ -11,7 +11,8 @@ class AccountContainer extends Component {
         this.state = {
             disabled: true,
             firstName: '',
-            lastName: ''
+            lastName: '',
+            email: ''
         }
     }
 
@@ -21,7 +22,8 @@ class AccountContainer extends Component {
             
             this.setState({
                 firstName: response.data[0].first_name,
-                lastName: response.data[0].last_name
+                lastName: response.data[0].last_name,
+                email: response.data[0].email
             })
             //setting user session in redux for conditionally rendering links bases on usertype
              this.props.fetchUserData(response.data[0])
@@ -34,11 +36,17 @@ class AccountContainer extends Component {
         })
     }
 
+    nameChangeHandler = (prop, val) => {
+        this.setState({
+            [prop]: val
+        })
+    }
+
     render() {
         return (
             <div>
                 <Header />
-                <Account disabledButton={this.editButton} disabled={this.state.disabled} user={this.props.user}/>
+                <Account disabledButton={this.editButton} disabled={this.state.disabled} user={this.props.user} email={this.state.email} nameChangeHandler={this.nameChangeHandler} firstName={this.state.firstName} lastName={this.state.lastName}/>
             </div>
         );
     }
