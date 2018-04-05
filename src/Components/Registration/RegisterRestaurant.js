@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './restaurantRegister.css'
 
 
-function isValid(name, email, phone) {
+function isValid(name, email, phone, address1, address2, firstName, lastName) {
     // true means invalid
     return {
         name: name.length === 0,
