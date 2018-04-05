@@ -29,7 +29,7 @@ export default function(state=initialState, action){
 
         case ADD_TO_CART:
 
-            return{...state, cart: state.cart.cart.push(action.payload)};
+            return{...state, cart: action.payload};
 
         default:
 
@@ -60,8 +60,10 @@ export function fetchCart(cart){
 }
 
 export function addToCart(selectedItem){
+    let newCart = initialState.cart.cart;
+    newCart.push(selectedItem);
     return {
         type: ADD_TO_CART,
-        payload: selectedItem
+        payload: newCart
     }
 }

@@ -5,7 +5,7 @@ import currency from 'currency.js';
 import {connect} from 'react-redux';
 import {addToCart} from '../../redux/reducer';
 
-export default class DialogExampleModal extends Component {
+class DialogExampleModal extends Component {
 constructor(props){
   super(props)
   this.state = {
@@ -44,7 +44,7 @@ constructor(props){
               <h2>{currency(this.props.selectedItem.price).format(true)}</h2>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <button onClick={this.props.addToCart(selectedItem)}> Add to Order </button>
+            <button onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </button>
           </div>
         </div>
         </Dialog>
@@ -55,4 +55,4 @@ constructor(props){
 
 const mapStateToProps = state => ({ state: state });
 
-export default connect( mapStateToProps, { addToCart})(Detailed);
+export default connect( mapStateToProps, { addToCart})(DialogExampleModal);
