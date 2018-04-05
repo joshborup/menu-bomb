@@ -52,7 +52,7 @@
     
 }
 
-.account-container .account-info > div span {
+.account-container .account-info > div > div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,15 +62,20 @@
     width: 300px;
 }
 
-.account-container .account-info > div button {
+.account-container .account-info > div > div span {
+    width: 180px;
+}
+
+.account-container button {
     height: 40px;
     width: 120px;
     cursor: pointer;
-    background: #edeced;
-    color: black;
+    background: #FFFFFF;
+    color: white;
     font-size: 16px;
     border-radius: 3px;
     border: none;
+    margin: 10px 0px;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
     font-weight: 600px;
     transition: .4;
@@ -82,4 +87,13 @@
 
 .account-container .account-info > div button:focus, .account-container .account-info > div input:focus{
     outline: none;
+}
+
+.account-container .edit-button {
+    background: #50BAF9;
+    
+}
+
+.account-container .save-button {
+    background: #FB6A6D;
 }

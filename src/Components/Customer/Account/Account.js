@@ -6,18 +6,18 @@ const Account = (props) => {
         <div className='account-container'>
             <div>
                 <h1>Account Page</h1>
+                {props.disabled ? <button className='edit-button' onClick={()=> props.disabledButton()}>edit</button> :  <button className='save-button' onClick={()=> props.save()}>Save</button>}
                 <div className='account-info'>
                     <div>
-                       <span>first name: <input onChange={(e) => props.nameChangeHandler('firstName', e.target.value)} disabled={props.disabled} value={props.firstName}/></span>
-                       <button onClick={()=> props.disabledButton()}>edit</button>
+                       <div> <span>first name: </span><input onChange={(e) => props.nameChangeHandler('firstName', e.target.value)} disabled={props.disabled} value={props.firstName}/></div>
+                       
                     </div>
                     <div>
-                       <span>last name: <input onChange={(e) => props.nameChangeHandler('lastName', e.target.value)} disabled={props.disabled} value={props.lastName}/></span>
-                       <button onClick={()=> props.disabledButton()}>edit</button>
+                       <div><span>last name: </span><input onChange={(e) => props.nameChangeHandler('lastName', e.target.value)} disabled={props.disabled} value={props.lastName}/></div>
+                       
                     </div>
                     <div>
-                        <span>Email: <input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.email} /></span>
-                    <button onClick={()=> props.disabledButton()}>edit</button>
+                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.email} /></div>
                     </div>
                 </div>
             </div>

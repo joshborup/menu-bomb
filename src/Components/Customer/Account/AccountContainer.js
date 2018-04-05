@@ -42,11 +42,35 @@ class AccountContainer extends Component {
         })
     }
 
+    saveButton = () => {
+
+        if(!this.state.disabled){
+            this.setState({
+                disabled: true
+            })
+            axios.put('/api/user-data-customer-update', {firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email}).then(response => {
+                this.setState({
+                    firstName: response.data[0].first_name,
+                    lastName: response.data[0].last_name,
+                    email: response.data[0].email
+                })
+            })
+        }
+    }
+
     render() {
         return (
             <div>
                 <Header />
-                <Account disabledButton={this.editButton} disabled={this.state.disabled} user={this.props.user} email={this.state.email} nameChangeHandler={this.nameChangeHandler} firstName={this.state.firstName} lastName={this.state.lastName}/>
+                <Account 
+                disabledButton={this.editButton} 
+                disabled={this.state.disabled}
+                save={this.saveButton} 
+                user={this.props.user} 
+                email={this.state.email} 
+                nameChangeHandler={this.nameChangeHandler} 
+                firstName={this.state.firstName} 
+                lastName={this.state.lastName}/>
             </div>
         );
     }
