@@ -11,6 +11,7 @@ var initialState = {
 const FETCH_USER_DATA = 'FETCH_USER_DATA';
 const FETCH_LOGIN_EMAIL = 'FETCH_LOGIN_EMAIL';
 const FETCH_CART = 'FETCH_CART';
+const ADD_TO_CART = 'ADD_TO_CART';
 
 export default function(state=initialState, action){
     switch(action.type){
@@ -25,6 +26,10 @@ export default function(state=initialState, action){
         case FETCH_CART:
 
             return {...state, cart: action.payload};
+
+        case ADD_TO_CART:
+
+            return{...state, cart: state.cart.cart.push(action.payload)};
 
         default:
 
@@ -54,3 +59,9 @@ export function fetchCart(cart){
     }
 }
 
+export function addToCart(selectedItem){
+    return {
+        type: ADD_TO_CART,
+        payload: selectedItem
+    }
+}
