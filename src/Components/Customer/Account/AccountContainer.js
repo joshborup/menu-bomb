@@ -60,8 +60,10 @@ class AccountContainer extends Component {
 
     render() {
         return (
-            <div>
+            <div className='cust-account-container'>
+                
                 <Header />
+                { this.props.user.user_type === 'customer' ?
                 <Account 
                 disabledButton={this.editButton} 
                 disabled={this.state.disabled}
@@ -70,7 +72,7 @@ class AccountContainer extends Component {
                 email={this.state.email} 
                 nameChangeHandler={this.nameChangeHandler} 
                 firstName={this.state.firstName} 
-                lastName={this.state.lastName}/>
+                lastName={this.state.lastName}/> : <p>you need to register</p>}
             </div>
         );
     }
