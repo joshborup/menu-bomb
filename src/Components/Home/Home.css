@@ -1,5 +1,5 @@
 .home-container {
-    background-color: #963135;
+    background-color: #F8F6EA;
 }
 
 .home-inner-container {
@@ -7,8 +7,9 @@
     background-color: #F8F6EA;
     margin: 0 auto;
     padding-top: 20px;
-    border: 1px solid #171736;
-    border-radius: 15px;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    box-shadow: 1px 4px 10px gray;
 }
 
 .home-hero-text{
@@ -39,6 +40,7 @@
     height: 350px;
     border: 1px solid transparent;
     text-align: center;
+    box-shadow: 1px 4px 5px gray;
 }
 
 .home-content {
@@ -55,7 +57,6 @@
     color: #171736;
     width: 70%;
     text-align: center;
-    border-bottom: 1px solid #963135;
 }
 
 .home-content-img-1 {
@@ -86,15 +87,18 @@
 
 .home-info-icon {
     font-size: 125px;
-    color: #171736;
+    color: #211a0d;
 }
 
 .grid-container {
     background-color: #F8F6EA;
     max-width: 1200px;
-    margin: 0 auto;
-    border-radius: 15px;
-    border: 1px solid #171736;
+    margin: 25px auto 0px auto;
+    border-radius: 2px;
+    border: 1px transparent;
+    border-radius: 2px;
+    box-shadow: 1px 4px 10px gray;
+    padding: 10px;
 }
 
 .grid-items {
@@ -103,10 +107,10 @@
     align-items: center;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
-    color: #171736;
+    color: #211a0d;
     padding: 10px 0px 60px 0px;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 auto;
+    max-width: 80%;
 }
 
 .grid-item {
@@ -118,3 +122,7 @@
 b {
     font-weight: 700;
 }
+
+.home-content-container > *+* {
+    margin: 10px auto;
+} 

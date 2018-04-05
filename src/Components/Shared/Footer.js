@@ -11,7 +11,7 @@ import { fetchUserData } from '../../redux/reducer';
 const Wrapper = styled.div`
     height: 70px;
     width: 100%;
-    background-color: #5EBCD1;
+    background-color: #211a0d;
     box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
     overflow:hidden;
 `
@@ -20,7 +20,7 @@ const InnerBox = styled.div`
     flex-direction: row;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #5EBCD1;
+    background-color: #211a0d;
     height: 100%;
     justify-content: space-between;
 `
@@ -41,9 +41,14 @@ const LinksContainer = styled.ul`
 `
 const ListItem = styled.li`
     margin: 0px 10px;
-    color: white;
+    color: #F8F6EA;
     font-size: 20px;
     
+`
+
+const CopyRight = styled.span`
+  color: #F8F6EA;  
+  
 `
 
 class Footer extends Component {
@@ -80,7 +85,7 @@ class Footer extends Component {
               {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
               {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
             </LinksContainer>
-            <span>&copy; Menu Bomb</span>
+            <CopyRight>&copy; Menu Bomb</CopyRight>
           </FlexRow>
         </InnerBox>
       </Wrapper>

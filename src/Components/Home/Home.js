@@ -21,6 +21,7 @@ class Home extends Component {
                 <h1 className="home-hero-text">Build your brand. Sell more food.</h1>
                 <button className="home-hero-button">Register</button>
             </div>
+            <div className="home-content-container">
             <div className="grid-container">
             <h1 className="home-icon-header">Did you know...?</h1>
                 <div className="grid-items">
@@ -58,6 +59,7 @@ class Home extends Component {
                 <div className="home-content">
                     <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
                 </div>
+            </div>
             </div>
             <Footer />
         </div>
