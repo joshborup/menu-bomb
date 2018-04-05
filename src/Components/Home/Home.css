@@ -1,10 +1,10 @@
 .home-container {
-    background-color: #F8F6EA;
+    background-color: #edeced;
 }
 
 .home-inner-container {
     max-width: 1200px;
-    background-color: #F8F6EA;
+    background-color: #FFFFFF;
     margin: 0 auto;
     padding-top: 20px;
     border: 1px solid transparent;
@@ -91,7 +91,7 @@
 }
 
 .grid-container {
-    background-color: #F8F6EA;
+    background-color: #FFFFFF;
     max-width: 1200px;
     margin: 25px auto 0px auto;
     border-radius: 2px;

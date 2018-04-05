@@ -8,11 +8,12 @@ const Account = (props) => {
                 <h1>Account Page</h1>
                 <div className='account-info'>
                     <div>
-                       Email: {props.user.email}
+                       name: {props.user.name}
                        <button>edit</button>
                     </div>
                     <div>
-
+                    Email: {props.user.email}
+                    <button>edit</button>
                     </div>
                 </div>
             </div>
