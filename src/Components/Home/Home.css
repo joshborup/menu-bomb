@@ -6,36 +6,115 @@
     max-width: 1200px;
     background-color: #F8F6EA;
     margin: 0 auto;
+    padding-top: 20px;
+    border: 1px solid #171736;
+    border-radius: 15px;
 }
 
 .home-hero-text{
     font-family: 'Merriweather', serif;
-    font-size: 45px;
+    font-size: 40px;
+    color: #F8F6EA;
+    margin-top: 70px;
+    text-align: center;
+}
+
+.home-hero-button {
+    width: 125px;
+    height: 35px;
     color: #171736;
-    -webkit-text-stroke-width: 2px;
-    -webkit-text-stroke-color: #F8F6EA;
-    background-color: #F8F6EA50;
-    padding: 128px;
+    background-color: #FFA23F;
+    border: 1px solid #171736;
+    margin-top: 25px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
 }
 
 .home-hero {
-    background-image: url('./assets/restaurant-img.jpeg');
+    background-image: url('./assets/cook-food-kitchen-eat.jpeg');
     z-index: -1;
-    background-position: center;
-    height: 300px;
+    background-position: bottom;
+    width: 100%;
+    background-size: contain;
+    height: 350px;
     border: 1px solid transparent;
+    text-align: center;
 }
 
 .home-content {
     display: flex;
-    height: 100px;
-    margin: 40px;
-    border: 1px solid transparent;
+    flex-direction: column;
+    margin-top: 20px;
 }
 
 .home-content-text-1, .home-content-text-2, .home-content-text-3, .home-content-text-4 {
+    font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 auto;
+    padding: 5px;
+    color: #171736;
+    width: 70%;
+    text-align: center;
+    border-bottom: 1px solid #963135;
+}
+
+.home-content-img-1 {
+    width: 300px;
+    float: left;
+}
+
+.home-content-img-2  {
+    width: 300px;
+    float: right;
+}
+
+.home-content-img-3  {
+    width: 300px;
+    float: left;
+}
+
+.home-content-img-4  {
+    width: 300px;
+    float: right;
+}
+
+.home-icon-header {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 20px;
+}
+
+.home-info-icon {
+    font-size: 125px;
+    color: #171736;
+}
+
+.grid-container {
+    background-color: #F8F6EA;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 15px;
+    border: 1px solid #171736;
+}
+
+.grid-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
-    padding: 30px;
-    width: 50%;
+    color: #171736;
+    padding: 10px 0px 60px 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.grid-item {
+    max-width: 200px;
+    text-align: center;
+    padding: 20px;
+}
+
+b {
+    font-weight: 700;
 }
