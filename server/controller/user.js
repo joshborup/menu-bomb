@@ -82,6 +82,7 @@ module.exports = {
         const db = req.app.get('db');
 
         db.get_user(req.session.user.email).then(response => {
+            console.log(response)
             res.status(200).send(response)
         })
     }

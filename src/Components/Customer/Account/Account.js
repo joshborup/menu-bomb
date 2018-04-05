@@ -8,12 +8,12 @@ const Account = (props) => {
                 <h1>Account Page</h1>
                 <div className='account-info'>
                     <div>
-                       name: {props.user.name}
-                       <button>edit</button>
+                       <span>name: <input disabled={props.disabled} value={`${props.user.first_name} ${props.user.last_name}`}/></span>
+                       <button onClick={()=> props.disabledButton()}>edit</button>
                     </div>
                     <div>
-                    Email: {props.user.email}
-                    <button>edit</button>
+                        <span>Email: <input disabled={props.disabled} value={props.user.email} /></span>
+                    <button onClick={()=> props.disabledButton()}>edit</button>
                     </div>
                 </div>
             </div>
