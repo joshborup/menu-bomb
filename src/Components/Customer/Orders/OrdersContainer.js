@@ -17,7 +17,7 @@ class OrdersContainer extends Component {
     componentDidMount(){
         axios.get('/api/user-data').then(response => {
             console.log(response.data[0])
-            axios.get(`/api/get-order-by-id?customerId=${1}`).then(orders => {
+            axios.get(`/api/get-order-by-id?customerId=${response.data[0].id}`).then(orders => {
                 console.log(orders)
                 this.setState({
                     orders: orders.data

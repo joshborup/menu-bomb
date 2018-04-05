@@ -5,6 +5,7 @@ const session = require('express-session');
 const user = require('./controller/user');
 const orders = require('./controller/orders')
 const restaurant = require('./controller/restaurant');
+const customer = require('./controller/customer')
 const menu = require('./controller/menu');
 require('dotenv').config();
 
@@ -36,11 +37,13 @@ app.use(session({
 app.post('/register', user.register);
 app.post('/login',  user.login);
 app.post('/logout', user.logout);
+
 app.post('/api/profile-data', restaurant.addProfileData);
 app.get('/api/user-data', user.data);
 app.get('/api/menu-items/:id', menu.getMenuItems);
+app.get('/api/get-order-by-id', orders.customer );
 
-app.get('/api/get-order-by-id', orders.customer )
+app.put('/api/user-data-customer-update', customer.update)
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));

@@ -12,7 +12,7 @@ import './header.css';
 const Wrapper = styled.div`
     height: 70px;
     width: 100%;
-    background-color: #5EBCD1;
+    background-color: #C71B04;
     box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
     overflow:hidden;
 `
@@ -21,7 +21,7 @@ const InnerBox = styled.div`
     flex-direction: row;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #5EBCD1;
+    background-color: #C71B04;
     height: 100%;
     justify-content: space-between;
 `

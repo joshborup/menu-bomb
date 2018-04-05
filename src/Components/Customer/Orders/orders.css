@@ -51,6 +51,11 @@
 .individual-order > div:first-child {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.individual-order > div:first-child  img {
+    width: 100px;
 }
 
 .open-orders > *+* {
