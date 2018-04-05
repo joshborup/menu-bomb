@@ -1,5 +1,5 @@
 import React from 'react';
-
+import currency from 'currency.js';
 const Order = (props) => {
     return (
         <div className='individual-order' >
@@ -14,7 +14,7 @@ const Order = (props) => {
                Pickup Time: {props.pickup_time}
             </div>
             <div>
-               Total:$ {props.total}
+               Total:{currency(props.total).format(true)}
             </div>
         </div>
     );
