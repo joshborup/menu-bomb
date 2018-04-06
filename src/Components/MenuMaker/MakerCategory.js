@@ -42,7 +42,7 @@ const ImgInput = styled.input`
 const InputDescription = styled.input`
   width: 280px;
   height: 30px;
-  background: #E6E6E6;
+  background: #E9E9E9;
   border: none;
   margin: 0 10px;
 `
@@ -74,11 +74,17 @@ const AddItemButton = styled.button`
   text-shadow: 0.5px 0.5px 1px black;
   box-shadow: 0px 2px 4px rgba(0, 0, 0,0.4);
   cursor: pointer;
-
+  &:active {
+    box-shadow: none;
+  }
+  &:focus {
+    outline: none;
+  }
 `
 
 const Divider = styled.div`
-  height: 20px;
+  
+  margin: 20px 10px;
   width: 100%;
   border-bottom: solid 1px grey;
 `
@@ -124,18 +130,18 @@ export default class MenuCategory extends Component {
 
               <FlexCol>
                 <span>name</span>
-                <Input />
+                <Input  name='newItemName' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               <FlexCol>
                 <span>price</span>
-                <Input />
+                <Input  name='newItemPrice' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               <FlexCol>
                 <span>description</span>
-                <InputDescription />
+                <InputDescription name='newItemDescription' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               
-              <AddItemButton>+</AddItemButton>
+              <AddItemButton onClick={() => this.props.submitNewItem(this.props.category.id)}>+</AddItemButton>
             </FlexRow>
             <Divider></Divider>
             <ItemList>

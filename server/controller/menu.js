@@ -32,5 +32,12 @@ module.exports = {
       console.log('addCategory err: ', err);
       res.status(500);
     })
+  },
+  AddItem: (req, res) => {
+    const db = req.app.get('db');
+    let {name, price, description, catId} = req.body
+
+    console.log(name, price, description, catId)
+
   }
 }

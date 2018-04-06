@@ -18,11 +18,13 @@ export default class MenuMakerContainer extends Component {
       this.props.menuByCategories.map( category => {
         return (<MenuCategory
           category={category}
+          handleNewItem={this.props.handleNewItem}
           newCategory={this.props.newCategory}
           addMenuCategory={this.props.addMenuCategory}
           handleStatePropChanges={this.props.handleStatePropChanges}
           handleNewCategoryChange={this.props.handleNewCategoryChange}
-          handleMenuItemChange={this.props.handleMenuItemChange}>
+          handleMenuItemChange={this.props.handleMenuItemChange}
+          submitNewItem={this.props.submitNewItem}>
         </MenuCategory>)
        }) : 'Loading...';
 

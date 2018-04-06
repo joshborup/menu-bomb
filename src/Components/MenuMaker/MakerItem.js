@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   border-radius: 5px;
   margin 5px 5px;
   &:hover{
-    border: 1px solid #0000008c;
+    box-shadow: 0.5px 2px 2.5px rgba(0,0,0,0.45);
   }
 `
 
@@ -25,7 +25,7 @@ const InnerBox = styled.div`
   height: 100%;
   justify-content: space-between;
 `
-const FlexRow = styled.div`
+const FlexRowLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
@@ -34,30 +34,56 @@ const FlexRow = styled.div`
   position: relative;
   padding: 10px;
 `
+const FlexRowRight = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  width: 50%;
+  position: relative;
+`
 const Description = styled.input`
-  color: #8a8a8a;
-  margin: 5px 0;
+  color: black;
+  background: #f3f3f3;
+  border-radius: 2px;
+  height: 30px;
+  margin-top: 5px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+`
+const ImageContainer = styled.div`
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-item: center;
 `
 const Image = styled.img`
-  height: 100px;
-  float: right;
-  position: absolute;
-  right: 0;
-  top: 0;
+  height: 130%;
 `
 const H3 = styled.input`
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
+  background: #f3f3f3;
+  border-radius: 2px;
+  height: 30px;
+  border: none;
+  &:focus {
+    outline: none;
+  }
 `
 const Price = styled.input`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
+  
   padding: 5px;
-  background-color: #ffffffa3;
-  border-radius: 5px;
+  background: #f3f3f3;
+  border-radius: 2px;
+  height: 30px;
   margin: 5px;
+  border: none;
+  font-size: 16px;
+  &:focus {
+    outline: none;
+  }
 `
 
 export default class MenuMakerContainer extends Component {
@@ -74,7 +100,7 @@ export default class MenuMakerContainer extends Component {
       // <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => this.props.enableItemFields(id)}>
       <Wrapper key={`item-${id}`} className='menu-item-container' >
         <InnerBox>
-          <FlexRow>
+          <FlexRowLeft>
             <H3
               name='name'
               disabled={fieldEnabled}
@@ -84,19 +110,21 @@ export default class MenuMakerContainer extends Component {
             <Description
               name='description'
               disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
               value={description}>
             </Description>
-          </FlexRow>
-          <FlexRow>
+          </FlexRowLeft>
+          <FlexRowRight>
             <Price
               name='price'
               disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
-              value={currency(price).format(true)}>
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
+              value={price}>
             </Price>
-            <Image src={imageurl} alt='scrumptious food' />
-          </FlexRow>
+            <ImageContainer>
+              <Image src={imageurl} alt='scrumptious food' />
+            </ImageContainer>
+          </FlexRowRight>
         </InnerBox>
       </Wrapper>
     )

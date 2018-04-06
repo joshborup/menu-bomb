@@ -10,7 +10,10 @@ export default class MenuMakerContainer extends Component {
       super()
       this.state = {
         menuByCategories: [],
-        newCategory: ''
+        newCategory: '',
+        newItemName: '',
+        newItemDescription:'',
+        newItemPrice:''
       }
   }
 
@@ -41,6 +44,13 @@ export default class MenuMakerContainer extends Component {
     this.setState({
       newCategory: val,
     })
+  }
+
+  handleNewItem = (key, val) => {
+      this.setState({
+        [key.name]: val
+      })
+      console.log(key.name, val)
   }
 
   handleMenuItemChange = (target, item) => {
@@ -80,20 +90,29 @@ export default class MenuMakerContainer extends Component {
     }
   }
 
+  submitNewItem = (id) => {
+    console.log(id)
+    axios.post('/api/add_new_item', {name: this.state.newItemName, price: this.state.newItemPrice, description: this.state.newItemDescription, catId: id}).then(response => {
+            console.log(response)
+    })
+
+  }
 
   
   render() {
-    console.log('container: ', this.state.menuByCategories)
+    
     return (
       <div>
         <Header />
         <div className='menu-maker-container-component'>
           <MenuMaker
+            handleNewItem={this.handleNewItem}
             menuByCategories={this.state.menuByCategories}
             newCategory={this.state.newCategory}
             addMenuCategory={this.addMenuCategory}
             handleNewCategoryChange={this.handleNewCategoryChange}
-            handleMenuItemChange={this.handleMenuItemChange}>
+            handleMenuItemChange={this.handleMenuItemChange}
+            submitNewItem={this.submitNewItem}>
           </MenuMaker>
         </div>
     </div>
