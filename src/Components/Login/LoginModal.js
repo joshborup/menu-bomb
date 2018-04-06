@@ -87,7 +87,7 @@ class DialogExampleModal extends Component {
 
     return (
       <div className='login-modal-container'>
-        <a href='#' onClick={this.handleOpen}>Login</a>
+        <a href='#' onClick={this.handleOpen}>Login/Register</a>
         <Dialog
           title="Login/Register"
           modal={false}
