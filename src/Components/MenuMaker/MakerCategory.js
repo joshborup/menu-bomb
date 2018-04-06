@@ -99,11 +99,13 @@ export default class MenuCategory extends Component {
 
   
   render() {
-    // const menuItems = this.getMenuItems();
+    
+
+
     return (
-      <Wrapper key={`category-${this.props.category}`} className='menu-category-container'>
+      <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
-          <CatName>Burgers</CatName>
+          <CatName>{this.props.category.name || 'Item'}</CatName>
             <FlexRow>
               <FlexCol>
                 <span>Image</span>
