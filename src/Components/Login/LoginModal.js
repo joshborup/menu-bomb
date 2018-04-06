@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Dialog from 'material-ui/Dialog';
 import { connect } from 'react-redux';
 import { fetchLoginEmail } from '../../redux/reducer';
+import {Link} from 'react-router-dom'
 import axios from 'axios';
 import './loginModal.css';
 
@@ -86,7 +87,7 @@ class DialogExampleModal extends Component {
 
     return (
       <div className='login-modal-container'>
-        <a href='#' onClick={this.handleOpen}>Login</a>
+        <a href='#' onClick={this.handleOpen}>Login/Register</a>
         <Dialog
           title="Login/Register"
           modal={false}
@@ -111,12 +112,8 @@ class DialogExampleModal extends Component {
             <div className='modal-register'>
                 <h1>Register</h1>
                 <div>
-                    <button className='btn'>
-                        Customer
-                    </button>
-                    <button className='btn'>
-                        Restaurant
-                    </button>
+                    <Link to='/testregister/customer'><button className='btn'>Customer</button></Link>
+                    <Link to='/testregister/restaurant'><button className='btn'>Restaurant</button></Link>
                 </div>
             </div>
         </div>

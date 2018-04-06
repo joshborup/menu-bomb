@@ -6,6 +6,7 @@ import OrdersContainer from './Components/Customer/Orders/OrdersContainer'
 import testMenu from './Components/Menu/MenuContainer';
 import testMenuMaker from './Components/MenuMaker/MenuMakerContainer';
 import AccountContainer from './Components/Customer/Account/AccountContainer'
+import RegisterRestaurant from './Components/Registration/RegisterRestaurant'
 
 export default (
     
@@ -15,6 +16,7 @@ export default (
         <Route path='/customer/account' component={AccountContainer} />
         <Route path='/testMenu/:id' component={testMenu} />
         <Route path='/testMenuMaker/:id' component={testMenuMaker} />
+        <Route path='/testregister/:userType' component={RegisterRestaurant} />
     </Switch>
 
 )
