@@ -40,19 +40,7 @@ export default class MenuCategory extends Component {
   // ===============================================
 
   // FUNCTION STOLEN FROM MenuCategory.js - NEEDS CHANGING!!!!!!!
-  getMenuItems = () => {
-    let menuItems = [];
-    menuItems = this.props.menuItems.map( item => {
-      console.log('item: ', item)
-      return (
-        <MenuItem item={item} handleOpen={this.props.handleOpen}/>
-      )
-    })
-    return menuItems;
-  }
-  handleMenuItemChange = (target, id) => {
-    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
-  }
+
   
   render() {
     const menuItems = this.getMenuItems();

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import MenuMaker from './MenuMaker';
-import Header from '../Shared/Header'
+import Header from '../Shared/Header';
+import './menuMaker.css';
 
 export default class MenuMakerContainer extends Component {
   constructor(){
@@ -73,15 +74,18 @@ export default class MenuMakerContainer extends Component {
   
   render() {
     return (
-      <div className='menu-maker-container-component'>
-        <MenuMaker
-          newCategory={this.state.newCategory}
-          addMenuCategory={this.addMenuCategory}
-          menuItems={this.state.menuItems}
-          handleStatePropChanges={this.handleStatePropChanges}
-          addMenuCategory={this.addMenuCategory}>
-        </MenuMaker>
-      </div>
+      <div>
+        <Header />
+        <div className='menu-maker-container-component'>
+          <MenuMaker
+            newCategory={this.state.newCategory}
+            addMenuCategory={this.addMenuCategory}
+            menuItems={this.state.menuItems}
+            handleStatePropChanges={this.handleStatePropChanges}
+            addMenuCategory={this.addMenuCategory}>
+          </MenuMaker>
+        </div>
+    </div>
     );
   }
 }
