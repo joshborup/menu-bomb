@@ -1,0 +1,64 @@
+.menu-maker-component h1 {
+    font-size: 32px;
+    font-family: Montserrat;
+    margin-bottom: 10px;
+}
+
+.menu-maker-component > div {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px 0px;
+    width: 100%;
+}
+
+.menu-maker-component .add-cat-button {
+    background: rgb(149, 226, 34);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    font-size: 20px;
+    margin: 0 10px;
+    font-weight: bolder;
+    text-shadow: 0.5px 0.5px 1px black;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0,0.4);
+    cursor: pointer;
+}
+
+.menu-maker-component .add-cat-button:active {
+    box-shadow: none;
+}
+
+.menu-maker-component .add-cat   {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.menu-maker-component .add-cat > div {
+    display: flex;
+    flex-direction: center;
+    align-items: center;
+    
+}
+
+.menu-maker-component .add-cat input{
+    height: 30px;
+    width: 400px;
+    border-radius: 2px;
+    border: none;
+    background: #E6E6E6;
+    font-size: 16px;
+}
+
+.menu-maker-component .add-cat input:focus, .menu-maker-component .add-cat-button:focus{
+outline: none;
+}
