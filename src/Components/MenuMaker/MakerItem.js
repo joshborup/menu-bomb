@@ -74,11 +74,26 @@ export default class MenuMakerContainer extends Component {
       <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => this.props.enableItemFields(id)}>
         <InnerBox>
           <FlexRow>
-            <H3 disabled={fieldEnabled}>{name}</H3>
-            <Description disabled={fieldEnabled}>{description}</Description>
+            <H3
+              name='name'
+              disabled={fieldEnabled}
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
+              value={name}>
+            </H3>
+            <Description
+              name='description'
+              disabled={fieldEnabled}
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
+              value={description}>
+            </Description>
           </FlexRow>
           <FlexRow>
-            <Price disabled={fieldEnabled}>{currency(price).format(true)}</Price>
+            <Price
+              name='price'
+              disabled={fieldEnabled}
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
+              value={currency(price).format(true)}>
+            </Price>
             <Image src={imageurl} alt='scrumptious food' />
           </FlexRow>
         </InnerBox>
