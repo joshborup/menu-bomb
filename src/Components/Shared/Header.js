@@ -76,7 +76,7 @@ class Header extends Component {
             <Wrapper className='header-container'>
                 <InnerBox>
                     <FlexRow>
-                        <LogoTag src={Logo}/>
+                        <Link to='/'><LogoTag src={Logo}/></Link>
                     </FlexRow>
 
                     <div>

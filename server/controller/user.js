@@ -6,7 +6,8 @@ module.exports = {
          const db = req.app.get('db');
 
          // user registration info deconstructed from body
-         const { name, email, phone, address1, address2, firstName, lastName, password, userType } = req.body;
+         
+         const { email, phone, address1, address2, firstName, lastName, password, userType } = req.body;
 
          //saltrounds for bcrypt hashing
          const saltRounds = 12;
