@@ -100,12 +100,18 @@ export default class MenuCategory extends Component {
   
   render() {
     
-
+    const itemList = this.props.category.items.map(e => {
+      return (
+        <MakerItem
+          item={e}
+        />
+      )
+    })
 
     return (
       <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
-          <CatName>{this.props.category.name || 'Item'}</CatName>
+          <CatName>{this.props.category.catName}</CatName>
             <FlexRow>
               <FlexCol>
                 <span>Image</span>
@@ -129,7 +135,7 @@ export default class MenuCategory extends Component {
             </FlexRow>
             <Divider></Divider>
             <ItemList>
-              
+              {itemList}
             </ItemList>
         </InnerBox>
       </Wrapper>
