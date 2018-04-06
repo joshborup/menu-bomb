@@ -101,12 +101,16 @@ export default class MenuCategory extends Component {
   render() {
     
     const itemList = this.props.category.items.map(e => {
-      return (
-        <MakerItem
-          item={e}
-          handleMenuItemChange={this.props.handleMenuItemChange}
-        />
-      )
+      if(e.id != null){
+        return (
+          <MakerItem
+            item={e}
+            handleMenuItemChange={this.props.handleMenuItemChange}
+          />
+        )
+      }
+      
+      
     })
 
     return (
