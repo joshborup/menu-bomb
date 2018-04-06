@@ -108,6 +108,7 @@ export default class RegisterRestaurant extends Component {
         <div className='registration-form'>
             <form  onSubmit={this.handleSubmit}>
                 <h1>Register</h1>
+                <h2>{this.props.match.params.userType}</h2>
                 <input
                 className={errors.name ? "error" : ""}
                 type="text"
