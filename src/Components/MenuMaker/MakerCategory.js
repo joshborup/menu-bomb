@@ -50,6 +50,9 @@ export default class MenuCategory extends Component {
     })
     return menuItems;
   }
+  handleMenuItemChange = (target, id) => {
+    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
+  }
   
   render() {
     const menuItems = this.getMenuItems();
