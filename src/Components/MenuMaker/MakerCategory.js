@@ -109,8 +109,7 @@ export default class MenuCategory extends Component {
           />
         )
       }
-      
-      
+        
     })
 
     return (
