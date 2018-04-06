@@ -104,6 +104,7 @@ export default class MenuCategory extends Component {
       return (
         <MakerItem
           item={e}
+          handleMenuItemChange={this.props.handleMenuItemChange}
         />
       )
     })

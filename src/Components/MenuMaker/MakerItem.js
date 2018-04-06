@@ -71,7 +71,8 @@ export default class MenuMakerContainer extends Component {
   render() {
     const {name, price, description, imageurl, id, fieldEnabled} = this.props.item;
     return (
-      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => this.props.enableItemFields(id)}>
+      // <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => this.props.enableItemFields(id)}>
+      <Wrapper key={`item-${id}`} className='menu-item-container' >
         <InnerBox>
           <FlexRow>
             <H3
