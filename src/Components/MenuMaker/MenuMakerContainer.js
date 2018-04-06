@@ -40,7 +40,7 @@ export default class MenuMakerContainer extends Component {
   render() {
     return (
       <div class='menu-maker-container-component'>
-        <MenuMaker newCategory={this.state.newCategory} menuItems={this.state.menuItems} modifyMenuItems{} handleStatePropChanges={this.handleStatePropChanges} addMenuCategory={this.addMenuCategory}/>
+        <MenuMaker newCategory={this.state.newCategory} menuItems={this.state.menuItems} handleStatePropChanges={this.handleStatePropChanges} addMenuCategory={this.addMenuCategory}/>
       </div>
     );
   }
