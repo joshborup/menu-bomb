@@ -15,7 +15,7 @@ export default class MenuMakerContainer extends Component {
 
   render() {
     return (
-      <div class='menu-maker-component'>
+      <div className='menu-maker-component'>
         <input value={this.props.newCategory} onChange={(e) => this.props.handleStatePropChanges('newCategory', e.target.value)} ></input>
         <button></button>
       </div>
