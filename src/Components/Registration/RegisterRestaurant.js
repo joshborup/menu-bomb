@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './restaurantRegister.css'
+import './registerRestaurant.css'
 
 
 function isValid(name, email, phone, address1, address2, firstName, lastName) {
@@ -41,9 +41,9 @@ export default class RegisterRestaurant extends Component {
         }
 
             this.handleNameChange = this.handleNameChange.bind(this)
-            this.handleemailChange = this.handleemailChange.bind(this)
+            this.handleEmailChange = this.handleEmailChange.bind(this)
             this.handlePhoneChange = this.handlePhoneChange.bind(this)
-            this.handleAdresss1Change = this.handleAdresss1Change.bind(this)
+            this.handleAddress1Change = this.handleAddress1Change.bind(this)
             this.handleAddress2Change = this.handleAddress2Change.bind(this)
             this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
             
@@ -81,7 +81,7 @@ export default class RegisterRestaurant extends Component {
             }
             // This function will run the validate function against the user input values 
             canBeSubmitted() {
-                const errors = validate(this.state.name, this.state.email, this.state.phone, this.state.address1);
+                const errors = isValid(this.state.name, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
                 const isDisabled = Object.keys(errors).some(x => errors[x]);
                 return !isDisabled;
             }
@@ -99,61 +99,63 @@ export default class RegisterRestaurant extends Component {
                 const shouldShow = this.state.touched[field];
                 return hasError ? shouldShow : false;
             }
-            const errors = validate(this.state.name, this.state.email, this.state.phone, this.state.address1);
+            const errors = isValid(this.state.name, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
             const isDisabled = Object.keys(errors).some(x => errors[x]);
             return (
-            <form onSubmit={this.handleSubmit}>
+        <div className='registration-form'>
+            <form  onSubmit={this.handleSubmit}>
                 <input
                 className={errors.name ? "error" : ""}
                 type="text"
                 placeholder="Enter Name"
                 value={this.state.name}
-                onChange={this.handleNameChange}
+                onChange={(e) => this.handleNameChange(e)}
                 />
                 <input
                 className={errors.email ? "error" : ""}
                 type="text"
                 placeholder="Enter Email"
                 value={this.state.email}
-                onChange={this.handleEmailChange}
+                onChange={(e) => this.handleEmailChange(e)}
                 />
                 <input
                 className={errors.phone ? "error" : ""}
                 type="text"
                 placeholder="Enter Phone Number"
                 value={this.state.phone}
-                onChange={this.handlePhoneChange}
+                onChange={(e) => this.handlePhoneChange(e)}
                 />
                 <input
                 className={errors.address1 ? "error" : ""}
                 type="text"
                 placeholder="Enter Address 1"
                 value={this.state.address1}
-                onChange={this.handleAddress1Change}
+                onChange={(e) => this.handleAddress1Change(e)}
                 />
                 <input
                 className={errors.address2 ? "error" : ""}
                 type="text"
                 placeholder="Enter Name"
                 value={this.state.address2}
-                onChange={this.handleAddress2Change}
+                onChange={(e) => this.handleAddress2Change(e)}
                 />
                 <input
                 className={errors.firstName ? "error" : ""}
                 type="text"
                 placeholder="Enter First Name"
                 value={this.state.firstName}
-                onChange={this.handleFirstNameChange}
+                onChange={(e) => this.handleFirstNameChange(e)}
                 />
                 <input
-                className={errors.lastame ? "error" : ""}
+                className={errors.lastName ? "error" : ""}
                 type="text"
                 placeholder="Enter Last Name"
                 value={this.state.lastName}
-                onChange={this.handleLastNameChange}
+                onChange={(e) => this.handleLastNameChange(e)}
                 />
                 <button disabled={isDisabled}>Register!</button>
             </form>
+        </div>
             )
         
   }

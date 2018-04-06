@@ -14,8 +14,21 @@
     margin-bottom: 5px;
   }
   
-  form {
-    padding: 0 40px;
+  .registration-form {
+   width: 100%;
+   display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  }
+
+  .registration-form form {
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    box-shadow: 1px 4px 10px rgba(0,0,0,0.45)
   }
   
   form input {
@@ -43,6 +56,7 @@
     font-size: 16px;
     height: 40px;
     margin-top: 30px;
+    outline: 0;
   }
   
   form button:hover {
