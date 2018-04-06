@@ -17,10 +17,12 @@ export default class MenuMakerContainer extends Component {
     const menuCategories = this.props.menuByCategories.length ? 
       this.props.menuByCategories.map( category => {
         return (<MenuCategory
+          category={category}
           newCategory={this.props.newCategory}
           addMenuCategory={this.props.addMenuCategory}
           handleStatePropChanges={this.props.handleStatePropChanges}
-          category={category}>
+          handleNewCategoryChange={this.props.handleNewCategoryChange}
+          handleMenuItemChange={this.props.handleMenuItemChange}>
         </MenuCategory>)
        }) : 'Loading...';
 

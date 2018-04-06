@@ -37,14 +37,24 @@ export default class MenuMakerContainer extends Component {
       console.log('get menu-items err: ', err);
     })
   }
-  handleStatePropChanges = (prop, val) => {
+  handleNewCategoryChange = ( val) => {
     this.setState({
-      [prop]: val,
+      newCategory: val,
     })
   }
 
-  handleMenuItemChange = (target, id) => {
+  handleMenuItemChange = (target, item) => {
     // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
+    const menuByCategories = this.state.menuByCategories.slice();
+    item[target.name] = target.value;
+    let catIndex = menuByCategories.findIndex( cat => cat.id === item.categoryid);
+    let itemIndex = menuByCategories[catIndex].items.findIndex( catItem => catItem.id === item.id);
+    let category = menuByCategories[catIndex];
+    category.items.splice(itemIndex, 1, item);
+    menuByCategories.splice(catIndex, 1, category);
+    this.setState({
+      menuByCategories
+    })
   }
 
   addMenuCategory = () => {
@@ -82,7 +92,8 @@ export default class MenuMakerContainer extends Component {
             menuByCategories={this.state.menuByCategories}
             newCategory={this.state.newCategory}
             addMenuCategory={this.addMenuCategory}
-            handleStatePropChanges={this.handleStatePropChanges}>
+            handleNewCategoryChange={this.handleNewCategoryChange}
+            handleMenuItemChange={this.handleMenuItemChange}>
           </MenuMaker>
         </div>
     </div>
