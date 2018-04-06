@@ -17,7 +17,7 @@ export default class MenuMakerContainer extends Component {
   componentDidMount() {
     const restaurantId = (window.location.href).split('/').pop();
     console.log('restaurantId: ', restaurantId)
-    axios.get(`/api/menu-items/${restaurantId}`).then( menuItems => {
+    axios.get(`/api/menu-categories/${restaurantId}`).then( menuItems => {
       // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
       let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
       console.log(uniqueCategories)
