@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Header from '../Shared/Header';
 import './registerRestaurant.css'
 
 
@@ -102,8 +103,11 @@ export default class RegisterRestaurant extends Component {
             const errors = isValid(this.state.name, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
             const isDisabled = Object.keys(errors).some(x => errors[x]);
             return (
+    <div>
+        <Header/>
         <div className='registration-form'>
             <form  onSubmit={this.handleSubmit}>
+                <h1>Register</h1>
                 <input
                 className={errors.name ? "error" : ""}
                 type="text"
@@ -156,6 +160,7 @@ export default class RegisterRestaurant extends Component {
                 <button disabled={isDisabled}>Register!</button>
             </form>
         </div>
+    </div>
             )
         
   }
