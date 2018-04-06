@@ -77,7 +77,7 @@ export default class MenuMakerContainer extends Component {
             <H3
               name='name'
               disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, id)}
+              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
               value={name}>
             </H3>
             <Description
