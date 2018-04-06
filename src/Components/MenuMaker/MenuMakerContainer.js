@@ -8,15 +8,27 @@ export default class MenuMakerContainer extends Component {
   constructor(){
       super()
       this.state = {
+        menuItems: null,
         menuCategories: [],
         newCategory: ''
       }
   }
 
   componentDidMount() {
+<<<<<<< HEAD
     axios.get('/api/')
+=======
+    const restaurantId = (window.location.href).split('/').pop();
+    console.log('restaurantId: ', restaurantId)
+    axios.get(`/api/menu-items/${restaurantId}`).then( menuItems => {
+      this.setState({
+        menuItems: menuItems.data
+      })
+    }).catch( err => {
+      console.log('get menu-items err: ', err);
+    })
+>>>>>>> maker-category
   }
-
   handleStatePropChanges = (prop, val) => {
     this.setState({
       [prop]: val,
@@ -26,12 +38,18 @@ export default class MenuMakerContainer extends Component {
   addMenuCategory(category) {
 
   }
+
+
   
   render() {
     return (
       <div class='menu-maker-container-component'>
+<<<<<<< HEAD
         <Header/>
         <MenuMaker newCategory={this.state.newCategory} handleStatePropChanges={this.handleStatePropChanges} addMenuCategory={this.addMenuCategory}/>
+=======
+        <MenuMaker newCategory={this.state.newCategory} menuItems={this.state.menuItems} modifyMenuItems{} handleStatePropChanges={this.handleStatePropChanges} addMenuCategory={this.addMenuCategory}/>
+>>>>>>> maker-category
       </div>
     );
   }
