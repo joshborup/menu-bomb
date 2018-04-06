@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     padding-top: 20px;
+    
 }
 
 .orders-display > div h1 {
@@ -24,15 +25,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: Montserrat;
 }
 
 .open-orders {
-    background: #EDECED;
+    
     padding: 10px;
     width: 100%;
     margin: 10px 0px;
     min-height: 500px;
     border-radius: 3px;
+    font-family: Montserrat;
 }
 
 .individual-order {

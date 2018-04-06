@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginModal from '../Login/LoginModal'
 import {Link} from 'react-router-dom';
-import Logo from './logo.png'
+import Logo from './logo2.svg'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -26,7 +26,7 @@ const InnerBox = styled.div`
     justify-content: space-between;
 `
 const LogoTag = styled.img`
-    width: 70px;
+    width: 270px;
 `
 const FlexRow = styled.div`
     display: flex;
@@ -77,7 +77,6 @@ class Header extends Component {
                 <InnerBox>
                     <FlexRow>
                         <LogoTag src={Logo}/>
-                        <span className='site-name'>MenuBOMB</span>
                     </FlexRow>
 
                     <div>

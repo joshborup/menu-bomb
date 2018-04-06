@@ -22,7 +22,7 @@
 .account-container .account-info {
     padding: 10px;
     width: 100%;
-    background: #edeced;
+    max-width: 800px;
     border-radius: 3px;
 }
 
@@ -32,4 +32,76 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.35);
+    height: 60px;
+    border-radius: 3px;
+}
+
+.account-container .account-info input {
+    height: 35px;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    background: #E6E6E6;
+    font-size: 16px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.account-container .account-info > *+* {
+    margin: 10px 0px;
+    
+}
+
+.account-container .account-info > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: bolder;
+    font-family: Montserrat;
+    width: 100%;
+}
+
+.account-container .account-info > div > div span {
+    width: 180px;
+}
+
+.account-container button {
+    height: 40px;
+    width: 120px;
+    cursor: pointer;
+    background: #FFFFFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 3px;
+    border: none;
+    margin: 10px 0px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
+    font-weight: 600px;
+    transition: .4;
+}
+
+.account-container .account-info > div button:active{
+    box-shadow: none;
+}
+
+.account-container .account-info > div button:focus, .account-container .account-info > div input:focus{
+    outline: none;
+}
+
+.account-container .edit-button {
+    background: #50BAF9;
+    
+}
+
+.account-container .save-button {
+    background: #FB6A6D;
+}
+
+.cust-account-container >p{
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
 }

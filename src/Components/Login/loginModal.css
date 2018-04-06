@@ -58,10 +58,7 @@
     padding: 10px;
 }
 
-
-
 /*buttons*/
-
 
 .login-modal-content .btn {
     height: 40px;
@@ -87,7 +84,6 @@
 .login-modal-content .modal-login .btn {
     background: #50BAF9;
 }
-
 
 .login-modal-content .modal-register .btn {
     background: #FB6A6D;
