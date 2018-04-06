@@ -37,7 +37,7 @@ export default class MenuMakerContainer extends Component {
       console.log('get menu-items err: ', err);
     })
   }
-  handleNewCategoryChange = ( val) => {
+  handleNewCategoryChange = (val) => {
     this.setState({
       newCategory: val,
     })

@@ -32,8 +32,13 @@ export default class MenuMakerContainer extends Component {
           <div className='add-cat'>
             <h1>Add Category</h1>
             <div>
+<<<<<<< HEAD
               <input value={this.props.newCategory} onChange={(e) => this.props.handleNewCategoryChange('newCategory', e.target.value)} ></input>
               <button className='add-cat-button'>+</button>
+=======
+              <input value={this.props.newCategory} onChange={(e) => this.props.handleNewCategoryChange(e.target.value)} ></input>
+              <button onClick={() => this.props.addMenuCategory()} className='add-cat-button'>+</button>
+>>>>>>> b9712f05e77e075a2298ed279b45006e90124ddc
             </div>
           </div>
           {menuCategories}
