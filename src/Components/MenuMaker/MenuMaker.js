@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
+import MenuCategory from './MakerCategory'
 
 export default class MenuMakerContainer extends Component {
   constructor(){
@@ -24,6 +25,7 @@ export default class MenuMakerContainer extends Component {
               <button className='add-cat-button'>+</button>
             </div>
           </div>
+          <MenuCategory />
         </div>
       </div>
     );
