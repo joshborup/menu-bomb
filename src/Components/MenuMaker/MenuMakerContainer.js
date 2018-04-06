@@ -73,6 +73,7 @@ export default class MenuMakerContainer extends Component {
 
   
   render() {
+    console.log('container: ', this.state.menuByCategories)
     return (
       <div>
         <Header />

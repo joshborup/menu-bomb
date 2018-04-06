@@ -10,11 +10,20 @@ export default class MenuMakerContainer extends Component {
 
       }
   }
-  componentDidMount() {
-  }
   
 
   render() {
+    console.log('mbc:', this.props.menuByCategories)
+    const menuCategories = this.props.menuByCategories.length ? 
+      this.props.menuByCategories.map( category => {
+        return (<MenuCategory
+          newCategory={this.props.newCategory}
+          addMenuCategory={this.props.addMenuCategory}
+          handleStatePropChanges={this.props.handleStatePropChanges}
+          category={category}>
+        </MenuCategory>)
+       }) : 'Loading...';
+
     return (
       <div class='menu-maker-component'>
         <div>
@@ -25,7 +34,7 @@ export default class MenuMakerContainer extends Component {
               <button className='add-cat-button'>+</button>
             </div>
           </div>
-          <MenuCategory />
+          {menuCategories}
         </div>
       </div>
     );
