@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Header from '../Shared/Header';
+import axios from 'axios';
 import './registerRestaurant.css'
 
 
-function isValid(name, email, phone, address1, address2, firstName, lastName) {
+function isValid(password, email, phone, address1, address2, firstName, lastName) {
     // true means invalid
     return {
-        name: name.length === 0,
+        password: password.length === 0,
         email: email.length === 0,
         phone: phone.length !== 10,
         address1: address1.length === 0,
@@ -22,16 +23,17 @@ export default class RegisterRestaurant extends Component {
         super()
         
         this.state = {
-            name: '',
+            password: '',
             email: '',
             phone: '',
             address1: '',
             address2: '',
             firstName: '',
             lastName: '',
+            password: '',
     // Touched will prevent the Input fields from defaulting to the error border before the user has inputted any value
             touched: {
-                name: false,
+                password: false,
                 email: false,
                 phone: false,
                 address1: false,
@@ -41,7 +43,7 @@ export default class RegisterRestaurant extends Component {
             },
         }
 
-            this.handleNameChange = this.handleNameChange.bind(this)
+            this.handlePasswordChange = this.handlePasswordChange.bind(this)
             this.handleEmailChange = this.handleEmailChange.bind(this)
             this.handlePhoneChange = this.handlePhoneChange.bind(this)
             this.handleAddress1Change = this.handleAddress1Change.bind(this)
@@ -49,8 +51,8 @@ export default class RegisterRestaurant extends Component {
             this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
             
             }
-            handleNameChange(event) {
-                this.setState({ name: event.target.value })
+            handlePasswordChange(event) {
+                this.setState({ password: event.target.value })
             }
             handleEmailChange(event) {
                 this.setState({ email: event.target.value })
@@ -73,17 +75,25 @@ export default class RegisterRestaurant extends Component {
 
     // Handle Submit
             handleSubmit(event) {
+                event.preventDefault();
                 if (!this.canBeSubmitted()) {
                     event.preventDefault();
+                    console.log(this.state.email);
                     return;
                 }    
-                const{name, email, phone, address1, address2, firstName, lastName} = this.state
-                alert(`Registered as: ${name}, @ ${email}`);    
+                const{password, email, phone, address1, address2, firstName, lastName} = this.state
+                alert(`Registered as: ${firstName}, @ ${email}`);    
             }
             // This function will run the validate function against the user input values 
             canBeSubmitted() {
-                const errors = isValid(this.state.name, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
+                const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
                 const isDisabled = Object.keys(errors).some(x => errors[x]);
+                console.log(this.state.email);
+                // const url = window.location.origin;
+                // const url = `${url}${this.props.match.params.userType}/orders`
+                axios.post('/register', {email: this.state.email, password: this.state.password, phone: this.state.phone, address1: this.state.address1, address2: this.state.address2, firstName: this.state.firstName, lastName: this.state.lastName, password: this.state.password, userType: this.props.match.params.userType}).then(response => {
+                    window.location.href = `/${this.props.match.params.userType}/orders`
+                })
                 return !isDisabled;
             }
             // Returning !isDisabled will allow our submit button to be selected
@@ -100,7 +110,7 @@ export default class RegisterRestaurant extends Component {
                 const shouldShow = this.state.touched[field];
                 return hasError ? shouldShow : false;
             }
-            const errors = isValid(this.state.name, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
+            const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
             const isDisabled = Object.keys(errors).some(x => errors[x]);
             return (
     <div>
@@ -109,13 +119,7 @@ export default class RegisterRestaurant extends Component {
             <form  onSubmit={this.handleSubmit}>
                 <h1>Register</h1>
                 <h2>{this.props.match.params.userType}</h2>
-                <input
-                className={errors.name ? "error" : ""}
-                type="text"
-                placeholder="Enter Name"
-                value={this.state.name}
-                onChange={(e) => this.handleNameChange(e)}
-                />
+
                 <input
                 className={errors.email ? "error" : ""}
                 type="text"
@@ -123,6 +127,15 @@ export default class RegisterRestaurant extends Component {
                 value={this.state.email}
                 onChange={(e) => this.handleEmailChange(e)}
                 />
+
+                <input
+                className={errors.password ? "error" : ""}
+                type="password"
+                placeholder="Enter Password"
+                value={this.state.password}
+                onChange={(e) => this.handlePasswordChange(e)}
+                />
+                
                 <input
                 className={errors.phone ? "error" : ""}
                 type="text"
@@ -140,7 +153,7 @@ export default class RegisterRestaurant extends Component {
                 <input
                 className={errors.address2 ? "error" : ""}
                 type="text"
-                placeholder="Enter Name"
+                placeholder="Enter Address 2"
                 value={this.state.address2}
                 onChange={(e) => this.handleAddress2Change(e)}
                 />
@@ -158,7 +171,7 @@ export default class RegisterRestaurant extends Component {
                 value={this.state.lastName}
                 onChange={(e) => this.handleLastNameChange(e)}
                 />
-                <button disabled={isDisabled}>Register!</button>
+                <button disabled={isDisabled} onClick={(e) => this.handleSubmit(e)}>Register!</button>
             </form>
         </div>
     </div>
