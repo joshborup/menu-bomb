@@ -1,5 +1,6 @@
 .home-container {
     background-color: #edeced;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .home-inner-container {
@@ -13,7 +14,6 @@
 }
 
 .home-hero-text{
-    font-family: 'Merriweather', serif;
     font-size: 40px;
     color: #F8F6EA;
     margin-top: 70px;
@@ -27,7 +27,6 @@
     background-color: #FFA23F;
     border: 1px solid #171736;
     margin-top: 25px;
-    font-family: 'Montserrat', sans-serif;
     font-size: 18px;
 }
 
@@ -51,7 +50,6 @@
 
 .home-content-text-1, .home-content-text-2, .home-content-text-3, .home-content-text-4 {
     font-size: 25px;
-    font-family: 'Montserrat', sans-serif;
     margin: 0 auto;
     padding: 5px;
     color: #171736;
@@ -81,7 +79,6 @@
 
 .home-icon-header {
     font-size: 30px;
-    font-family: 'Montserrat', sans-serif;
     padding-top: 20px;
 }
 
@@ -106,7 +103,6 @@
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
-    font-family: 'Montserrat', sans-serif;
     color: #211a0d;
     padding: 10px 0px 60px 0px;
     margin: 0 auto;

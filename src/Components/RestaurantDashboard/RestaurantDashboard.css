@@ -1,0 +1,26 @@
+.restaurant-dashboard-container {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dashboard-left-panel {
+    float: left;
+    height: 100vh;
+    Width: 250px;
+    background-color: #C71B0499;
+}
+
+.dashboard-panel-info {
+    font-size: 18px;
+    padding: 5px;
+}
+
+.dashboard-left-panel .dashboard-panel-info {
+    margin-top: 10px;
+}
+
+.restaurant-name {
+    font-size: 60px;
+    text-align: center;
+    font-weight: 700;
+    padding: 20px;
+}
