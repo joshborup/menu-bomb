@@ -13,7 +13,7 @@ export default class MenuMakerContainer extends Component {
   }
 
   componentDidMount() {
-
+    axios.get('/api/')
   }
 
   handleStatePropChanges = (prop, val) => {
