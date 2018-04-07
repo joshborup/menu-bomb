@@ -112,6 +112,7 @@ export default class MenuCategory extends Component {
           <MakerItem
             item={e}
             handleMenuItemChange={this.props.handleMenuItemChange}
+            toggleMenuItemEdit={this.props.toggleMenuItemEdit}
           />
         )
       }

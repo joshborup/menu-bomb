@@ -24,6 +24,7 @@ export default class MenuMakerContainer extends Component {
           handleStatePropChanges={this.props.handleStatePropChanges}
           handleNewCategoryChange={this.props.handleNewCategoryChange}
           handleMenuItemChange={this.props.handleMenuItemChange}
+          toggleMenuItemEdit={this.props.toggleMenuItemEdit}
           submitNewItem={this.props.submitNewItem}>
         </MenuCategory>)
        }) : 'Loading...';

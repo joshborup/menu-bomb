@@ -14,6 +14,7 @@ export default class MenuMakerContainer extends Component {
         newItemName: '',
         newItemDescription:'',
         newItemPrice:''
+
       }
   }
 
@@ -27,6 +28,8 @@ export default class MenuMakerContainer extends Component {
       const menuByCategories = [];
       for(let category of uniqueCategories) {
         let itemsByCategory = menuItems.data.filter( item => item.category === category);
+        itemsByCategory.forEach(e => e.isDisabled = true);
+
         menuByCategories.push({
           catName: category,
           items: itemsByCategory,
@@ -67,6 +70,20 @@ export default class MenuMakerContainer extends Component {
     })
   }
 
+  toggleMenuItemEdit = (item) => {
+    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
+    const menuByCategories = this.state.menuByCategories.slice();
+    item.isDisabled = !item.isDisabled;
+    let catIndex = menuByCategories.findIndex( cat => cat.id === item.categoryid);
+    let itemIndex = menuByCategories[catIndex].items.findIndex( catItem => catItem.id === item.id);
+    let category = menuByCategories[catIndex];
+    category.items.splice(itemIndex, 1, item);
+    menuByCategories.splice(catIndex, 1, category);
+    this.setState({
+      menuByCategories
+    })
+  }
+
   addMenuCategory = () => {
     if(this.state.newCategory) {
       const category = {
@@ -95,9 +112,7 @@ export default class MenuMakerContainer extends Component {
     axios.post('/api/add_new_item', {name: this.state.newItemName, price: this.state.newItemPrice, description: this.state.newItemDescription, catId: id}).then(response => {
             console.log(response)
     })
-
   }
-
   
   render() {
     
@@ -112,6 +127,7 @@ export default class MenuMakerContainer extends Component {
             addMenuCategory={this.addMenuCategory}
             handleNewCategoryChange={this.handleNewCategoryChange}
             handleMenuItemChange={this.handleMenuItemChange}
+            toggleMenuItemEdit={this.toggleMenuItemEdit}
             submitNewItem={this.submitNewItem}>
           </MenuMaker>
         </div>
