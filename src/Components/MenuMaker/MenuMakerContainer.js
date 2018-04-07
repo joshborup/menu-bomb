@@ -10,11 +10,7 @@ export default class MenuMakerContainer extends Component {
       super()
       this.state = {
         menuByCategories: [],
-        newCategory: '',
-        newItemName: '',
-        newItemDescription:'',
-        newItemPrice:''
-
+        newCategory: ''
       }
   }
 
@@ -47,13 +43,6 @@ export default class MenuMakerContainer extends Component {
     this.setState({
       newCategory: val,
     })
-  }
-
-  handleNewItem = (key, val) => {
-      this.setState({
-        [key.name]: val
-      })
-      console.log(key.name, val)
   }
 
   handleMenuItemChange = (target, item) => {
@@ -107,14 +96,39 @@ export default class MenuMakerContainer extends Component {
     }
   }
 
-  submitNewItem = (id) => {
+  submitNewItem = (id, newItemName, newItemDescription, newItemPrice) => {
     console.log(id)
-    axios.post('/api/add_new_item', {name: this.state.newItemName, price: this.state.newItemPrice, description: this.state.newItemDescription, catId: id}).then(response => {
-            console.log(response)
+    this.setState({
+
+    })
+    axios.post('/api/add_new_item', {restaurantId: this.props.match.params.restaurantId, name: newItemName, price: newItemPrice, description: newItemDescription, catId: id, imageUrl: 'https://gloimg.gamcdn.com/G/pdm-product-pic/Clothing/2017/12/18/source-img/20171218172310_94935.jpg'}).then(response => {
+        
+      axios.get(`/api/menu-categories/${this.props.match.params.restaurantId}`).then( menuItems => {
+        // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
+        let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
+        console.log(uniqueCategories)
+        const menuByCategories = [];
+        for(let category of uniqueCategories) {
+          let itemsByCategory = menuItems.data.filter( item => item.category === category);
+          itemsByCategory.forEach(e => e.isDisabled = true);
+  
+          menuByCategories.push({
+            catName: category,
+            items: itemsByCategory,
+            id: itemsByCategory[0].categoryid,
+          });
+        }
+        this.setState({
+          menuByCategories: menuByCategories
+        })
+      }).catch( err => {
+        console.log('get menu-items err: ', err);
+      })
     })
   }
   
   render() {
+    console.log(this.state)
     return (
       <div>
         <Header />
@@ -127,7 +141,8 @@ export default class MenuMakerContainer extends Component {
             handleNewCategoryChange={this.handleNewCategoryChange}
             handleMenuItemChange={this.handleMenuItemChange}
             toggleMenuItemEdit={this.toggleMenuItemEdit}
-            submitNewItem={this.submitNewItem}>
+            submitNewItem={this.submitNewItem}
+            >
           </MenuMaker>
         </div>
     </div>

@@ -93,7 +93,9 @@ export default class MenuCategory extends Component {
   constructor(props){
       super(props)
       this.state = {
-
+        newItemName: '',
+        newItemDescription:'',
+        newItemPrice:''
       }
   }
 
@@ -103,9 +105,23 @@ export default class MenuCategory extends Component {
   // -------------------------------------------------------------------------------
   // const {name, price, description, imageurl, id, fieldEnabled} = this.props.item;
 
+  handleNewItem = (key, val) => {
+    this.setState({
+      [key.name]: val
+    })
+    console.log(key.name, val)
+}
+
+ resetInput = () => {
+   this.setState({
+    newItemName: '',
+    newItemDescription:'',
+    newItemPrice:''
+   })
+ }
   
   render() {
-    
+    console.log(this.props.category.id, this.state)
     const itemList = this.props.category.items.map(e => {
       if(e.id != null){
         return (
@@ -131,18 +147,22 @@ export default class MenuCategory extends Component {
 
               <FlexCol>
                 <span>name</span>
-                <Input  name='newItemName' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
+                <Input value={this.state.newItemName} name='newItemName' onChange={(e) => this.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               <FlexCol>
                 <span>price</span>
-                <Input  name='newItemPrice' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
+                <Input value={this.state.newItemPrice}   name='newItemPrice' onChange={(e) => this.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               <FlexCol>
                 <span>description</span>
-                <InputDescription name='newItemDescription' onChange={(e) => this.props.handleNewItem(e.currentTarget, e.target.value)} />
+                <InputDescription value={this.state.newItemDescription}  name='newItemDescription' onChange={(e) => this.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
               
-              <AddItemButton onClick={() => this.props.submitNewItem(this.props.category.id)}>+</AddItemButton>
+              <AddItemButton onClick={() => {
+
+                this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice)
+                this.resetInput()
+              }}>+</AddItemButton>
             </FlexRow>
             <Divider></Divider>
             <ItemList>
