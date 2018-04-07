@@ -159,7 +159,6 @@ export default class MenuCategory extends Component {
               </FlexCol>
               
               <AddItemButton onClick={() => {
-
                 this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice)
                 this.resetInput()
               }}>+</AddItemButton>
