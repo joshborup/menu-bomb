@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import axios from 'axios';
 import styled from "styled-components";
 import currency from 'currency.js';
-
+import EditButton from 'material-ui/svg-icons/image/edit';
+import DeleteButton from 'material-ui/svg-icons/action/delete';
+import { MEDIUM } from 'material-ui/utils/withWidth';
 
 const Wrapper = styled.div`
   height: 100px;
@@ -64,6 +66,15 @@ const Image = styled.img`
   height: 100%;
   float: right;
 `
+const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`
+
+const ButtonsContainer = styled.div`
+  display: flex;
+`
 const H3 = styled.input`
   font-size: 16px;
   font-weight: bold;
@@ -76,12 +87,11 @@ const H3 = styled.input`
   }
 `
 const Price = styled.input`
-  width: 50%;
+  width: 90%;
   padding: 5px;
   background: #f3f3f3;
   border-radius: 2px;
   height: 30px;
-  margin: 5px;
   border: none;
   font-size: 16px;
   &:focus {
@@ -89,7 +99,7 @@ const Price = styled.input`
   }
 `
 
-export default class MenuMakerContainer extends Component {
+export default class MakerItem extends Component {
   constructor(){
       super()
       this.state = {
@@ -101,7 +111,7 @@ export default class MenuMakerContainer extends Component {
     const {item, toggleMenuItemEdit, handleMenuItemChange} = this.props;
     const {name, price, description, imageurl, id, isDisabled} = item;
     return (
-      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => toggleMenuItemEdit(item)}>
+      <Wrapper key={`item-${id}`} className='menu-item-container'>
         <InnerBox>
           <FlexRowLeft>
             <H3
@@ -118,12 +128,18 @@ export default class MenuMakerContainer extends Component {
             </Description>
           </FlexRowLeft>
           <FlexRowRight>
-            <Price
-              name='price'
-              disabled={isDisabled}
-              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
-              value={price}>
-            </Price>
+            <FlexCol>
+              <Price
+                name='price'
+                disabled={isDisabled}
+                onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
+                value={price}>
+              </Price>
+              <ButtonsContainer>
+                <EditButton onClick={() => toggleMenuItemEdit(item)}/>
+                <DeleteButton />
+              </ButtonsContainer>
+            </FlexCol>
             <ImageContainer>
               <Image src={imageurl} alt='scrumptious food' />
             </ImageContainer>
