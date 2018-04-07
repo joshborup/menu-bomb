@@ -95,12 +95,10 @@ export default class MenuMakerContainer extends Component {
     axios.post('/api/add_new_item', {name: this.state.newItemName, price: this.state.newItemPrice, description: this.state.newItemDescription, catId: id}).then(response => {
             console.log(response)
     })
-
   }
 
   
   render() {
-    
     return (
       <div>
         <Header />
