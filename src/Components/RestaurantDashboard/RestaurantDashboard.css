@@ -24,3 +24,43 @@
     font-weight: 700;
     padding: 20px;
 }
+
+.restaurant-info {
+    text-align: center;
+    border-bottom: 3px double #C71B0430;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.open-orders {
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: #C71B0415;
+    border: 1px transparent;
+}
+
+.open-orders-inner-container {
+    max-width: 1150px;
+    margin: 20px auto;
+    background-color: #C71B0420;
+    height: 700px;
+}
+
+.open-orders-subheader {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.open-order-container {
+    padding: 20px;
+    border: 1px solid #C71B04;
+    margin: 10px;
+}
+
+.open-order-buttons{
+    display: flex;
+    flex-direction: column;
+    float: right;
+}
