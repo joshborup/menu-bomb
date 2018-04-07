@@ -3,6 +3,7 @@ import axios from 'axios';
 import styled from "styled-components";
 import currency from 'currency.js';
 
+
 const Wrapper = styled.div`
   height: 100px;
   width: 49%;
@@ -53,13 +54,15 @@ const Description = styled.input`
   }
 `
 const ImageContainer = styled.div`
+  width: 50%;
   overflow: hidden;
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-item: center;
 `
 const Image = styled.img`
-  height: 130%;
+  height: 100%;
+  float: right;
 `
 const H3 = styled.input`
   font-size: 16px;
@@ -73,7 +76,7 @@ const H3 = styled.input`
   }
 `
 const Price = styled.input`
-  
+  width: 50%;
   padding: 5px;
   background: #f3f3f3;
   border-radius: 2px;
@@ -95,30 +98,30 @@ export default class MenuMakerContainer extends Component {
   }
   
   render() {
-    const {name, price, description, imageurl, id, fieldEnabled} = this.props.item;
+    const {item, toggleMenuItemEdit, handleMenuItemChange} = this.props;
+    const {name, price, description, imageurl, id, isDisabled} = item;
     return (
-      // <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => this.props.enableItemFields(id)}>
-      <Wrapper key={`item-${id}`} className='menu-item-container' >
+      <Wrapper key={`item-${id}`} className='menu-item-container' onClick={() => toggleMenuItemEdit(item)}>
         <InnerBox>
           <FlexRowLeft>
             <H3
               name='name'
-              disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
+              disabled={isDisabled}
+              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
               value={name}>
             </H3>
             <Description
               name='description'
-              disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
+              disabled={isDisabled}
+              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
               value={description}>
             </Description>
           </FlexRowLeft>
           <FlexRowRight>
             <Price
               name='price'
-              disabled={fieldEnabled}
-              onChange={(e) => this.props.handleMenuItemChange(e.currentTarget, this.props.item)}
+              disabled={isDisabled}
+              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
               value={price}>
             </Price>
             <ImageContainer>
