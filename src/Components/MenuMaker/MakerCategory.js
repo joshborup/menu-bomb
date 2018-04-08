@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import MakerItem from './MakerItem';
+import ImageUpload from './ImageUpload'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -89,13 +90,19 @@ const Divider = styled.div`
   border-bottom: solid 1px grey;
 `
 
+const PreviewImage = styled.img`
+  max-width:150px;
+  margin: 10px auto;
+`
+
 export default class MenuCategory extends Component {
   constructor(props){
       super(props)
       this.state = {
         newItemName: '',
         newItemDescription:'',
-        newItemPrice:''
+        newItemPrice:'',
+        cloudinaryUrl:''
       }
   }
 
@@ -116,7 +123,14 @@ export default class MenuCategory extends Component {
    this.setState({
     newItemName: '',
     newItemDescription:'',
-    newItemPrice:''
+    newItemPrice:'',
+    cloudinaryUrl:''
+   })
+ }
+
+ newImage = (imageurl) => {
+   this.setState({
+    cloudinaryUrl: imageurl
    })
  }
   
@@ -135,14 +149,18 @@ export default class MenuCategory extends Component {
         
     })
 
+   
+
     return (
       <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
           <CatName>{this.props.category.catName}</CatName>
             <FlexRow>
               <FlexCol>
+                
                 <span>Image</span>
-                <ImgInput type='file' />
+                <PreviewImage src={this.state.cloudinaryUrl} />
+                <ImageUpload newImage={this.newImage}/>
               </FlexCol>
 
               <FlexCol>
@@ -159,7 +177,7 @@ export default class MenuCategory extends Component {
               </FlexCol>
               
               <AddItemButton onClick={() => {
-                this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice)
+                this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice, this.state.cloudinaryUrl)
                 this.resetInput()
               }}>+</AddItemButton>
             </FlexRow>

@@ -96,13 +96,14 @@ export default class MenuMakerContainer extends Component {
     }
   }
 
-  submitNewItem = (id, newItemName, newItemDescription, newItemPrice) => {
-    console.log(id)
-    this.setState({
+  submitNewItem = (id, newItemName, newItemDescription, newItemPrice, imageUrl) => {
 
-    })
-    axios.post('/api/add_new_item', {restaurantId: this.props.match.params.restaurantId, name: newItemName, price: newItemPrice, description: newItemDescription, catId: id, imageUrl: 'https://gloimg.gamcdn.com/G/pdm-product-pic/Clothing/2017/12/18/source-img/20171218172310_94935.jpg'}).then(response => {
-        
+    if(imageUrl == ''){
+      imageUrl = 'https://gloimg.gamcdn.com/G/pdm-product-pic/Clothing/2017/12/18/source-img/20171218172310_94935.jpg'
+    }
+    
+    axios.post('/api/add_new_item', {restaurantId: this.props.match.params.restaurantId, name: newItemName, price: newItemPrice, description: newItemDescription, catId: id, imageUrl: imageUrl}).then(response => {
+        console.log(response)
       axios.get(`/api/menu-categories/${this.props.match.params.restaurantId}`).then( menuItems => {
         // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
         let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
