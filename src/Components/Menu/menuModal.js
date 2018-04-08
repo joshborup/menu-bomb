@@ -27,6 +27,25 @@ constructor(props){
       padding: '10px'
     }
 
+    const imageStyle = {
+      maxWidth: '350px',
+      margin: '10px auto'
+    }
+    const buttonStyle = {
+      margin: '10px',
+      width: '140px',
+      height: '30px',
+      background:'rgb(76, 233, 76)',
+      border: 'none',
+      color: 'white',
+      fontSize: '16px',
+      fontWeight: 'bolder',
+      borderRadius: '2px',
+      outline: 'none'
+    }
+
+    console.log('selected item test _____________:', this.props.selectedItem)
+
     return (
       <div className='login-modal-container'>
         <Dialog
@@ -37,14 +56,16 @@ constructor(props){
           contentStyle={customContentStyle}
           titleStyle={titleStyle} 
         >
+       
         <div className='menu-modal-content'>
           <div className='modal-menu'>
             <div>
               <h1>{this.props.selectedItem.name}</h1>
+              <img style={imageStyle} src={this.props.selectedItem.imageurl}/>
               <h2>{currency(this.props.selectedItem.price).format(true)}</h2>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <button onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </button>
+            <button style={buttonStyle} onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </button>
           </div>
         </div>
         </Dialog>

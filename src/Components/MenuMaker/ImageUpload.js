@@ -36,7 +36,7 @@ export default class UploadForm extends Component {
           if (response.body.secure_url !== '') {
             
                 this.props.newImage(response.body.secure_url)
-
+                console.log(response.body)
               
           }
         });
