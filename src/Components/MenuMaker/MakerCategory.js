@@ -168,6 +168,7 @@ export default class MenuCategory extends Component {
       <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
           <CatName>{this.props.category.catName}</CatName>
+          <button onClick={() => this.props.deleteCategory(this.props.category.id)}>Delete</button>
             <FlexRow>
               <FlexCol>
                 

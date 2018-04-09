@@ -47,6 +47,7 @@ app.get('/api/restaurant-name/:id', menu.restaurantName);
 
 app.get('/api/menu-categories/:id', menu.getMenuCategories);
 app.post('/api/category', menu.addCategory);
+app.delete('/api/category/:id', menu.deleteCategory);
 
 app.put('/api/user-data-customer-update', customer.update)
 
