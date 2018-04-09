@@ -55,9 +55,9 @@ module.exports = {
     });
   },
   updateItem: (req, res) => {
-    const {name, price, description, id, newImage} = req.body;
+    const {name, price, description, id, imageurl} = req.body;
     const db = req.app.get('db');
-    db.update_menu_item(name, price, description, newImage, id).then( response => {
+    db.update_menu_item(name, price, description, imageurl, id).then( response => {
       console.log(response)
       res.json(response[0]);
       

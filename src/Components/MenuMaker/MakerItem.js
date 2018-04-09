@@ -151,8 +151,8 @@ const NewImageLabel = styled.label`
 export default class MakerItem extends Component {
   constructor(props){
       super(props)
-      let {item} = this.props;
-      let {name, price, description, imageurl, id, isDisabled, restaurantid, categoryid} = item;
+      const {item} = this.props;
+      const {name, price, description, imageurl, id, isDisabled, restaurantid, categoryid} = item;
       this.state = {
         name,
         price,
@@ -181,7 +181,7 @@ export default class MakerItem extends Component {
 
     axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
         this.setState({
-          newImage: response.data.secure_url
+          imageurl: response.data.secure_url
         })
     }).catch( err => {
         console.log(err);
@@ -237,7 +237,7 @@ export default class MakerItem extends Component {
               </ButtonsContainer>
             </FlexCol>
             <ImageContainer>
-              { this.state.newImage ? <Image src={this.state.newImage}/> : <Image src={this.state.imageurl} alt='scrumptious food' />}
+               <Image src={this.state.imageurl} alt='scrumptious food' />
               { !isDisabled ?<div><NewImageInput id='file' name='file' type='file' onChange={(e) => this.handleImageUpload(e.target.files)}/>
               <NewImageLabel for="file">Upload image</NewImageLabel>
               </div> : ''}
