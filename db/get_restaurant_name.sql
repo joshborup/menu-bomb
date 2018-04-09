@@ -1,1 +1,1 @@
-SELECT name FROM restaurant_profiles WHERE id = 1;
+SELECT name FROM restaurant_profiles WHERE id = $1;

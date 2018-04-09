@@ -57,8 +57,8 @@ export default class MenuMakerContainer extends Component {
     if(this.state.newCategory) {
       const category = {
         category: this.state.newCategory,
-        restaurantId: 1
-        // restaurantId: this.props.match.params.restaurantId --- UNCOMMENT AFTER TESTING
+        // restaurantId: 1
+        restaurantId: this.props.match.params.restaurantId
       }
       axios.post(`/api/category`, category).then( response => {
         const menuByCategories = this.state.menuByCategories.slice();
