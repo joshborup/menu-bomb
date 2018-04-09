@@ -14,16 +14,13 @@ constructor(props){
   };
 }
 
-  
-
   render() {
-
   
     const DeleteButton = styled.button`
     margin: 10px;
     width: 140px;
     height: 30px;
-    background:rgb(76, 233, 76);
+    background: rgb(250, 14, 14);
     border: none;
     color: white;
     font-size: 16px;
@@ -51,7 +48,7 @@ constructor(props){
       margin: '10px',
       width: '140px',
       height: '30px',
-      background:'rgb(76, 233, 76)',
+      background: 'rgb(250, 14, 14)',
       border: 'none',
       color: 'white',
       fontSize: '16px',
