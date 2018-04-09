@@ -4,6 +4,7 @@ import './../Login/loginModal.css';
 import currency from 'currency.js';
 import {connect} from 'react-redux';
 import {addToCart} from '../../redux/reducer';
+import styled from "styled-components";
 
 class DialogExampleModal extends Component {
 constructor(props){
@@ -16,6 +17,25 @@ constructor(props){
   
 
   render() {
+
+    const Price = styled.h2`
+      color: black;
+      font-weight: bolder;
+      margin: 5px 0px 10px;
+    `;
+    const AddButton = styled.button`
+    margin: 10px;
+    width: 140px;
+    height: 30px;
+    background:rgb(76, 233, 76);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 2px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+    text-shadow: .5px .5px 1px black;
+    `;
 
     const customContentStyle = {
       width: '100%',
@@ -41,7 +61,8 @@ constructor(props){
       fontSize: '16px',
       fontWeight: 'bolder',
       borderRadius: '2px',
-      outline: 'none'
+      outline: 'none',
+      boxShadow: '1px 2px 3px rgba(0,0,0,0.4)'
     }
 
     console.log('selected item test _____________:', this.props.selectedItem)
@@ -49,7 +70,7 @@ constructor(props){
     return (
       <div className='login-modal-container'>
         <Dialog
-          title="Add to Order"
+          title={this.props.selectedItem.name}
           modal={false}
           open={this.props.modalStatus}
           onRequestClose={this.props.handleClose}
@@ -60,12 +81,11 @@ constructor(props){
         <div className='menu-modal-content'>
           <div className='modal-menu'>
             <div>
-              <h1>{this.props.selectedItem.name}</h1>
               <img style={imageStyle} src={this.props.selectedItem.imageurl}/>
-              <h2>{currency(this.props.selectedItem.price).format(true)}</h2>
+              <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <button style={buttonStyle} onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </button>
+            <AddButton onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </AddButton>
           </div>
         </div>
         </Dialog>

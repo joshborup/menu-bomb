@@ -6,12 +6,13 @@ const Wrapper = styled.div`
   height: 100px;
   width: 49%;
   background-color: white;
-  box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.45);
   overflow:hidden;
   border-radius: 5px;
   margin 5px 5px;
   &:hover{
-    border: 1px solid #0000008c;
+    cursor:pointer;
+    box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   }
 `
 
