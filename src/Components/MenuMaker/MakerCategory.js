@@ -140,15 +140,10 @@ export default class MenuCategory extends Component {
         newItemName: '',
         newItemDescription:'',
         newItemPrice:'',
-        cloudinaryUrl:''
+        cloudinaryUrl:'',
+        open: false,
       }
   }
-
-  // ==============================================================================
-  // FUNCTION TO CREATE MENU ITEMS
-  // ITEMS FUNCTION TAKE IN THE FOLLOWING:
-  // -------------------------------------------------------------------------------
-  // const {name, price, description, imageurl, id, fieldEnabled} = this.props.item;
 
   handleNewItem = (key, val) => {
     this.setState({
@@ -171,7 +166,7 @@ export default class MenuCategory extends Component {
     cloudinaryUrl: imageurl
    })
  }
-  
+
   render() {
     console.log(this.props.category.id, this.state)
     const itemList = this.props.category.items.map(e => {
@@ -190,15 +185,13 @@ export default class MenuCategory extends Component {
         
     })
 
-   
-
     return (
       <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
           <CatHeader>
             <CatName>{this.props.category.catName}</CatName>
             <DeleteCategory onClick={() => {
-              this.props.deleteCategory(this.props.category.id);
+              this.props.promptUserToDeleteCategory({id: this.props.category.id, name: this.props.category.catName});
             }}>-</DeleteCategory>
           </CatHeader>
           <FlexRow>

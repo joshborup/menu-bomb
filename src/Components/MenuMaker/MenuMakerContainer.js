@@ -4,13 +4,16 @@ import styled from "styled-components";
 import MenuMaker from './MenuMaker';
 import Header from '../Shared/Header';
 import './menuMaker.css';
+import DeleteModal from './deleteCategoryModal';
 
 export default class MenuMakerContainer extends Component {
   constructor(){
       super()
       this.state = {
         menuByCategories: [],
-        newCategory: ''
+        newCategory: '',
+        open: false,
+        categoryToDelete: null,
       }
   }
 
@@ -31,7 +34,8 @@ export default class MenuMakerContainer extends Component {
         });
       }
       this.setState({
-        menuByCategories: menuByCategories
+        menuByCategories: menuByCategories,
+        open: false
       })
     }).catch( err => {
       console.log('get menu-items err: ', err);
@@ -101,10 +105,26 @@ export default class MenuMakerContainer extends Component {
     })
   }
   
+  promptUserToDeleteCategory = (category) => {
+    this.setState({
+      open: true,
+      categoryToDelete: category,
+    });
+  };
+  
+  handleClose = () => {
+    this.setState({open: false});
+  };
+  
   render() {
     console.log(this.state)
     return (
       <div>
+        <DeleteModal
+          modalStatus={this.state.open}
+          handleClose={this.handleClose}
+          categoryToDelete={this.state.categoryToDelete}
+          deleteCategory={this.deleteCategory}/>
         <Header />
         <div className='menu-maker-container-component'>
           <MenuMaker
@@ -118,7 +138,7 @@ export default class MenuMakerContainer extends Component {
             submitNewItem={this.submitNewItem}
             updateMenuItem={this.updateMenuItem}
             deleteMenuItem={this.deleteMenuItem}
-            deleteCategory={this.deleteCategory}
+            promptUserToDeleteCategory={this.promptUserToDeleteCategory}
             >
           </MenuMaker>
         </div>

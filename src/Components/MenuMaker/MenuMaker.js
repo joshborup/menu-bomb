@@ -30,7 +30,7 @@ export default class MenuMakerContainer extends Component {
           submitNewItem={this.props.submitNewItem}
           updateMenuItem={this.props.updateMenuItem}
           deleteMenuItem={this.props.deleteMenuItem}
-          deleteCategory={this.props.deleteCategory}
+          promptUserToDeleteCategory={this.props.promptUserToDeleteCategory}
           >
         </MenuCategory>)
        }) : 'Loading...';
