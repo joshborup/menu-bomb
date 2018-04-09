@@ -14,13 +14,11 @@ export default class MenuMakerContainer extends Component {
       }
   }
 
-  componentDidMount() {
+  getMenuItems = () => {
     const restaurantId = (window.location.href).split('/').pop();
-    console.log('restaurantId: ', restaurantId)
     axios.get(`/api/menu-categories/${restaurantId}`).then( menuItems => {
       // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
       let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
-      console.log(uniqueCategories)
       const menuByCategories = [];
       for(let category of uniqueCategories) {
         let itemsByCategory = menuItems.data.filter( item => item.category === category);
@@ -39,6 +37,11 @@ export default class MenuMakerContainer extends Component {
       console.log('get menu-items err: ', err);
     })
   }
+
+  componentDidMount() {
+    this.getMenuItems();
+  }
+
   handleNewCategoryChange = (val) => {
     this.setState({
       newCategory: val,
@@ -76,28 +79,19 @@ export default class MenuMakerContainer extends Component {
     }
     
     axios.post('/api/add_new_item', {restaurantId: this.props.match.params.restaurantId, name: newItemName, price: newItemPrice, description: newItemDescription, catId: id, imageUrl: imageUrl}).then(response => {
-        console.log(response)
-      axios.get(`/api/menu-categories/${this.props.match.params.restaurantId}`).then( menuItems => {
-        // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
-        let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
-        console.log(uniqueCategories)
-        const menuByCategories = [];
-        for(let category of uniqueCategories) {
-          let itemsByCategory = menuItems.data.filter( item => item.category === category);
-          itemsByCategory.forEach(e => e.isDisabled = true);
-  
-          menuByCategories.push({
-            catName: category,
-            items: itemsByCategory,
-            id: itemsByCategory[0].categoryid,
-          });
-        }
-        this.setState({
-          menuByCategories: menuByCategories
-        })
-      }).catch( err => {
-        console.log('get menu-items err: ', err);
-      })
+      this.getMenuItems();
+    })
+  }
+
+  updateMenuItem = (item) => {
+    axios.put('/api/menu-item', item).then( menuItems => {
+      this.getMenuItems();
+    })
+  }
+
+  deleteMenuItem = (id) => {
+    axios.delete(`/api/menu-item/${id}`).then( menuItems => {
+      this.getMenuItems();
     })
   }
   
@@ -116,6 +110,8 @@ export default class MenuMakerContainer extends Component {
             handleMenuItemChange={this.handleMenuItemChange}
             toggleMenuItemEdit={this.toggleMenuItemEdit}
             submitNewItem={this.submitNewItem}
+            updateMenuItem={this.updateMenuItem}
+            deleteMenuItem={this.deleteMenuItem}
             >
           </MenuMaker>
         </div>

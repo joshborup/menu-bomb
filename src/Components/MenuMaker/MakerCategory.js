@@ -153,6 +153,8 @@ export default class MenuCategory extends Component {
             item={e}
             handleMenuItemChange={this.props.handleMenuItemChange}
             toggleMenuItemEdit={this.props.toggleMenuItemEdit}
+            updateMenuItem={this.props.updateMenuItem}
+            deleteMenuItem={this.props.deleteMenuItem}
           />
         )
       }
