@@ -3,6 +3,7 @@ var initialState = {
     loginEmail:'',
     cart: {
         cart: [],
+        qty: 0,
         total: 0
     }
 }

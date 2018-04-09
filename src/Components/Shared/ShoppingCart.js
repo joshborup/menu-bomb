@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCart, fetchUserData } from './redux/reducer'
+import { fetchCart, fetchUserData } from './redux/reducer'
 import axios from 'axios'
 import currency from 'currency.js'
 import SvgIcon from 'material-ui';
@@ -16,12 +16,12 @@ class Cart extends Component {
 
     componentDidMount() {
     
-        this.getCart()
+        this.fetchCart()
         this.props.fetchUserData()
     }
 
-    getCart(){
-        this.props.getCart()
+    fetchCart(){
+        this.props.fetchCart()
     }
 
     render() {
@@ -63,7 +63,7 @@ class Cart extends Component {
                     {this.props.cart && cart}
                     <div className="cart-totals">
                         Order Subtotal: ${this.props.cart.subtotal.toFixed(2)}
-                        <Link to="/checkout"><div><button className="button" >Check Out</button></div></Link>
+                        <Link to="/customer/account"><div><button className="button" >Check Out</button></div></Link>
                     </div>
                 </div>
                 
@@ -71,7 +71,7 @@ class Cart extends Component {
             )
         }
     }
-}
+
 
 
 
@@ -82,7 +82,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    getCart: getCart, 
+    fetchCart: fetchCart, 
     fetchUserData: fetchUserData
 }
 

@@ -1,11 +1,19 @@
+import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
+import Logo from './logo2.png'
+import styled from "styled-components";
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { fetchUserData } from '../../redux/reducer';
+
 class HeaderCart extends Component {
 
     componentDidMount(){
-        this.getCart()
+        this.fetchCart()
     }
 
-    getCart(){
-        this.props.getCart()
+    fetchCart(){
+        this.props.fetchCart()
     }
 
 
@@ -32,11 +40,11 @@ class HeaderCart extends Component {
                         </div>
                         <div>
                             <span>Tax:</span>
-                            <div>${(this.props.cart.subtotal * .06).toFixed(2)}</div>
+                            <div>${(this.props.cart.subtotal * .07).toFixed(2)}</div>
                         </div>
                         <div className="header_cart_ordersubtotals"> 
                             <span>Order Total:</span>
-                            <div>${((this.props.cart.subtotal * 1.06) + 5).toFixed(2)} </div>
+                            <div>${((this.props.cart.subtotal * 1.07) + 5).toFixed(2)} </div>
                         </div>
                     </div>
                 </div>
@@ -57,7 +65,7 @@ function mapStateToProps(state){
 }
 
 const mapDispatchToProps = {
-    getCart: getCart
+    fetchCart: fetchCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderCart)
