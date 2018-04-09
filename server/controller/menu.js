@@ -73,6 +73,20 @@ module.exports = {
     db.get_restaurant_name(id).then(response => {
       console.log(response)
       res.status(200).send(response)
-    })
+    }).catch( err => {
+      console.log('restaurantName err: ', err);
+      res.status(500);
+    });
+  },
+  deleteCategory: (req, res) => {
+    const db = req.app.get('db');
+    const {id} = req.params;
+
+    db.delete_category(id).then(response => {
+      res.status(200).send()
+    }).catch( err => {
+      console.log('deleteCategory err: ', err);
+      res.status(500);
+    });
   }
 }

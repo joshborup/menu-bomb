@@ -84,13 +84,19 @@ export default class MenuMakerContainer extends Component {
   }
 
   updateMenuItem = (item) => {
-    axios.put('/api/menu-item', item).then( menuItems => {
+    axios.put('/api/menu-item', item).then( response => {
       this.getMenuItems();
     })
   }
 
   deleteMenuItem = (id) => {
-    axios.delete(`/api/menu-item/${id}`).then( menuItems => {
+    axios.delete(`/api/menu-item/${id}`).then( response => {
+      this.getMenuItems();
+    })
+  }
+
+  deleteCategory = (id) => {
+    axios.delete(`/api/category/${id}`).then( response => {
       this.getMenuItems();
     })
   }
@@ -112,6 +118,7 @@ export default class MenuMakerContainer extends Component {
             submitNewItem={this.submitNewItem}
             updateMenuItem={this.updateMenuItem}
             deleteMenuItem={this.deleteMenuItem}
+            deleteCategory={this.deleteCategory}
             >
           </MenuMaker>
         </div>
