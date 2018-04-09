@@ -43,7 +43,8 @@ CREATE TABLE menu_items (
   price NUMERIC,
   description TEXT,
   image_url TEXT,
-  category_id INTEGER REFERENCES categories(id)
+  category_id INTEGER REFERENCES categories(id),
+  deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE customer_profiles (
