@@ -33,7 +33,7 @@ module.exports = {
       res.status(500);
     })
   },
-  AddItem: (req, res) => {
+  addItem: (req, res) => {
     const db = req.app.get('db');
     let {restaurantId, name, price, description, catId, imageUrl} = req.body
 
@@ -42,8 +42,19 @@ module.exports = {
       console.log(response);
       res.status(200).send(response)
     }).catch(error => console.log(error));
-
   },
+  deleteItem: (req, res) => {
+    const id = req.params.id;
+
+    const db = req.app.get('db');
+    db.delete_menu_item(id).then( response => {
+      res.status(200).send();
+    }).catch( err => {
+      console.log('deleteItem err: ', err);
+      res.status(500);
+    });
+  },
+
   restaurantName: (req, res) => {
     const db = req.app.get('db');
     const {id} = req.params;

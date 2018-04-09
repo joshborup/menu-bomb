@@ -50,7 +50,8 @@ app.post('/api/category', menu.addCategory);
 
 app.put('/api/user-data-customer-update', customer.update)
 
-app.post('/api/add_new_item', menu.AddItem)
+app.post('/api/add_new_item', menu.addItem)
+app.delete('/api/menu-item/:id', menu.deleteItem);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));

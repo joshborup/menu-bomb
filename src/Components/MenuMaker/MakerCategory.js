@@ -154,6 +154,8 @@ export default class MenuCategory extends Component {
             key={e.id}
             handleMenuItemChange={this.props.handleMenuItemChange}
             toggleMenuItemEdit={this.props.toggleMenuItemEdit}
+            updateMenuItem={this.props.updateMenuItem}
+            deleteMenuItem={this.props.deleteMenuItem}
           />
         )
       }

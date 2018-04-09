@@ -4,8 +4,9 @@ import styled from "styled-components";
 import currency from 'currency.js';
 import EditButton from 'material-ui/svg-icons/image/edit';
 import SaveButton from 'material-ui/svg-icons/content/save';
-
 import DeleteButton from 'material-ui/svg-icons/action/delete';
+
+const USD = value => currency(value, {symbol: "$", precision: 2});
 
 const Wrapper = styled.div`
   width: 49%;
@@ -112,15 +113,17 @@ const Price = styled.input`
 export default class MakerItem extends Component {
   constructor(props){
       super(props)
-      const {item, toggleMenuItemEdit} = this.props;
-      const {name, price, description, imageurl, id, isDisabled} = item;
+      let {item} = this.props;
+      let {name, price, description, imageurl, id, isDisabled, restaurantid, categoryid} = item;
       this.state = {
         name,
         price,
         description,
         imageurl,
         id,
-        isDisabled 
+        isDisabled,
+        restaurantId: restaurantid,
+        categoryId: categoryid,
       }
   }
 
@@ -167,8 +170,8 @@ export default class MakerItem extends Component {
               <ButtonsContainer>
                 {isDisabled ?
                   <EditButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>
-                :  <SaveButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>}
-                <DeleteButton />
+                :  <SaveButton name='isDisabled' onClick={(e) => this.props.updateMenuItem(this.state)}/>}
+                <DeleteButton onClick={() => this.props.deleteMenuItem(this.state.id)}/>
               </ButtonsContainer>
             </FlexCol>
             <ImageContainer>
