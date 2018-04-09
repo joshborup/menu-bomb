@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getCart, fetchUserData } from './redux/reducer'
 import axios from 'axios'
 import currency from 'currency.js'
-import 
+import SvgIcon from 'material-ui';
 
 
 class Cart extends Component {
@@ -27,14 +27,49 @@ class Cart extends Component {
     render() {
         const cart = this.props.cart.cart.map((e)=> {
             return (
-                <div></div>
+                
+                <div key={e.id} className="cart-line-item-wrapper" >
+                    <div className="cart-line-item">
+                        <div className="cart-left" >
+                            <div><Link to={`/menuItem/${e.id}`}><img src={e.image_url} alt={e.name}/></Link></div>
+                            <div className="cart-menuItem-name"><Link to={`/menuItems/${e.id}`}>{e.name}</Link></div>
+                            <button onClick={() => this.removeFromCart(e.id)}>Remove</button>
+                        </div>
+                        <div className="cart-right" >
+                            <div className="cart-qty">
+                                <button onClick={() => this.decreaseQty(e.qty, e.id)} >-</button>
+                                {e.qty}
+                                <button onClick={() => this.increaseQty(e.id)}>+</button>
+                            </div>
+                            <div>${(e.price * e.qty).toFixed(2)}</div>
+                        </div>
+                    </div>
+                </div>
             )
         })
         return (
             <div>
-                Cart Modal
+                <div className="cart-body">
+                    <div className="cart-column-names">
+                        <div className="cart-left"></div>
+                        <div className="cart-right">
+                            <div>Orders</div>
+                            <div>Total</div>
+                        </div>
+                    </div>
+                    {this.props.cart.length === 0 && 
+                        <div className="cart-no-items">There are no items in your cart.</div>
+                    }
+                    {this.props.cart && cart}
+                    <div className="cart-totals">
+                        Order Subtotal: ${this.props.cart.subtotal.toFixed(2)}
+                        <Link to="/checkout"><div><button className="button" >Check Out</button></div></Link>
+                    </div>
+                </div>
+                
             </div>
-        )
+            )
+        }
     }
 }
 

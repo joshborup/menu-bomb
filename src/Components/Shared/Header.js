@@ -51,8 +51,9 @@ class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
-
+            show: false
         }
+        this.getCart = this.getCart.bind(this)
     }
 
     componentDidMount(){
@@ -71,6 +72,19 @@ class Header extends Component {
             }
         })
     }
+    
+    showCart() {
+        this.setState({
+            show: true
+        })
+    }
+
+    hideCart() {
+        this.setState({
+            show: false
+        })
+    }
+
     render() {
         return (
             <Wrapper className='header-container'>
