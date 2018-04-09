@@ -51,6 +51,7 @@ app.post('/api/category', menu.addCategory);
 app.put('/api/user-data-customer-update', customer.update)
 
 app.post('/api/add_new_item', menu.addItem)
+app.put('/api/menu-item', menu.updateItem)
 app.delete('/api/menu-item/:id', menu.deleteItem);
 
 const PORT = 4000;

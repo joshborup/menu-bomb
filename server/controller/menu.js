@@ -54,7 +54,16 @@ module.exports = {
       res.status(500);
     });
   },
-
+  updateItem: (req, res) => {
+    const {name, price, description, id, imageurl} = req.body;
+    const db = req.app.get('db');
+    db.update_menu_item(name, price, description, imageurl, id).then( response => {
+      res.json(response[0]);
+    }).catch( err => {
+      console.log('updateItem err: ', err);
+      res.status(500);
+    });
+  },
   restaurantName: (req, res) => {
     const db = req.app.get('db');
     const {id} = req.params;

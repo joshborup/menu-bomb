@@ -170,7 +170,10 @@ export default class MakerItem extends Component {
               <ButtonsContainer>
                 {isDisabled ?
                   <EditButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>
-                :  <SaveButton name='isDisabled' onClick={(e) => this.props.updateMenuItem(this.state)}/>}
+                :  <SaveButton name='isDisabled' onClick={(e) => {
+                  this.props.updateMenuItem(this.state);
+                  this.handleChange('isDisabled', !this.state.isDisabled);
+                }}/>}
                 <DeleteButton onClick={() => this.props.deleteMenuItem(this.state.id)}/>
               </ButtonsContainer>
             </FlexCol>
