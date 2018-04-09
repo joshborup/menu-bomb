@@ -30,6 +30,20 @@ constructor(props){
     text-shadow: .5px .5px 1px black;
     `;
 
+    const CancelButton = styled.button`
+    margin: 10px;
+    width: 140px;
+    height: 30px;
+    background: rgb(14, 250, 14);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 2px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+    text-shadow: .5px .5px 1px black;
+    `;
+
     const customContentStyle = {
       width: '100%',
       maxWidth: '400px',
@@ -77,6 +91,7 @@ constructor(props){
               <p>Are you sure you want to delete this category? All associated menu items will be deleted as well!</p>
             </div>
             <DeleteButton onClick={() => this.props.deleteCategory(this.props.categoryToDelete.id)}> Delete </DeleteButton>
+            <CancelButton onClick={this.props.handleClose}> Cancel </CancelButton>
           </div>
         </div>
         </Dialog>
