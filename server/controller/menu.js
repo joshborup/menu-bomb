@@ -38,9 +38,10 @@ module.exports = {
     let {restaurantId, name, price, description, catId, imageUrl} = req.body
 
     
-    db.add_new_menu_item([restaurantId, name, price, description, imageUrl, catId]).then(
-      res.status(200).send('success!')
-    ).catch(error => console.log(error));
+    db.add_new_menu_item([restaurantId, name, price, description, imageUrl, catId]).then(response=> {
+      console.log(response);
+      res.status(200).send(response)
+    }).catch(error => console.log(error));
 
   }
 }

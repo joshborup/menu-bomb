@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import MakerItem from './MakerItem';
+import ImageUpload from './ImageUpload'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -52,6 +53,7 @@ const FlexRow = styled.div`
   flex-direction: row;
   justify-content: center;
   align-item: center;
+
 `
 
 const FlexCol = styled.div`
@@ -60,17 +62,26 @@ const FlexCol = styled.div`
   justify-content: center;
   align-item: center;
 `
+const ButtonContainer = styled.div`
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`
 
 const AddItemButton = styled.button`
   background: rgb(149, 226, 34);
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   color: white;
   border: none;
-  font-size: 20px;
+  font-size: 32px;
   font-weight: bolder;
-  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-shadow: 0.5px 0.5px 1px black;
   box-shadow: 0px 2px 4px rgba(0, 0, 0,0.4);
   cursor: pointer;
@@ -89,13 +100,19 @@ const Divider = styled.div`
   border-bottom: solid 1px grey;
 `
 
+const PreviewImage = styled.img`
+  max-width:150px;
+  margin: 10px auto;
+`
+
 export default class MenuCategory extends Component {
   constructor(props){
       super(props)
       this.state = {
         newItemName: '',
         newItemDescription:'',
-        newItemPrice:''
+        newItemPrice:'',
+        cloudinaryUrl:''
       }
   }
 
@@ -116,7 +133,14 @@ export default class MenuCategory extends Component {
    this.setState({
     newItemName: '',
     newItemDescription:'',
-    newItemPrice:''
+    newItemPrice:'',
+    cloudinaryUrl:''
+   })
+ }
+
+ newImage = (imageurl) => {
+   this.setState({
+    cloudinaryUrl: imageurl
    })
  }
   
@@ -135,14 +159,18 @@ export default class MenuCategory extends Component {
         
     })
 
+   
+
     return (
       <Wrapper key={`category-${this.props.category.id}`} className='menu-category-container'>
         <InnerBox>
           <CatName>{this.props.category.catName}</CatName>
             <FlexRow>
               <FlexCol>
+                
                 <span>Image</span>
-                <ImgInput type='file' />
+                <PreviewImage src={this.state.cloudinaryUrl} />
+                <ImageUpload newImage={this.newImage}/>
               </FlexCol>
 
               <FlexCol>
@@ -157,12 +185,12 @@ export default class MenuCategory extends Component {
                 <span>description</span>
                 <InputDescription value={this.state.newItemDescription}  name='newItemDescription' onChange={(e) => this.handleNewItem(e.currentTarget, e.target.value)} />
               </FlexCol>
-              
+              <ButtonContainer>
               <AddItemButton onClick={() => {
-
-                this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice)
+                this.props.submitNewItem(this.props.category.id, this.state.newItemName, this.state.newItemDescription, this.state.newItemPrice, this.state.cloudinaryUrl)
                 this.resetInput()
               }}>+</AddItemButton>
+              </ButtonContainer>
             </FlexRow>
             <Divider></Divider>
             <ItemList>
