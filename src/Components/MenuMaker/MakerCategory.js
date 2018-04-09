@@ -104,6 +104,7 @@ const DeleteCategory = styled.button`
   border-radius: 5px;
   color: white;
   border: none;
+  padding-bottom: 10px;
   margin: 5px;
   font-size: 32px;
   font-weight: bolder;
