@@ -45,33 +45,6 @@ export default class MenuMakerContainer extends Component {
     })
   }
 
-  handleMenuItemChange = (target, item) => {
-    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
-    const menuByCategories = this.state.menuByCategories.slice();
-    let catIndex = menuByCategories.findIndex( cat => cat.id === item.categoryid);
-    let itemIndex = menuByCategories[catIndex].items.findIndex( catItem => catItem.id === item.id);
-    let category = menuByCategories[catIndex];
-    item[target.name] = target.value;
-    category.items.splice(itemIndex, 1, item);
-    menuByCategories.splice(catIndex, 1, category);
-    this.setState({
-      menuByCategories
-    })
-  }
-
-  toggleMenuItemEdit = (item) => {
-    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
-    const menuByCategories = this.state.menuByCategories.slice();
-    item.isDisabled = !item.isDisabled;
-    let catIndex = menuByCategories.findIndex( cat => cat.id === item.categoryid);
-    let itemIndex = menuByCategories[catIndex].items.findIndex( catItem => catItem.id === item.id);
-    let category = menuByCategories[catIndex];
-    category.items.splice(itemIndex, 1, item);
-    menuByCategories.splice(catIndex, 1, category);
-    this.setState({
-      menuByCategories
-    })
-  }
 
   addMenuCategory = () => {
     if(this.state.newCategory) {

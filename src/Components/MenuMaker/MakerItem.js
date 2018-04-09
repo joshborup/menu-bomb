@@ -3,12 +3,13 @@ import axios from 'axios';
 import styled from "styled-components";
 import currency from 'currency.js';
 import EditButton from 'material-ui/svg-icons/image/edit';
+import SaveButton from 'material-ui/svg-icons/content/save';
+
 import DeleteButton from 'material-ui/svg-icons/action/delete';
-import { MEDIUM } from 'material-ui/utils/withWidth';
 
 const Wrapper = styled.div`
-  height: 100px;
   width: 49%;
+  height: 100px;
   background-color: white;
   box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   overflow:hidden;
@@ -44,15 +45,19 @@ const FlexRowRight = styled.div`
   width: 50%;
   position: relative;
 `
-const Description = styled.input`
+const Description = styled.textarea`
   color: black;
   background: #f3f3f3;
   border-radius: 2px;
-  height: 30px;
+  width: 100%;
   margin-top: 5px;
+  height: auto;
+  padding: 5px;
+  resize: none;
   border: none;
   &:focus {
     outline: none;
+    border: 1px solid black;
   }
 `
 const ImageContainer = styled.div`
@@ -74,6 +79,8 @@ const FlexCol = styled.div`
 
 const ButtonsContainer = styled.div`
   display: flex;
+  height: 100%;
+  align-items: flex-end;
 `
 const H3 = styled.input`
   font-size: 16px;
@@ -81,9 +88,11 @@ const H3 = styled.input`
   background: #f3f3f3;
   border-radius: 2px;
   height: 30px;
+  padding: 5px;
   border: none;
   &:focus {
     outline: none;
+    border: 1px solid black;
   }
 `
 const Price = styled.input`
@@ -96,52 +105,74 @@ const Price = styled.input`
   font-size: 16px;
   &:focus {
     outline: none;
+    border: 1px solid black;
   }
 `
 
 export default class MakerItem extends Component {
-  constructor(){
-      super()
+  constructor(props){
+      super(props)
+      const {item, toggleMenuItemEdit} = this.props;
+      const {name, price, description, imageurl, id, isDisabled} = item;
       this.state = {
-
+        name,
+        price,
+        description,
+        imageurl,
+        id,
+        isDisabled 
       }
   }
-  
+
+  handleChange = (prop, val) => {
+    console.log('clicked:', prop, val)
+    this.setState({
+      [prop]: val,
+    })
+  }
+
   render() {
-    const {item, toggleMenuItemEdit, handleMenuItemChange} = this.props;
-    const {name, price, description, imageurl, id, isDisabled} = item;
+  const isDisabled = this.state.isDisabled;
+  const fieldsStyle = {
+    backgroundColor: isDisabled ? 'white' : '#f3f3f3',
+  }
     return (
-      <Wrapper key={`item-${id}`} className='menu-item-container'>
+      <Wrapper key={`item-${this.state.id}`} className='menu-item-container'>
         <InnerBox>
           <FlexRowLeft>
             <H3
+              style={fieldsStyle}
               name='name'
-              disabled={isDisabled}
-              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
-              value={name}>
+              disabled={this.state.isDisabled}
+              onChange={(e) => this.handleChange(e.currentTarget.name, e.currentTarget.value)}
+              value={this.state.name}>
             </H3>
             <Description
+              style={fieldsStyle}
               name='description'
-              disabled={isDisabled}
-              onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
-              value={description}>
+              disabled={this.state.isDisabled}
+              onChange={(e) => this.handleChange(e.currentTarget.name, e.currentTarget.value)}
+              value={this.state.description}>
             </Description>
           </FlexRowLeft>
           <FlexRowRight>
             <FlexCol>
               <Price
+                style={fieldsStyle}
                 name='price'
-                disabled={isDisabled}
-                onChange={(e) => handleMenuItemChange(e.currentTarget, item)}
-                value={price}>
+                disabled={this.state.isDisabled}
+                onChange={(e) => this.handleChange(e.currentTarget.name, e.currentTarget.value)}
+                value={this.state.price}>
               </Price>
               <ButtonsContainer>
-                <EditButton onClick={() => toggleMenuItemEdit(item)}/>
+                {isDisabled ?
+                  <EditButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>
+                :  <SaveButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>}
                 <DeleteButton />
               </ButtonsContainer>
             </FlexCol>
             <ImageContainer>
-              <Image src={imageurl} alt='scrumptious food' />
+              <Image src={this.state.imageurl} alt='scrumptious food' />
             </ImageContainer>
           </FlexRowRight>
         </InnerBox>
