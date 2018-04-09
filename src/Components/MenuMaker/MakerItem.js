@@ -189,6 +189,10 @@ export default class MakerItem extends Component {
   }
 
   render() {
+
+    const hoverstyle = {
+      cursor: 'pointer'
+    }
     console.log(this.state.newImage)
   const isDisabled = this.state.isDisabled;
   const fieldsStyle = {
@@ -224,12 +228,12 @@ export default class MakerItem extends Component {
               </Price>
               <ButtonsContainer>
                 {isDisabled ?
-                  <EditButton name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>
-                : <SaveButton name='isDisabled' onClick={(e) => {
+                  <EditButton style={hoverstyle} name='isDisabled' onClick={(e) => this.handleChange('isDisabled', !this.state.isDisabled)}/>
+                : <SaveButton style={hoverstyle} name='isDisabled' onClick={(e) => {
                   this.props.updateMenuItem(this.state);
                   this.handleChange('isDisabled', !this.state.isDisabled);
                 }}/>}
-                <DeleteButton onClick={() => this.props.deleteMenuItem(this.state.id)}/>
+                <DeleteButton style={hoverstyle} onClick={() => this.props.deleteMenuItem(this.state.id)}/>
               </ButtonsContainer>
             </FlexCol>
             <ImageContainer>
