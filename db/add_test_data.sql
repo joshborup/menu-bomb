@@ -6,10 +6,10 @@ VALUES('Jordan', 'Bush', 'jordanmbush@gmail.com', '1231231234', '123 N St.', 'Su
 ('Jerry', 'Springer', 'jerryspringer@gmail.com', '4561231234', '456 N St.', NULL, 'customer', 'testPassword'),
 ('Kelly', 'Springer', 'kellyspringer@gmail.com', '4561231234', '456 N St.', NULL, 'customer', 'testPassword');
 
-INSERT INTO restaurant_profiles (user_id, description, logo_url, background_url, delivers, alcohol)
-VALUES(1, 'The Best Burrito Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'http://cdn-image.foodandwine.com/sites/default/files/1501607996/opentable-scenic-restaurants-marine-room-FT-BLOG0818.jpg', TRUE, FALSE),
-(2, 'The Best Sandwich Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_734,q_60,w_1920/v1/clients/fortwayne/restaurants_header_slide_2_86f7b8a6-81ba-46c7-9685-91ea117c0705.jpg', FALSE, TRUE),
-(3, 'The Best Crepes Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://static.tacdn.com/TripAdvisorInsights/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg', TRUE, TRUE);
+INSERT INTO restaurant_profiles (user_id, name, description, logo_url, background_url, delivers, alcohol)
+VALUES(1,'Taco Bell', 'The Best Burrito Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'http://cdn-image.foodandwine.com/sites/default/files/1501607996/opentable-scenic-restaurants-marine-room-FT-BLOG0818.jpg', TRUE, FALSE),
+(2, 'Subway', 'The Best Sandwich Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_734,q_60,w_1920/v1/clients/fortwayne/restaurants_header_slide_2_86f7b8a6-81ba-46c7-9685-91ea117c0705.jpg', FALSE, TRUE),
+(3,'Ihop', 'The Best Crepes Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://static.tacdn.com/TripAdvisorInsights/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg', TRUE, TRUE);
 
 INSERT INTO business_hours (restaurant_id, day, open_time, close_time)
 VALUES(1, 0, '07:00:00', '18:00:00'),

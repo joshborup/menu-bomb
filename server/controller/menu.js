@@ -43,5 +43,14 @@ module.exports = {
       res.status(200).send(response)
     }).catch(error => console.log(error));
 
+  },
+  restaurantName: (req, res) => {
+    const db = req.app.get('db');
+    const {id} = req.params;
+    console.log(id);
+    db.get_restaurant_name(id).then(response => {
+      console.log(response)
+      res.status(200).send(response)
+    })
   }
 }

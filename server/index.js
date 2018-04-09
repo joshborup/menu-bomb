@@ -43,6 +43,8 @@ app.get('/api/user-data', user.data);
 app.get('/api/menu-items/:id', menu.getMenuItems);
 app.get('/api/get-order-by-id', orders.customer );
 
+app.get('/api/restaurant-name/:id', menu.restaurantName);
+
 app.get('/api/menu-categories/:id', menu.getMenuCategories);
 app.post('/api/category', menu.addCategory);
 
