@@ -83,18 +83,7 @@ class Header extends Component {
             }
         })
     }
-    
-    showCart() {
-        this.setState({
-            show: true
-        })
-    }
 
-    hideCart() {
-        this.setState({
-            show: false
-        })
-    }
 
     render() {
         return (
@@ -114,7 +103,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><TestCartDrawer/></Link> : '' }
+                            {this.props.user.user_type === 'customer' ? <TestCartDrawer/> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
