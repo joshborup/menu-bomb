@@ -23,7 +23,9 @@ const CartItem = (props) => {
     `
     const style = {
         cursor: "pointer",
-        margin: "0 3px"
+        margin: "0 3px",
+        color: 'lightgrey',
+        
     }
     return (
         <Wrapper>
