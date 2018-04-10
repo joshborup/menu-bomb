@@ -33,7 +33,8 @@ CREATE TABLE business_hours (
 CREATE TABLE categories (
   id SERIAL PRIMARY KEY,
   restaurant_id INTEGER REFERENCES restaurant_profiles(id),
-  category TEXT NOT NULL
+  category TEXT NOT NULL,
+  deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE menu_items (
@@ -43,7 +44,8 @@ CREATE TABLE menu_items (
   price NUMERIC,
   description TEXT,
   image_url TEXT,
-  category_id INTEGER REFERENCES categories(id)
+  category_id INTEGER REFERENCES categories(id),
+  deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE customer_profiles (

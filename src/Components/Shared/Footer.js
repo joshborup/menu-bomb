@@ -30,7 +30,8 @@ const LogoTag = styled.img`
 const FlexRow = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    width: 100%;
+    justify-content: space-between;
     align-items: center;
 `
 const LinksContainer = styled.ul`
@@ -79,13 +80,17 @@ class Footer extends Component {
       <Wrapper className='fotter-container'>
         <InnerBox>
           <FlexRow>
-            <LinksContainer>
-            <Link to='/'><ListItem>Home</ListItem></Link>
-              {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
-              {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
-              {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-            </LinksContainer>
-            <CopyRight>&copy; Menu Bomb</CopyRight>
+            <div>
+              <LinksContainer>
+                <Link to='/'><ListItem>Home</ListItem></Link>
+                {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
+                {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
+                {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
+              </LinksContainer>
+            </div>
+            <div>
+              <CopyRight>&copy; Menu Bomb</CopyRight>
+            </div>
           </FlexRow>
         </InnerBox>
       </Wrapper>

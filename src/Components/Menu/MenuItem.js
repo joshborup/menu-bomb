@@ -6,12 +6,14 @@ const Wrapper = styled.div`
   height: 100px;
   width: 49%;
   background-color: white;
-  box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
+  box-shadow: 1px 2px 5px rgba(0,0,0,0.45);
   overflow:hidden;
   border-radius: 5px;
-  margin 5px 5px;
+  margin: 5px 5px;
+  text-align: center;
   &:hover{
-    border: 1px solid #0000008c;
+    cursor:pointer;
+    box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   }
 `
 
@@ -20,22 +22,45 @@ const InnerBox = styled.div`
   flex-direction: row;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
   background-color: white;
   height: 100%;
   justify-content: space-between;
 `
-const FlexRow = styled.div`
+const FlexRowLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  width: 50%;
+  flex: 7;
+  position: relative;
+  padding: 10px;
+`
+const FlexRowRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 4;
+  position: relative;
+  max-width: 200px;
+  padding: 10px;
+  overflow: hidden;
+`
+
+const FlexRowMiddle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 1;
   position: relative;
   padding: 10px;
 `
 const Description = styled.div`
   color: #8a8a8a;
   margin: 5px 0;
+  max-width: 280px;
 `
 const Image = styled.img`
   height: 100px;
@@ -49,14 +74,14 @@ const H3 = styled.div`
   font-weight: bold;
 `
 const Price = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: 0;
+
+  
   padding: 5px;
   background-color: #ffffffa3;
   border-radius: 5px;
   margin: 5px;
+  font-weight: bold;
+  color: green;
 `
 
 export default class MenuItem extends Component{
@@ -71,17 +96,22 @@ export default class MenuItem extends Component{
   render() {
     const {name, price, description, imageurl, category, id} = this.props.item;
     console.log('props: ', this.props)
+
+    const descriptionCutoff = description.length > 100 ? `${description.substring(0, 100)}...` : description
     return (
       <Wrapper key={`item-${id}`} className='menu-item-container' onClick={(e) => this.props.handleOpen(this.props.item)}>
         <InnerBox>
-          <FlexRow>
+          <FlexRowLeft>
             <H3>{name}</H3>
-            <Description>{description}</Description>
-          </FlexRow>
-          <FlexRow>
+            <Description>{descriptionCutoff}</Description>
+            
+          </FlexRowLeft>
+          <FlexRowMiddle>
             <Price>{currency(price).format(true)}</Price>
+          </FlexRowMiddle>
+          <FlexRowRight>
             <Image src={imageurl} alt='scrumptious food' />
-          </FlexRow>
+          </FlexRowRight>
         </InnerBox>
       </Wrapper>
     );
