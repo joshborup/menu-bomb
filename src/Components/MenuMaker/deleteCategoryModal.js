@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {addToCart} from '../../redux/reducer';
 import styled from "styled-components";
 
-class DialogExampleModal extends Component {
+export default class DialogExampleModal extends Component {
 constructor(props){
   super(props)
   this.state = {
@@ -14,20 +14,27 @@ constructor(props){
   };
 }
 
-  
-
   render() {
-
-    const Price = styled.h2`
-      color: black;
-      font-weight: bolder;
-      margin: 5px 0px 10px;
-    `;
-    const AddButton = styled.button`
+  
+    const DeleteButton = styled.button`
     margin: 10px;
     width: 140px;
     height: 30px;
-    background:rgb(76, 233, 76);
+    background: rgb(250, 14, 14);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bolder;
+    border-radius: 2px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+    text-shadow: .5px .5px 1px black;
+    `;
+
+    const CancelButton = styled.button`
+    margin: 10px;
+    width: 140px;
+    height: 30px;
+    background: rgb(14, 250, 14);
     border: none;
     color: white;
     font-size: 16px;
@@ -55,7 +62,7 @@ constructor(props){
       margin: '10px',
       width: '140px',
       height: '30px',
-      background:'rgb(76, 233, 76)',
+      background: 'rgb(250, 14, 14)',
       border: 'none',
       color: 'white',
       fontSize: '16px',
@@ -70,7 +77,7 @@ constructor(props){
     return (
       <div className='login-modal-container'>
         <Dialog
-          title={this.props.selectedItem.name}
+          title={this.props.categoryName}
           modal={false}
           open={this.props.modalStatus}
           onRequestClose={this.props.handleClose}
@@ -81,11 +88,10 @@ constructor(props){
         <div className='menu-modal-content'>
           <div className='modal-menu'>
             <div>
-              <img style={imageStyle} src={this.props.selectedItem.imageurl}/>
-              <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
-              <h2>{this.props.selectedItem.description}</h2>
+              <p>Are you sure you want to delete this category? All associated menu items will be deleted as well!</p>
             </div>
-            <AddButton onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </AddButton>
+            <DeleteButton onClick={() => this.props.deleteCategory(this.props.categoryToDelete.id)}> Delete </DeleteButton>
+            <CancelButton onClick={this.props.handleClose}> Cancel </CancelButton>
           </div>
         </div>
         </Dialog>
@@ -93,7 +99,3 @@ constructor(props){
     );
   }
 }
-
-const mapStateToProps = state => ({ state: state });
-
-export default connect( mapStateToProps, { addToCart})(DialogExampleModal);

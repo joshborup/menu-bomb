@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LoginModal from '../Login/LoginModal'
 import {Link} from 'react-router-dom';
-import Logo from './logo2.svg'
+import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -76,7 +76,7 @@ class Header extends Component {
             <Wrapper className='header-container'>
                 <InnerBox>
                     <FlexRow>
-                        <LogoTag src={Logo}/>
+                        <Link to='/'><LogoTag src={Logo}/></Link>
                     </FlexRow>
 
                     <div>

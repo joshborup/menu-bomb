@@ -3,19 +3,27 @@ import styled from "styled-components";
 import MenuItem from './MenuItem';
 
 const Wrapper = styled.div`
-  background-color: #5EBCD1;
-  box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
+  margin: 20px 0px;
+  text-align: center;
   overflow:hidden;
+  font-family: Montserrat;
 `
 const InnerBox = styled.div`
   margin: 5px auto;
-  background-color: #5EBCD1;
+  
   justify-content: space-between;
 `
 const ItemList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`
+
+const CatTitle = styled.h2`
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  font-size: 24px;
+  border-bottom: #e9e9e9 solid 1px;
 `
 
 export default class MenuCategory extends Component {
@@ -43,7 +51,7 @@ export default class MenuCategory extends Component {
     return (
       <Wrapper key={`category-${this.props.category}`} className='menu-category-container'>
         <InnerBox>
-          <h2>{this.props.category}</h2>
+          <CatTitle>{this.props.category}</CatTitle>
           <ItemList>
             {menuItems}
           </ItemList>

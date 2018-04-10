@@ -47,26 +47,23 @@
     font-size: 20px;
   }
 
-
-  
-  form input {
+  .registration-form form input {
     display: block;
     width: 100%;
     font-size: 20px;
     padding: 5px 10px;
     margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 2px;
     border: 1px solid #ddd;
   }
   
-  form input.error {
+  .registration-form form input.error {
     background: rgb(253, 211, 211);
   }
   
-  form button {
+  .registration-form form button {
     display: block;
     width: 150px;
-    appearance: none;
     border-radius: 5px;
     background-color: #50BAF9;;
     color: #fff;
@@ -76,8 +73,14 @@
     margin: 20px auto 0px;
     outline: 0;
     cursor: pointer;
+    box-shadow: 0px 4px 0px rgb(32, 115, 163);
+    transition: .05s;
   }
   
-  form button:hover {
-    background-color: rgb(49, 165, 231);;
+   .registration-form form button:hover {
+    background-color: rgb(59, 175, 243);
+  }
+
+  .registration-form form button:active {
+    box-shadow: 0px 1px 0px rgb(32, 115, 163)
   }
