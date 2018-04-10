@@ -107,6 +107,32 @@ class Cart extends Component {
         margin: 5px 0px;
     `
 
+    const CheckoutTotalContainer = styled.div`
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    `
+    const CheckOutButton = styled.button`
+        height: 30px;
+        width: 120px;
+        color: white;
+        background:rgb(76, 233, 76);
+        font-size: 16px;
+        font-weight: bolder;
+        margin: 0 auto;
+        border: none;
+        box-shadow: 1px 3px 5px rgba(0,0,0,0.4);
+        border-radius: 3px;
+        text-shadow: 0.5px 0.5px 1px black;
+        cursor: pointer;
+        &:focus {
+            outline: none;
+        }
+        &:active {
+            box-shadow: none;
+        }
+    `
+
     const CartStyle = {
         margin: '0 10px',
         cursor: 'pointer'
@@ -139,19 +165,22 @@ class Cart extends Component {
                 ? 
                 'Your cart is empty' 
                 :
-                <TotalContainer>
-                    <FlexRow>
-                        <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
-                    </FlexRow>
+                <CheckoutTotalContainer>
+                    <TotalContainer>
+                        <FlexRow>
+                            <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
+                        </FlexRow>
 
-                    <FlexRow>
-                        <Bold>Tax</Bold>{currency(this.state.cart.salesTax).format(true)}
-                    </FlexRow>
-                    
-                    <FlexRow>
-                        <Bold>Total</Bold> {currency(this.state.cart.total).format(true)}
-                    </FlexRow>
-                </TotalContainer>
+                        <FlexRow>
+                            <Bold>Tax</Bold>{currency(this.state.cart.salesTax).format(true)}
+                        </FlexRow>
+                        
+                        <FlexRow>
+                            <Bold>Total</Bold> {currency(this.state.cart.total).format(true)}
+                        </FlexRow>
+                    </TotalContainer>
+                    <CheckOutButton>Checkout</CheckOutButton>
+                </CheckoutTotalContainer>
                 }
             </DrawerContainer>
         </Drawer>
