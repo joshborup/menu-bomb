@@ -7,9 +7,9 @@ VALUES('Jordan', 'Bush', 'jordanmbush@gmail.com', '1231231234', '123 N St.', 'Su
 ('Kelly', 'Springer', 'kellyspringer@gmail.com', '4561231234', '456 N St.', NULL, 'customer', 'testPassword');
 
 INSERT INTO restaurant_profiles (user_id, name, description, logo_url, background_url, delivers, alcohol)
-VALUES(1, 'Taco Bell Pizza', 'The Best Burrito Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'http://cdn-image.foodandwine.com/sites/default/files/1501607996/opentable-scenic-restaurants-marine-room-FT-BLOG0818.jpg', TRUE, FALSE),
-(2, 'Pizza Hut Burgers','The Best Sandwich Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_734,q_60,w_1920/v1/clients/fortwayne/restaurants_header_slide_2_86f7b8a6-81ba-46c7-9685-91ea117c0705.jpg', FALSE, TRUE),
-(3, 'Burger King Tacos','The Best Crepes Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://static.tacdn.com/TripAdvisorInsights/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg', TRUE, TRUE);
+VALUES(1,'Taco Bell', 'The Best Burrito Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'http://cdn-image.foodandwine.com/sites/default/files/1501607996/opentable-scenic-restaurants-marine-room-FT-BLOG0818.jpg', TRUE, FALSE),
+(2, 'Subway', 'The Best Sandwich Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://res.cloudinary.com/simpleview/image/upload/c_fill,f_auto,h_734,q_60,w_1920/v1/clients/fortwayne/restaurants_header_slide_2_86f7b8a6-81ba-46c7-9685-91ea117c0705.jpg', FALSE, TRUE),
+(3,'Ihop', 'The Best Crepes Restaurant', 'https://www.truepics.com/images/funny/joshborup.png', 'https://static.tacdn.com/TripAdvisorInsights/wp-content/uploads/2018/01/premiumforrestaurants_0.jpg', TRUE, TRUE);
 
 INSERT INTO business_hours (restaurant_id, day, open_time, close_time)
 VALUES(1, 0, '07:00:00', '18:00:00'),
@@ -58,19 +58,19 @@ VALUES(1, 'Cheeseburger', 12.34, '1/2lb of drizzling charbroiled goodness', 'htt
 (1, 'Cheesecake', 8.75, 'Sweet and delicious', 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2013/12/9/0/FNK_Cheesecake_s4x3.jpg.rend.hgtvcom.616.462.suffix/1387411272847.jpeg', 5),
 (1, 'Ribeye Steak', 25.00, '10oz of mouth watering charbroiled goodness', 'https://s3.amazonaws.com/anovarecipes/images/finish_step/20171028_165329.jpg', 2),
 (1, 'Shrimp', 20.25, '10 peices of crazy good crustaceans', 'http://tiphero.com/wp-content/uploads/2017/03/Honey-Garlic-Shrimp-FI-750x364.jpg', 6),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1),
-(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 1);
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(2, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 8),
+(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 14),
+(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 14),
+(3, 'Cheeseburger', 20.25, '1/2lb of drizzling charbroiled goodness', 'https://thumb1.shutterstock.com/display_pic_with_logo/916646/310491326/stock-vector-food-logo-310491326.jpg', 14);
 
 INSERT INTO customer_profiles (user_id)
 VALUES(1),

@@ -55,10 +55,21 @@
     width: 400px;
     border-radius: 2px;
     border: none;
-    background: #E6E6E6;
+    background: #E9E9E9;
     font-size: 16px;
 }
 
 .menu-maker-component .add-cat input:focus, .menu-maker-component .add-cat-button:focus{
 outline: none;
+}
+
+.dropzone-styling {
+    height:50px;
+    background: #E9E9E9;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px black dashed;
+    cursor: pointer;
 }

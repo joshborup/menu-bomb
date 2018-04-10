@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import styled from "styled-components";
 import MenuCategory from './MenuCategory';
+import Header from '../Shared/Header'
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: #5EBCD1;
-  box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   overflow:hidden;
   min-height: 100vh;
 `
@@ -14,9 +13,16 @@ const InnerBox = styled.div`
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #5EBCD1;
+  padding-top: 20px;
   height: 100%;
   justify-content: space-between;
+`
+
+const RestTitle = styled.h1`
+  text-align: center;
+  font-family: Montserrat;
+  font-weight: bolder;
+  font-size: 42px;
 `
 
 export default class Menu extends Component {
@@ -48,12 +54,17 @@ export default class Menu extends Component {
   
   render() {
     const menu = this.getMenuCategories();
+    console.log(this.props.restaurantName);
     return (
+      <div>
+      <Header />
       <Wrapper className='menu-category-container'>
         <InnerBox>
+          <RestTitle>{this.props.restaurantName}</RestTitle>
           {menu ? menu : 'Loading...'}
         </InnerBox>
       </Wrapper>
+      </div>
     );
   }
 }

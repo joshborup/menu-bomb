@@ -4,26 +4,29 @@ import styled from "styled-components";
 import MenuMaker from './MenuMaker';
 import Header from '../Shared/Header';
 import './menuMaker.css';
+import DeleteModal from './deleteCategoryModal';
 
 export default class MenuMakerContainer extends Component {
   constructor(){
       super()
       this.state = {
         menuByCategories: [],
-        newCategory: ''
+        newCategory: '',
+        open: false,
+        categoryToDelete: null,
       }
   }
 
-  componentDidMount() {
+  getMenuItems = () => {
     const restaurantId = (window.location.href).split('/').pop();
-    console.log('restaurantId: ', restaurantId)
     axios.get(`/api/menu-categories/${restaurantId}`).then( menuItems => {
       // CREATE UNIQUE LIST OF CATEGORIES BASED ON MENU ITEM CATEGORIES
       let uniqueCategories = Array.from(new Set(menuItems.data.map( item => item.category)));
-      console.log(uniqueCategories)
       const menuByCategories = [];
       for(let category of uniqueCategories) {
         let itemsByCategory = menuItems.data.filter( item => item.category === category);
+        itemsByCategory.forEach(e => e.isDisabled = true);
+
         menuByCategories.push({
           catName: category,
           items: itemsByCategory,
@@ -31,38 +34,31 @@ export default class MenuMakerContainer extends Component {
         });
       }
       this.setState({
-        menuByCategories: menuByCategories
+        menuByCategories: menuByCategories,
+        open: false
       })
     }).catch( err => {
       console.log('get menu-items err: ', err);
     })
   }
+
+  componentDidMount() {
+    this.getMenuItems();
+  }
+
   handleNewCategoryChange = (val) => {
     this.setState({
       newCategory: val,
     })
   }
 
-  handleMenuItemChange = (target, item) => {
-    // ONCHANGE EVENT METHOD FOR MENU ITEM INPUT FIELDS
-    const menuByCategories = this.state.menuByCategories.slice();
-    item[target.name] = target.value;
-    let catIndex = menuByCategories.findIndex( cat => cat.id === item.categoryid);
-    let itemIndex = menuByCategories[catIndex].items.findIndex( catItem => catItem.id === item.id);
-    let category = menuByCategories[catIndex];
-    category.items.splice(itemIndex, 1, item);
-    menuByCategories.splice(catIndex, 1, category);
-    this.setState({
-      menuByCategories
-    })
-  }
 
   addMenuCategory = () => {
     if(this.state.newCategory) {
       const category = {
         category: this.state.newCategory,
-        restaurantId: 1
-        // restaurantId: this.props.match.params.restaurantId --- UNCOMMENT AFTER TESTING
+        // restaurantId: 1
+        restaurantId: this.props.match.params.restaurantId
       }
       axios.post(`/api/category`, category).then( response => {
         const menuByCategories = this.state.menuByCategories.slice();
@@ -80,20 +76,70 @@ export default class MenuMakerContainer extends Component {
     }
   }
 
+  submitNewItem = (id, newItemName, newItemDescription, newItemPrice, imageUrl) => {
 
+    if(imageUrl == ''){
+      imageUrl = 'https://gloimg.gamcdn.com/G/pdm-product-pic/Clothing/2017/12/18/source-img/20171218172310_94935.jpg'
+    }
+    
+    axios.post('/api/add_new_item', {restaurantId: this.props.match.params.restaurantId, name: newItemName, price: newItemPrice, description: newItemDescription, catId: id, imageUrl: imageUrl}).then(response => {
+      this.getMenuItems();
+    })
+  }
+
+  updateMenuItem = (item) => {
+    axios.put('/api/menu-item', item).then( response => {
+      this.getMenuItems();
+    })
+  }
+
+  deleteMenuItem = (id) => {
+    axios.delete(`/api/menu-item/${id}`).then( response => {
+      this.getMenuItems();
+    })
+  }
+
+  deleteCategory = (id) => {
+    axios.delete(`/api/category/${id}`).then( response => {
+      this.getMenuItems();
+    })
+  }
+  
+  promptUserToDeleteCategory = (category) => {
+    this.setState({
+      open: true,
+      categoryToDelete: category,
+    });
+  };
+  
+  handleClose = () => {
+    this.setState({open: false});
+  };
   
   render() {
-    console.log('container: ', this.state.menuByCategories)
+    console.log(this.state)
     return (
       <div>
+        <DeleteModal
+          modalStatus={this.state.open}
+          handleClose={this.handleClose}
+          categoryToDelete={this.state.categoryToDelete}
+          deleteCategory={this.deleteCategory}/>
         <Header />
         <div className='menu-maker-container-component'>
           <MenuMaker
+            handleNewItem={this.handleNewItem}
             menuByCategories={this.state.menuByCategories}
             newCategory={this.state.newCategory}
             addMenuCategory={this.addMenuCategory}
             handleNewCategoryChange={this.handleNewCategoryChange}
-            handleMenuItemChange={this.handleMenuItemChange}>
+            handleMenuItemChange={this.handleMenuItemChange}
+            toggleMenuItemEdit={this.toggleMenuItemEdit}
+            submitNewItem={this.submitNewItem}
+            updateMenuItem={this.updateMenuItem}
+            deleteMenuItem={this.deleteMenuItem}
+            promptUserToDeleteCategory={this.promptUserToDeleteCategory}
+            >
           </MenuMaker>
         </div>
     </div>
