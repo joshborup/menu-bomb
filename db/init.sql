@@ -71,4 +71,19 @@ CREATE TABLE order_items (
   notes TEXT
 );
 
+CREATE TABLE carts (
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER REFERENCES restaurant_profiles(id),
+  customer_id INTEGER REFERENCES customer_profiles(id),
+  total NUMERIC,
+);
+
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY,
+  menu_item_id INTEGER REFERENCES menu_items(id),
+  order_id INTEGER REFERENCES orders(id),
+  quantity INTEGER NOT NULL,
+  notes TEXT
+);
+
 
