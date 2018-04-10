@@ -117,7 +117,7 @@ class Cart extends Component {
           onClick={this.handleToggle}
           style={CartStyle} color='#ffffff'
         />
-        <Drawer width={400} openSecondary={true} open={this.state.open} >
+        <Drawer docked={false} width={400} openSecondary={true} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
             <CloseMenu onClick={this.handleToggle}>x</CloseMenu>
             <DrawerContainer>
                 <Title>Cart for {this.state.user.first_name}</Title>
