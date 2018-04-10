@@ -25,7 +25,7 @@ class Cart extends Component {
     }
 
     render() {
-        const cart = this.props.cart.cart.map((e)=> {
+        const cart = this.props.cart.menu_items.map((e)=> {
             return (
                 
                 <div key={e.id} className="cart-line-item-wrapper" >
@@ -87,3 +87,36 @@ const mapDispatchToProps = {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+// increaseQty(menu_item_id){
+//     const body = {
+//         menu_item_id: menu_item_id
+//     }
+
+//     axios.post('/api/cart', body).then(response => {
+//         console.log('item added to cart')
+//         this.fetchCart()
+//     })
+// }
+
+// decreaseQty(qty, menu_item_id){
+//     const body = {
+//         menu_item_id: menu_item_id
+//     }
+
+//     if(qty === 1) {
+//         this.removeFromCart(menu_item_id)
+//     } else {
+//         axios.patch('/api/cart', body).then((response) => {
+//             console.log('item removed from cart')
+//             this.fetchCart()
+//         })
+//     }
+// }
+
+// removeFromCart(menu_item_id){
+//     axios.delete(`/api/cart/${menu_item_id}`).then(response => {
+//         console.log('item removed from cart')
+//         this.fetchCart()
+//     })
+// }

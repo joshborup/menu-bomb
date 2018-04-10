@@ -2,8 +2,7 @@ var initialState = {
     user: '',
     loginEmail:'',
     cart: {
-        cart: [],
-        qty: 0,
+        menu_items: [],
         total: 0
     }
 }
@@ -61,7 +60,7 @@ export function fetchCart(cart){
 }
 
 export function addToCart(selectedItem){
-    let newCart = initialState.cart.cart;
+    let newCart = initialState.cart.menu_items;
     newCart.push(selectedItem);
     return {
         type: ADD_TO_CART,

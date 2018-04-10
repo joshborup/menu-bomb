@@ -4,7 +4,7 @@ import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { fetchUserData } from '../../redux/reducer';
+import { fetchUserData, fetchCart } from '../../redux/reducer';
 
 class HeaderCart extends Component {
 
@@ -18,7 +18,7 @@ class HeaderCart extends Component {
 
 
     render() {
-        const cart = this.props.cart.cart.map((e) => {
+        const cart = this.props.cart.menu_items.map((e) => {
             return (
                 <div className="header-cart_flex" key={e.id}>
                         <div><img src={e.image_url} alt="picture" width="70px"/></div>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LoginModal from '../Login/LoginModal'
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
@@ -104,6 +104,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
+                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><LogoTag src={ShoppingCart}/></Link> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
