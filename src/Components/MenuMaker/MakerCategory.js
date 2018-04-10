@@ -76,12 +76,12 @@ const CatHeader = styled.div`
 `
 const AddItemButton = styled.button`
   background: rgb(149, 226, 34);
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   color: white;
   border: none;
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bolder;
   display: flex;
   justify-content: center;
