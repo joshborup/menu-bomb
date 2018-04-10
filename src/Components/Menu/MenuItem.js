@@ -27,12 +27,33 @@ const InnerBox = styled.div`
   height: 100%;
   justify-content: space-between;
 `
-const FlexRow = styled.div`
+const FlexRowLeft = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
-  width: 50%;
+  flex: 7;
+  position: relative;
+  padding: 10px;
+`
+const FlexRowRight = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 4;
+  position: relative;
+  max-width: 200px;
+  padding: 10px;
+  overflow: hidden;
+`
+
+const FlexRowMiddle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  flex: 1;
   position: relative;
   padding: 10px;
 `
@@ -53,10 +74,8 @@ const H3 = styled.div`
   font-weight: bold;
 `
 const Price = styled.div`
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  right: -90px;
+
+  
   padding: 5px;
   background-color: #ffffffa3;
   border-radius: 5px;
@@ -82,14 +101,17 @@ export default class MenuItem extends Component{
     return (
       <Wrapper key={`item-${id}`} className='menu-item-container' onClick={(e) => this.props.handleOpen(this.props.item)}>
         <InnerBox>
-          <FlexRow>
+          <FlexRowLeft>
             <H3>{name}</H3>
             <Description>{descriptionCutoff}</Description>
+            
+          </FlexRowLeft>
+          <FlexRowMiddle>
             <Price>{currency(price).format(true)}</Price>
-          </FlexRow>
-          <FlexRow>
+          </FlexRowMiddle>
+          <FlexRowRight>
             <Image src={imageurl} alt='scrumptious food' />
-          </FlexRow>
+          </FlexRowRight>
         </InnerBox>
       </Wrapper>
     );
