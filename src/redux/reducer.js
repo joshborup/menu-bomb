@@ -1,12 +1,21 @@
+import currency from 'currency.js';
+import { stat } from 'fs';
+let total = currency(1.23).distribute(5);
+
 var initialState = {
     user: '',
     loginEmail:'',
     cart: {
         menu_items: [],
-        total: 0
-    }
+        subTotal: 0,
+        salesTax: 0,
+        total: 0,
+        nextCartId: 0
+    },
 }
 
+// TAXES
+const TAXES = 0.07;
 // user data action
 const FETCH_USER_DATA = 'FETCH_USER_DATA';
 const FETCH_LOGIN_EMAIL = 'FETCH_LOGIN_EMAIL';
@@ -60,10 +69,40 @@ export function fetchCart(cart){
 }
 
 export function addToCart(selectedItem){
-    let newCart = initialState.cart.menu_items;
-    newCart.push(selectedItem);
+    const newItem = Object.assign({}, selectedItem);
+    const cart = initialState.cart;
+    newItem.cartId = cart.nextCartId;
+    cart.nextCartId++;
+    cart.menu_items.push(newItem);
+    const newCart = calculateTotals(cart);
     return {
         type: ADD_TO_CART,
         payload: newCart
     }
+}
+export function removeFromCart(cartId){
+    const cart = initialState.cart;
+    const itemIndex = cart.menu_items.findIndex( item => item.cartId === cartId);
+    cart.menu_items.splice(itemIndex, 1);
+    const newCart = calculateTotals(cart);
+    return {
+        type: ADD_TO_CART,
+        payload: newCart
+    }
+}
+
+function calculateTotals(cart) {
+    let total = 0;
+    cart.menu_items.forEach(item => {
+        total = currency(total).add(item.price).value;
+    });
+    
+    const subTotal = total;
+    const salesTax = currency(subTotal).multiply(TAXES).value;
+    total = currency(subTotal).add(salesTax).value;
+
+    cart.total = total;
+    cart.subTotal = subTotal;
+    cart.salesTax = salesTax;
+    return cart;
 }
