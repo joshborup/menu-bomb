@@ -3,7 +3,9 @@ import Drawer from 'material-ui/Drawer';
 import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import styled from "styled-components";
 import { connect } from 'react-redux';
-import { fetchUserData } from '../../redux/reducer';
+import { fetchUserData, removeFromCart } from '../../redux/reducer';
+import CartItem from './CartItem';
+import currency from 'currency.js';
 
 class Cart extends Component {
 
@@ -11,16 +13,25 @@ class Cart extends Component {
     super(props)
     this.state = {
         open: false,
-        user: ''
+        user: '',
+        cart: ''
     };
   }
 
   componentDidMount(){
    this.setState({
-       user: this.props.user
+        user: this.props.user,
+        cart: this.props.cart
    })
     
 }
+
+    resetCart = () => {
+        this.setState({
+            user: this.props.user,
+            cart: this.props.cart
+        })
+    }
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -46,27 +57,60 @@ class Cart extends Component {
     `
 
     const DrawerContainer = styled.div`
-        padding: 20px;
+        padding: 60px 20px 20px;
         width: 100%;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
         box-sizing: border-box;
         height: 100%;
         z-index: 1;
     `
 
     const Title = styled.h1`
-        font-size: 20px;
+        font-size: 24px;
+        margin-bottom: 10px;
         font-family: Montserrat;
         font-weight: bolder;
 
     `
 
+    const Bold = styled.span`
+        font-weight: bold;
+    `
+    const TotalContainer = styled.div`
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align_items: center;
+        padding: 10px 0px;
+        width:100%;
+        min-height:100px;
+    `
+
+    const FlexRow = styled.div`
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 5px 0px;
+    `
+
     const CartStyle = {
-        margin: '0 10px'
+        margin: '0 10px',
+        cursor: 'pointer'
     }
 
-    console.log(this.state.user)
+    
+
+    const cartItemList = this.state.cart.menu_items ? this.state.cart.menu_items.map(e => {
+        return(
+            <CartItem key={`${e.name}${e.price}`} id={e.cartId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
+        )
+
+    }):'Loading...'
+
+    console.log(this.props.cart === this.state.cart)
     return (
       <div>
         <ShoppingCart
@@ -76,8 +120,22 @@ class Cart extends Component {
         <Drawer width={400} openSecondary={true} open={this.state.open} >
             <CloseMenu onClick={this.handleToggle}>x</CloseMenu>
             <DrawerContainer>
-                <Title>Cart for {this.props.user.first_name}</Title>
-                
+                <Title>Cart for {this.state.user.first_name}</Title>
+                {cartItemList}
+                <TotalContainer>
+                    <FlexRow>
+                    <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
+                    </FlexRow>
+
+                    <FlexRow>
+                        <Bold>Tax</Bold>{currency(this.state.cart.salesTax).format(true)}
+                    </FlexRow>
+                    
+                    <FlexRow>
+                        <Bold>Total</Bold> {currency(this.state.cart.total).format(true)}
+                    </FlexRow>
+                </TotalContainer>
+
             </DrawerContainer>
         </Drawer>
       </div>
@@ -87,12 +145,14 @@ class Cart extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        user: state.user,
+        cart: state.cart
     }
 }
 
 const mapDispatchToProps = {
-    fetchUserData: fetchUserData
+    fetchUserData: fetchUserData,
+    removeFromCart: removeFromCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)

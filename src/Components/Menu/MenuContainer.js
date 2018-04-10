@@ -36,7 +36,7 @@ export default class MenuContainer extends Component {
   
   handleOpen = (item) => {
     this.setState({
-      open: true,
+      open: !this.state.open,
       selectedItem: item,
     });
   };
@@ -48,7 +48,7 @@ export default class MenuContainer extends Component {
   render() {
     return (
       <div class='menu-container-component'>
-        <Modal modalStatus={this.state.open} handleClose={this.handleClose} selectedItem={this.state.selectedItem}/>
+        <Modal modalStatus={this.state.open} handleOpen={this.handleOpen} handleClose={this.handleClose} selectedItem={this.state.selectedItem}/>
         {this.state.menuItems && <Menu restaurantName={this.state.restaurantName} menuItems={this.state.menuItems} handleClose={this.handleClose} handleOpen={this.handleOpen}/>}
       </div>
     );
