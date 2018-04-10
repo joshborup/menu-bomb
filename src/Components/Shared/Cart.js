@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchUserData, removeFromCart } from '../../redux/reducer';
 import CartItem from './CartItem';
 import currency from 'currency.js';
+import axios from 'axios';
 
 class Cart extends Component {
 
@@ -14,15 +15,21 @@ class Cart extends Component {
     this.state = {
         open: false,
         user: '',
-        cart: ''
+        cart: '',
+        restaurant: ''
     };
   }
 
   componentDidMount(){
-   this.setState({
-        user: this.props.user,
-        cart: this.props.cart
-   })
+    axios.get(`/api/restaurant-name/${1}`).then(response => {
+        console.log(response.data[0].name)
+        this.setState({
+            user: this.props.user,
+            cart: this.props.cart,
+            restaurant: response.data[0].name
+       })
+    })
+   
     
 }
 
@@ -65,6 +72,10 @@ class Cart extends Component {
         box-sizing: border-box;
         height: 100%;
         z-index: 1;
+    `
+
+    const SubTitle = styled.div`
+        font-size: 16px;
     `
 
     const Title = styled.h1`
@@ -110,7 +121,6 @@ class Cart extends Component {
 
     }):'Loading...'
 
-    console.log(this.props.cart === this.state.cart)
     return (
       <div>
         <ShoppingCart
@@ -121,10 +131,17 @@ class Cart extends Component {
             <CloseMenu onClick={this.handleToggle}>x</CloseMenu>
             <DrawerContainer>
                 <Title>Cart for {this.state.user.first_name}</Title>
-                {cartItemList}
+                <SubTitle>{this.state.restaurant}</SubTitle>
+                {cartItemList}  
+                {/* ternary for showing cart or empty message based on cart status */}
+                {
+                this.state.cart.menu_items == '' 
+                ? 
+                'Your cart is empty' 
+                :
                 <TotalContainer>
                     <FlexRow>
-                    <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
+                        <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
                     </FlexRow>
 
                     <FlexRow>
@@ -135,7 +152,7 @@ class Cart extends Component {
                         <Bold>Total</Bold> {currency(this.state.cart.total).format(true)}
                     </FlexRow>
                 </TotalContainer>
-
+                }
             </DrawerContainer>
         </Drawer>
       </div>
