@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   box-shadow: 1px 2px 5px rgba(0,0,0,0.45);
   overflow:hidden;
   border-radius: 5px;
-  margin 5px 5px;
+  margin: 5px 5px;
+  text-align: center;
   &:hover{
     cursor:pointer;
     box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
@@ -21,6 +22,7 @@ const InnerBox = styled.div`
   flex-direction: row;
   max-width: 1200px;
   margin: 0 auto;
+  text-align: center;
   background-color: white;
   height: 100%;
   justify-content: space-between;
@@ -37,6 +39,7 @@ const FlexRow = styled.div`
 const Description = styled.div`
   color: #8a8a8a;
   margin: 5px 0;
+  max-width: 280px;
 `
 const Image = styled.img`
   height: 100px;
@@ -53,11 +56,13 @@ const Price = styled.div`
   position: absolute;
   z-index: 1;
   top: 0;
-  right: 0;
+  right: -90px;
   padding: 5px;
   background-color: #ffffffa3;
   border-radius: 5px;
   margin: 5px;
+  font-weight: bold;
+  color: green;
 `
 
 export default class MenuItem extends Component{
@@ -72,15 +77,17 @@ export default class MenuItem extends Component{
   render() {
     const {name, price, description, imageurl, category, id} = this.props.item;
     console.log('props: ', this.props)
+
+    const descriptionCutoff = description.length > 100 ? `${description.substring(0, 100)}...` : description
     return (
       <Wrapper key={`item-${id}`} className='menu-item-container' onClick={(e) => this.props.handleOpen(this.props.item)}>
         <InnerBox>
           <FlexRow>
             <H3>{name}</H3>
-            <Description>{description}</Description>
+            <Description>{descriptionCutoff}</Description>
+            <Price>{currency(price).format(true)}</Price>
           </FlexRow>
           <FlexRow>
-            <Price>{currency(price).format(true)}</Price>
             <Image src={imageurl} alt='scrumptious food' />
           </FlexRow>
         </InnerBox>
