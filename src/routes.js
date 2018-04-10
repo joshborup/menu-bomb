@@ -7,7 +7,10 @@ import testMenu from './Components/Menu/MenuContainer';
 import testMenuMaker from './Components/MenuMaker/MenuMakerContainer';
 import AccountContainer from './Components/Customer/Account/AccountContainer'
 import RestaurantDashboard from './Components/RestaurantDashboard/RestaurantDashboard';
+<<<<<<< HEAD
 import RegisterRestaurant from './Components/Registration/RegisterRestaurant'
+=======
+>>>>>>> rest-dashboard
 
 export default (
     

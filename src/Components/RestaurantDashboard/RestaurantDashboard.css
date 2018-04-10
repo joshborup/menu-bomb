@@ -1,0 +1,130 @@
+.restaurant-dashboard-container {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.restaurant-dashboard-inner {
+    text-align: center;
+}
+
+.dashboard-left-panel {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.dashboard-panel-info {
+    font-size: 16px;
+    padding: 5px;
+}
+
+.dashboard-left-panel .dashboard-panel-info {
+    margin-top: 10px;
+}
+
+.dashboard-main {
+    max-width: 1200px;
+    display: inline-block;
+}
+
+.restaurant-name {
+    font-size: 60px;
+    text-align: center;
+    font-weight: 700;
+    padding: 20px;
+}
+
+.restaurant-info {
+    text-align: center;
+    margin: 5px auto 20px auto;
+    padding-bottom: 40px;
+}
+
+.bold-text {
+    font-weight: 700;
+}
+
+.restaurant-info-button {
+    padding-top: 20px;
+}
+
+.open-orders {
+    border: 1px transparent;
+    margin: 0 auto;
+}
+
+.open-orders-inner-container {
+    margin: 20px auto;
+    height: 700px;
+}
+
+.open-orders-subheader {
+    font-size: 22px;
+    font-weight: 600;
+    padding: 5px;
+}
+
+.open-order-container {
+    padding: 10px;
+    border: 1px solid #C71B04;
+    margin: 10px;
+    height: 100px;
+}
+
+.open-order-item-name {
+    font-weight: 600;
+}
+
+.open-order-buttons {
+    float: right;
+    width: 200px;
+}
+
+.open-order-customer, .open-order-customer-phone {
+    display: inline-block;
+}
+
+.open-order-customer-phone {
+    margin-left: 20px;
+}
+
+.open-order-button {
+    display: block;
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    border: none;
+    margin: 2px;
+    color: floralwhite;
+}
+
+.view-customer-file-button {
+    background-color: grey;
+}
+
+.start-order-button {
+    background-color: green;
+}
+
+.close-order-button {
+    background-color: red;
+}
+
+.open-order-text {
+    max-width: 900px;
+    display: inline-block;
+}
+
+.panel-buttons {
+    margin-top: 30px;
+}
+
+.dashboard-info {
+    margin-top: 30px;
+}
+
+.panel-button {
+    width: 150px;
+    height: 25px;
+    border-radius: 3px;
+    border: none;
+    margin: 2px;
+}
