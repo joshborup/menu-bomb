@@ -1,0 +1,1 @@
+SELECT id FROM carts WHERE customer_id = $1;

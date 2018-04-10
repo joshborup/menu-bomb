@@ -7,6 +7,7 @@ const orders = require('./controller/orders')
 const restaurant = require('./controller/restaurant');
 const customer = require('./controller/customer')
 const menu = require('./controller/menu');
+const cart = require('./controller/cart');
 require('dotenv').config();
 
 const app = express();
@@ -54,6 +55,8 @@ app.put('/api/user-data-customer-update', customer.update)
 app.post('/api/add_new_item', menu.addItem)
 app.put('/api/menu-item', menu.updateItem)
 app.delete('/api/menu-item/:id', menu.deleteItem);
+
+app.post('/api/cart-item', cart.addItem);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));
