@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Drawer from 'material-ui/Drawer';
 import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import styled from "styled-components";
+import { connect } from 'react-redux';
+import { fetchUserData } from '../../redux/reducer';
 
-export default class DrawerOpenRightExample extends React.Component {
+class Cart extends Component {
 
   constructor(props) {
-    super(props);
-    this.state = {open: false};
+    super(props)
+    this.state = {
+        open: false,
+        user: ''
+    };
   }
+
+  componentDidMount(){
+   this.setState({
+       user: this.props.user
+   })
+    
+}
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -44,7 +56,7 @@ export default class DrawerOpenRightExample extends React.Component {
     `
 
     const Title = styled.h1`
-        font-size: 24px;
+        font-size: 20px;
         font-family: Montserrat;
         font-weight: bolder;
 
@@ -53,6 +65,8 @@ export default class DrawerOpenRightExample extends React.Component {
     const CartStyle = {
         margin: '0 10px'
     }
+
+    console.log(this.state.user)
     return (
       <div>
         <ShoppingCart
@@ -62,10 +76,23 @@ export default class DrawerOpenRightExample extends React.Component {
         <Drawer width={400} openSecondary={true} open={this.state.open} >
             <CloseMenu onClick={this.handleToggle}>x</CloseMenu>
             <DrawerContainer>
-                <Title>Test Cart</Title>
+                <Title>Cart for {this.props.user.first_name}</Title>
+                
             </DrawerContainer>
         </Drawer>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.user
+    }
+}
+
+const mapDispatchToProps = {
+    fetchUserData: fetchUserData
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart)

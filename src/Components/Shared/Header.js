@@ -5,7 +5,7 @@ import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
-import TestCartDrawer from './TestCartDrawer';
+import Cart from './Cart';
 import { fetchUserData , fetchCart } from '../../redux/reducer';
 import './header.css';
 
@@ -57,8 +57,6 @@ const ListItem = styled.li`
     
 `
 
-
-
 class Header extends Component {
     constructor(props){
         super(props)
@@ -103,7 +101,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <TestCartDrawer/> : '' }
+                            {this.props.user.user_type === 'customer' ? <Cart/> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
