@@ -29,6 +29,15 @@ const InnerBox = styled.div`
 const LogoTag = styled.img`
     width: 270px;
 `
+
+const CartIcon = styled.div`
+    width: 80px;
+    height: 50px;
+    background: red;
+    z-index: 3px;
+    margin: 0 px;
+`
+
 const FlexRow = styled.div`
     display: flex;
     flex-direction: row;
@@ -47,6 +56,10 @@ const ListItem = styled.li`
     font-size: 20px;
     
 `
+
+const CartStyle = {
+    margin: '0 10px'
+}
 
 class Header extends Component {
     constructor(props){
@@ -103,7 +116,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><LogoTag src={ShoppingCart}/></Link> : '' }
+                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ShoppingCart style={CartStyle} color='#ffffff'/></Link> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
