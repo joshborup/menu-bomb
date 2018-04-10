@@ -1,16 +1,14 @@
+import axios from 'axios';
 import currency from 'currency.js';
-
-let total = currency(1.23).distribute(5);
 
 var initialState = {
     user: '',
     loginEmail:'',
     cart: {
-        menu_items: [],
+        items: [],
         subTotal: 0,
         salesTax: 0,
         total: 0,
-        nextCartId: 0
     },
 }
 
@@ -36,7 +34,7 @@ export default function(state=initialState, action){
 
             return {...state, cart: action.payload};
 
-        case ADD_TO_CART:
+        case ADD_TO_CART + '_FULFILLED':
 
             return{...state, cart: action.payload};
 
@@ -70,20 +68,27 @@ export function fetchCart(cart){
 
 export function addToCart(selectedItem){
     const newItem = Object.assign({}, selectedItem);
-    const cart = initialState.cart;
-    newItem.cartId = cart.nextCartId;
-    cart.nextCartId++;
-    cart.menu_items.push(newItem);
-    const newCart = calculateTotals(cart);
+    const cart = Object.assign({}, initialState.cart);
     return {
-        type: ADD_TO_CART,
-        payload: newCart
+       type: ADD_TO_CART,
+       payload: axios.post('/api/cart-item', newItem).then( cartItem => {
+            console.log('f this')
+            const newCartItem = Object.assign({}, newItem);
+            newCartItem.cartId = cartItem.data.cart_id;
+            newCartItem.cartItemId = cartItem.data.id;
+
+            cart.items.push(newCartItem);
+            console.log('items: ', cart);
+            const newCart = calculateTotals(cart);
+            return newCart;
+        })
     }
 }
-export function removeFromCart(cartId){
+
+export function removeFromCart(cartItemId){
     const cart = initialState.cart;
-    const itemIndex = cart.menu_items.findIndex( item => item.cartId === cartId);
-    cart.menu_items.splice(itemIndex, 1);
+    const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
+    cart.items.splice(itemIndex, 1);
     const newCart = calculateTotals(cart);
     return {
         type: ADD_TO_CART,
@@ -93,7 +98,7 @@ export function removeFromCart(cartId){
 
 function calculateTotals(cart) {
     let total = 0;
-    cart.menu_items.forEach(item => {
+    cart.items.forEach(item => {
         total = currency(total).add(item.price).value;
     });
     
