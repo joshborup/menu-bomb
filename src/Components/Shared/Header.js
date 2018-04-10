@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchUserData , fetchCart } from '../../redux/reducer';
-import { ShoppingCart } from 'material-io-icons/ShoppingCart'
+import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import './header.css';
 
 
@@ -54,7 +54,6 @@ class Header extends Component {
         this.state = {
             show: false
         }
-        this.fetchCart = this.fetchCart.bind(this)
     }
 
     componentDidMount(){
