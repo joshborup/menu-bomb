@@ -1,5 +1,5 @@
 import currency from 'currency.js';
-import { stat } from 'fs';
+
 let total = currency(1.23).distribute(5);
 
 var initialState = {

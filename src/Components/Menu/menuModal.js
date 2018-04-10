@@ -35,6 +35,7 @@ constructor(props){
     border-radius: 2px;
     box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
     text-shadow: .5px .5px 1px black;
+    cursor: pointer;
     `;
 
     const customContentStyle = {
@@ -85,7 +86,10 @@ constructor(props){
               <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <AddButton onClick={() => this.props.addToCart(this.props.selectedItem)}> Add to Order </AddButton>
+            <AddButton onClick={() => {
+              this.props.addToCart(this.props.selectedItem)
+              this.props.handleOpen(this.props.selectedItem)
+              }}> Add to Order </AddButton>
           </div>
         </div>
         </Dialog>
