@@ -5,8 +5,8 @@ import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
+import TestCartDrawer from './TestCartDrawer';
 import { fetchUserData , fetchCart } from '../../redux/reducer';
-import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import './header.css';
 
 
@@ -57,9 +57,7 @@ const ListItem = styled.li`
     
 `
 
-const CartStyle = {
-    margin: '0 10px'
-}
+
 
 class Header extends Component {
     constructor(props){
@@ -116,7 +114,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ShoppingCart style={CartStyle} color='#ffffff'/></Link> : '' }
+                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><TestCartDrawer/></Link> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
