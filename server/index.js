@@ -57,6 +57,7 @@ app.put('/api/menu-item', menu.updateItem)
 app.delete('/api/menu-item/:id', menu.deleteItem);
 
 app.post('/api/cart-item', cart.addItem);
+app.delete('/api/cart-item/:cartItemId', cart.deleteItem);
 app.get('/api/upload-signature', menu.signUpload);
 
 const PORT = 4000;
