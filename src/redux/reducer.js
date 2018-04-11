@@ -86,14 +86,16 @@ export function addToCart(selectedItem, userId){
 }
 
 export function removeFromCart(cartItemId){
-    const cart = initialState.cart;
-    const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
-    cart.items.splice(itemIndex, 1);
-    const newCart = calculateTotals(cart);
-    return {
-        type: ADD_TO_CART,
-        payload: newCart
-    }
+    return axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
+        const cart = initialState.cart;
+        const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
+        cart.items.splice(itemIndex, 1);
+        const newCart = calculateTotals(cart);
+        return {
+            type: ADD_TO_CART,
+            payload: newCart
+        }
+    })
 }
 
 function calculateTotals(cart) {
