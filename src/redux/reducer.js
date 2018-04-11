@@ -66,22 +66,23 @@ export function fetchCart(cart){
     }
 }
 
-export function addToCart(selectedItem){
-    const newItem = Object.assign({}, selectedItem);
-    const cart = Object.assign({}, initialState.cart);
+export function addToCart(selectedItem, userId){
+    const newItem = Object.assign({}, selectedItem); //MAKE COPY OF ITEM TO ADD TO CART
+    const cart = Object.assign({}, initialState.cart); //COPY INITIAL STATE
     return {
        type: ADD_TO_CART,
-       payload: axios.post('/api/cart-item', newItem).then( cartItem => {
-            console.log('f this')
+        // POST ITEM TO DATABASE - RETURNS THE NEW CART ITEM WHICH WE WILL USE TO REFERENCE
+        // THE ID AND CART ID
+        payload: axios.post('/api/cart-item', newItem).then( cartItem => {
+            // MAKE A COPY OF THE ADDED ITME
             const newCartItem = Object.assign({}, newItem);
-            newCartItem.cartId = cartItem.data.cart_id;
-            newCartItem.cartItemId = cartItem.data.id;
+            newCartItem.cartId = cartItem.data.cart_id; // GET THE ID OF THE CART
+            newCartItem.cartItemId = cartItem.data.id; // GET THE ID OF THE ITEM
 
             cart.items.push(newCartItem);
-            console.log('items: ', cart);
-            const newCart = calculateTotals(cart);
+            const newCart = calculateTotals(cart); //RECALCULATE TOTALS (TAXES, SUBTOTAL, ETC.)
             return newCart;
-        })
+        }).catch( err => console.log('addToCart err: ', err ))
     }
 }
 
