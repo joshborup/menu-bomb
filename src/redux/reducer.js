@@ -96,9 +96,11 @@ export function removeFromCart(cartItemId){
             payload: axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
                 const cart = initialState.cart;
                 const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
+                console.log("cart----->", cart.items)
+                console.log("index----->", itemIndex)
                 cart.items.splice(itemIndex, 1);
                 const newCart = calculateTotals(cart);
-                console.log("cart----->", cart)
+                return newCart;
             })
         }
     
@@ -106,8 +108,11 @@ export function removeFromCart(cartItemId){
 
 function calculateTotals(cart) {
     let total = 0;
+    console.log("cart calc----->", cart)
     cart.items.forEach(item => {
+        
         total = currency(total).add(currency(item.price).multiply(1).value).value;
+        console.log("total calc", total)
     });
     
     const subTotal = total;
