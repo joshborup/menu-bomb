@@ -10,10 +10,43 @@ class DialogExampleModal extends Component {
 constructor(props){
   super(props)
   this.state = {
-
+    
   };
 }
 
+// componentWillReceiveProps(){
+//   console.log(this.props.selectedItem)
+//   this.setState({
+//     selectedItem: this.props.selectedItem
+//   })
+// }
+
+//  changeQuantityAdd = () => {
+//     if(this.state.quantity >= 1){
+//       this.setState({
+
+//           quantity: this.state.quantity + 1
+//       })
+//     }
+//  }
+
+//  changeQuantitySub = () => {
+//   if(this.state.quantity > 1){
+//     this.setState({
+//       quantity: this.state.quantity - 1
+//     })
+//   }else if(this.state.quantity == 1){
+//     this.setState({
+//       quantity: 1
+//     })
+//   }
+// }
+
+// resetQuantity = () => {
+//   this.setState({
+//     quantity: 1
+//   })
+// }
   
 
   render() {
@@ -24,19 +57,70 @@ constructor(props){
       margin: 5px 0px 10px;
     `;
     const AddButton = styled.button`
-    margin: 10px;
-    width: 140px;
-    height: 30px;
-    background:rgb(76, 233, 76);
-    border: none;
-    color: white;
-    font-size: 16px;
-    font-weight: bolder;
-    border-radius: 2px;
-    box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
-    text-shadow: .5px .5px 1px black;
-    cursor: pointer;
+      margin: 10px;
+      width: 150px;
+      height: 30px;
+      background:rgb(76, 233, 76);
+      border: none;
+      color: white;
+      font-size: 16px;
+      font-weight: bolder;
+      border-radius: 2px;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+      text-shadow: .5px .5px 1px black;
+      cursor: pointer;
     `;
+
+    const QuantityContainer = styled.div`
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 150px;
+      margin: 10px auto 0px;
+    `
+
+    const AddAmmount = styled.button`
+      height: 30px;
+      width: 40px;
+      border: none;
+      border-radius: 4px;
+      background: #30cc30;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+      &:active {
+        box-shadow: none;
+      }
+      &:focus {
+        outline: none;
+      }
+    `
+    const SubtractAmmount = styled.button`
+      height: 30px;
+      width: 40px;
+      border: none;
+      border-radius: 4px;
+      background: red;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      box-shadow: 1px 2px 3px rgba(0,0,0,0.4);
+      &:active {
+        box-shadow: none;
+      }
+      &:focus {
+        outline: none;
+      }
+    `
+    const QuantityDisplay = styled.input`
+      width: 50px;
+      height: 30px;
+      text-align: center;
+      font-size: 20px;
+      border: none;
+    `
 
     const customContentStyle = {
       width: '100%',
@@ -66,8 +150,7 @@ constructor(props){
       boxShadow: '1px 2px 3px rgba(0,0,0,0.4)'
     }
 
-    console.log('selected item test _____________:', this.props.selectedItem)
-
+    console.log('state item test _____________:', this.state.selectedItem)
     return (
       <div className='login-modal-container'>
         <Dialog
@@ -86,9 +169,17 @@ constructor(props){
               <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
+            <QuantityContainer>
+
+              <SubtractAmmount onClick={()=> this.props.changeQuantitySub()}>-</SubtractAmmount>
+              <QuantityDisplay value={this.props.quantity}/>
+              <AddAmmount onClick={()=> this.props.changeQuantityAdd()}>+</AddAmmount>
+      
+            </QuantityContainer>
             <AddButton onClick={() => {
               this.props.addToCart(this.props.selectedItem)
               this.props.handleOpen(this.props.selectedItem)
+              this.props.resetQuantity()
               }}> Add to Order </AddButton>
           </div>
         </div>

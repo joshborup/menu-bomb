@@ -31,7 +31,7 @@ const CartItem = (props) => {
         <Wrapper>
 
             <div>
-                1
+                {props.quantity}
             </div>
 
             <Middle>

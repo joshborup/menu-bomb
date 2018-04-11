@@ -142,11 +142,12 @@ class Cart extends Component {
 
     const cartItemList = this.state.cart.items ? this.state.cart.items.map(e => {
         return(
-            <CartItem key={`${e.name}${e.price}`} id={e.cartItemId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
+            <CartItem key={`${e.name}${e.price}`} quantity={e.quantity} id={e.cartItemId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
         )
 
     }):'Loading...'
 
+    console.log(this.state.cart.items)
     return (
       <div>
         <ShoppingCart

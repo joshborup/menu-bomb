@@ -66,7 +66,8 @@ export function fetchCart(cart){
     }
 }
 
-export function addToCart(selectedItem, userId){
+export function addToCart(selectedItem){
+
     const newItem = Object.assign({}, selectedItem); //MAKE COPY OF ITEM TO ADD TO CART
     const cart = Object.assign({}, initialState.cart); //COPY INITIAL STATE
     return {
