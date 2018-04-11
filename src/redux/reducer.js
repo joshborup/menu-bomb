@@ -111,7 +111,7 @@ function calculateTotals(cart) {
     console.log("cart calc----->", cart)
     cart.items.forEach(item => {
         
-        total = currency(total).add(currency(item.price).multiply(1).value).value;
+        total = currency(total).add(currency(item.price).multiply(item.quantity).value).value;
         console.log("total calc", total)
     });
     
