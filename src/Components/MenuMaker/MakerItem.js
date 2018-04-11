@@ -175,18 +175,29 @@ export default class MakerItem extends Component {
 
   handleImageUpload = (file) => {
         
-    let formData = new FormData();
-    formData.append("file", file[0]);
-    formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+    axios.get('/api/upload-signature').then(response => {
+        console.log(response.data.signature)
 
-    axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-        this.setState({
-          imageurl: response.data.secure_url
+        let formData = new FormData();
+        formData.append("signature", response.data.signature)
+        formData.append("api_key", "325671952438772");
+        formData.append("timestamp", response.data.timestamp)
+        formData.append("file", file[0]);
+
+        for(var pair of formData.entries()) {
+                console.log(pair); 
+             }
+    
+    
+        axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
+          this.setState({
+            imageurl: response.data.secure_url
+          })
+        }).catch( err => {
+            console.log(err);
         })
-    }).catch( err => {
-        console.log(err);
-    })   
-  }
+    })
+}     
 
   render() {
 

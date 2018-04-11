@@ -85,4 +85,3 @@ CREATE TABLE cart_items (
   notes TEXT
 );
 
-
