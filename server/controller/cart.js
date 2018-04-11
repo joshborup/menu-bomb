@@ -1,29 +1,33 @@
 module.exports = {
   addItem: (req, res) => {
     const db = req.app.get('db');
-    const userId = req.session.user.id;
-    // ONLY USING restaurantid FROM req.body
-    let {id, restaurantid, name, price, description, categoryid, imageurl, category, notes} = req.body; 
     const quantity = 1; // QUANTITY IS HARDED-CODED FOR NOW
+    const {id, restaurantid, name, price, description, categoryid, imageurl, category, notes} = req.body; 
+    const cart = Object.assign({}, req.session.cart);
+    const items = cart.items.splice();
 
-    // FIND THE USER'S CART FIRST - IF ONE DOES NOT EXIST, CREATE ONE
-    db.get_cart(userId).then( cart => {
-      console.log('cart: ', cart);
-      // CART DOES NOT EXISTS
-      if(!cart.length) {
-        // create_cart.sql USES A SUBQUERY TO FIND THE CUSTOMER_PROFILE ID BASED OFF OF THE USER ID;
-        db.create_cart([restaurantid, userId]).then( newCart => {
-          db.add_cart_item([newCart[0].id, id, quantity, notes]).then( cartItem => {
-            res.json(cartItem[0]);
-          }).catch( err => console.log('addItem err: ', err));
-        })
-      // CART EXISTS
-      } else {
-        db.add_cart_item([cart[0].id, id, quantity, notes]).then( cartItem => {
-          res.json(cartItem[0]);
-        }).catch( err => console.log('else addItem err: ', err));
-      }
-    }).catch(err => console.log('getCart err: ', err));
+    // CHECK IF RESTAURANT IS THE SAME
+    // if(cart.restaurantid !== restaurantid) {
+    //   console.log('You can just go to hell.')
+    // };
+
+    // CREATE A NEW ITEM OBJECT TO THROW INTO THE CART
+    // WARNING:::: CHILDREN NOT ALLOWED IN CART
+    const newItem = {
+      cartItemId: cart.nextId,
+      itemId: id,
+      quantity: quantity,
+      notes: notes,
+    };
+    // INCREMENT nextId FOR THE NEXT CART ITEM THAT WILL BE ADDED
+    cart.nextId++;
+    // ADD NEW ITEM TO ITEMS ARRAY, AND PUT ITEMS BACK INTO CART
+    items.push(newItem);
+    cart.items = items;
+    req.session.cart = cart;
+
+    res.json(newItem);
+    
   },
 // ===========================================================================================================
 deleteItem: (req, res) => {
