@@ -31,15 +31,15 @@ module.exports = {
   },
 // ===========================================================================================================
 deleteItem: (req, res) => {
-  const id = req.params.id;
-  
   const db = req.app.get('db');
-  db.delete_menu_item(id).then( response => {
-    res.status(200).send();
-  }).catch( err => {
-    console.log('deleteItem err: ', err);
-    res.status(500);
-  });
+  const id = req.params.cartItemId;
+  const cart = Object.assign({}, req.session.cart);
+  const items = cart.items.splice();
+  const itemIndex = item.findIndex( item => item.cartItemId === id)
+  
+  items.splice(itemIndex, 1)
+  
+  res.status(200).send()
 },
 // ===========================================================================================================
   updateItem: (req, res) => {
