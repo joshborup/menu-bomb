@@ -168,15 +168,15 @@ class Cart extends Component {
                 <CheckoutTotalContainer>
                     <TotalContainer>
                         <FlexRow>
-                            <Bold>SubTotal</Bold>{currency(this.state.cart.subTotal).format(true)}
+                            <Bold>SubTotal</Bold>{currency(this.props.cart.subTotal).format(true)}
                         </FlexRow>
 
                         <FlexRow>
-                            <Bold>Tax</Bold>{currency(this.state.cart.salesTax).format(true)}
+                            <Bold>Tax</Bold>{currency(this.props.cart.salesTax).format(true)}
                         </FlexRow>
                         
                         <FlexRow>
-                            <Bold>Total</Bold> {currency(this.state.cart.total).format(true)}
+                            <Bold>Total</Bold> {currency(this.props.cart.total).format(true)}
                         </FlexRow>
                     </TotalContainer>
                     <CheckOutButton>Checkout</CheckOutButton>
