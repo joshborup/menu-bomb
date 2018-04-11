@@ -19,6 +19,7 @@ const FETCH_USER_DATA = 'FETCH_USER_DATA';
 const FETCH_LOGIN_EMAIL = 'FETCH_LOGIN_EMAIL';
 const FETCH_CART = 'FETCH_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 export default function(state=initialState, action){
     switch(action.type){
@@ -35,6 +36,10 @@ export default function(state=initialState, action){
             return {...state, cart: action.payload};
 
         case ADD_TO_CART + '_FULFILLED':
+
+            return{...state, cart: action.payload};
+
+        case REMOVE_FROM_CART + '_FULFILLED':
 
             return{...state, cart: action.payload};
 
@@ -86,22 +91,32 @@ export function addToCart(selectedItem){
 }
 
 export function removeFromCart(cartItemId){
-    return axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
-        const cart = initialState.cart;
-        const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
-        cart.items.splice(itemIndex, 1);
-        const newCart = calculateTotals(cart);
         return {
-            type: ADD_TO_CART,
-            payload: newCart
+            type: REMOVE_FROM_CART,
+            payload: axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
+                const cart = initialState.cart;
+                const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
+                console.log("cart----->", cart.items)
+                console.log("index----->", itemIndex)
+                cart.items.splice(itemIndex, 1);
+                const newCart = calculateTotals(cart);
+                return newCart;
+            })
         }
-    })
+    
 }
 
 function calculateTotals(cart) {
     let total = 0;
+    console.log("cart calc----->", cart)
     cart.items.forEach(item => {
+<<<<<<< HEAD
         total = currency(total).add(currency(item.price).multiply(item.quantity).value).value;
+=======
+        
+        total = currency(total).add(currency(item.price).multiply(1).value).value;
+        console.log("total calc", total)
+>>>>>>> remove-cart-item
     });
     
     const subTotal = total;
