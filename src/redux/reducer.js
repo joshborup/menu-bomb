@@ -110,13 +110,9 @@ function calculateTotals(cart) {
     let total = 0;
     console.log("cart calc----->", cart)
     cart.items.forEach(item => {
-<<<<<<< HEAD
-        total = currency(total).add(currency(item.price).multiply(item.quantity).value).value;
-=======
         
         total = currency(total).add(currency(item.price).multiply(1).value).value;
         console.log("total calc", total)
->>>>>>> remove-cart-item
     });
     
     const subTotal = total;
