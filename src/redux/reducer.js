@@ -94,7 +94,7 @@ export function removeFromCart(cartItemId){
         return {
             type: REMOVE_FROM_CART,
             payload: axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
-                const cart = initialState.cart;
+                const cart = {...initialState.cart}
                 const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
                 console.log("cart----->", cart.items)
                 console.log("index----->", itemIndex)

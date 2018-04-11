@@ -33,12 +33,12 @@ class Cart extends Component {
     
 }
 
-    resetCart = () => {
-        this.setState({
-            user: this.props.user,
-            cart: this.props.cart
-        })
-    }
+    // resetCart = () => {
+    //     this.setState({
+    //         user: this.props.user,
+    //         cart: this.props.cart
+    //     })
+    // }
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -140,14 +140,14 @@ class Cart extends Component {
 
     
 
-    const cartItemList = this.state.cart.items ? this.state.cart.items.map(e => {
+    const cartItemList = this.props.cart.items ? this.props.cart.items.map(e => {
         return(
-            <CartItem key={`${e.name}${e.price}`} quantity={e.quantity} id={e.cartItemId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
+            <CartItem key={`${e.cartItemId}`} quantity={e.quantity} id={e.cartItemId} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
         )
 
     }):'Loading...'
 
-    console.log(this.state.cart.items)
+    console.log(this.props.cart.items)
     return (
       <div>
         <ShoppingCart

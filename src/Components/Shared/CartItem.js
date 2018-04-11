@@ -38,7 +38,6 @@ const CartItem = (props) => {
                 {props.name}
                 <DeleteButton style={style}  onClick={()=> {
                     props.removeFromCart(props.id)
-                    props.resetCart()
                 }}/>
             </Middle>
 
