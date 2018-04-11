@@ -66,7 +66,7 @@ export function fetchCart(cart){
     }
 }
 
-export function addToCart(selectedItem, userId){
+export function addToCart(selectedItem){
     const newItem = Object.assign({}, selectedItem); //MAKE COPY OF ITEM TO ADD TO CART
     const cart = Object.assign({}, initialState.cart); //COPY INITIAL STATE
     return {
@@ -101,7 +101,7 @@ export function removeFromCart(cartItemId){
 function calculateTotals(cart) {
     let total = 0;
     cart.items.forEach(item => {
-        total = currency(total).add(currency(item.price).multiply(1).value).value;
+        total = currency(total).add(currency(item.price).multiply(item.quantity).value).value;
     });
     
     const subTotal = total;
