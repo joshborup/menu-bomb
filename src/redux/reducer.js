@@ -74,12 +74,11 @@ export function addToCart(selectedItem, userId){
         // POST ITEM TO DATABASE - RETURNS THE NEW CART ITEM WHICH WE WILL USE TO REFERENCE
         // THE ID AND CART ID
         payload: axios.post('/api/cart-item', newItem).then( cartItem => {
+            console.log('session item: ', cartItem);
             // MAKE A COPY OF THE ADDED ITME
-            const newCartItem = Object.assign({}, newItem);
-            newCartItem.cartId = cartItem.data.cart_id; // GET THE ID OF THE CART
-            newCartItem.cartItemId = cartItem.data.id; // GET THE ID OF THE ITEM
+            newItem.cartItemId = cartItem.data.cartItemId; // GET THE ID OF THE ITEM
 
-            cart.items.push(newCartItem);
+            cart.items.push(newItem);
             const newCart = calculateTotals(cart); //RECALCULATE TOTALS (TAXES, SUBTOTAL, ETC.)
             return newCart;
         }).catch( err => console.log('addToCart err: ', err ))
@@ -87,20 +86,22 @@ export function addToCart(selectedItem, userId){
 }
 
 export function removeFromCart(cartItemId){
-    const cart = initialState.cart;
-    const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
-    cart.items.splice(itemIndex, 1);
-    const newCart = calculateTotals(cart);
-    return {
-        type: ADD_TO_CART,
-        payload: newCart
-    }
+    return axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
+        const cart = initialState.cart;
+        const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
+        cart.items.splice(itemIndex, 1);
+        const newCart = calculateTotals(cart);
+        return {
+            type: ADD_TO_CART,
+            payload: newCart
+        }
+    })
 }
 
 function calculateTotals(cart) {
     let total = 0;
     cart.items.forEach(item => {
-        total = currency(total).add(item.price).value;
+        total = currency(total).add(currency(item.price).multiply(1).value).value;
     });
     
     const subTotal = total;

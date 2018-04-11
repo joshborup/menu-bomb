@@ -29,6 +29,7 @@ module.exports = {
                     db.create_customer_profile(user.id).then( customer => console.log('customer created: ', customer));
                 }
                 req.session.user = user;
+                req.session.cart = {items: []};
                 res.send(req.session.user);
                 // res.redirect(`/${req.session.user.userType}`)
 
@@ -62,6 +63,7 @@ module.exports = {
                         }
 
                         req.session.user = user;
+                        req.session.cart = {nextId: 0,items: []};
                         
                         res.send(req.session.user);
                     } else {
