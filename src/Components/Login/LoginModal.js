@@ -45,7 +45,7 @@ class DialogExampleModal extends Component {
         this.props.fetchLoginEmail(response.data.email);
         console.log(response.data)
         if(response.data.userType){
-        window.location.href = `${response.data.userType}/orders`;
+        window.location.href = `/${response.data.userType}/orders`;
         } else {
             this.setState({
                 errorMessage: 'Somthing went wrong, please try again'

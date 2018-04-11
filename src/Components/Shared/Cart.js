@@ -140,9 +140,9 @@ class Cart extends Component {
 
     
 
-    const cartItemList = this.state.cart.menu_items ? this.state.cart.menu_items.map(e => {
+    const cartItemList = this.state.cart.items ? this.state.cart.items.map(e => {
         return(
-            <CartItem key={`${e.name}${e.price}`} id={e.cartId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
+            <CartItem key={`${e.name}${e.price}`} id={e.cartItemId} resetCart={this.resetCart} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
         )
 
     }):'Loading...'
@@ -161,7 +161,7 @@ class Cart extends Component {
                 {cartItemList}  
                 {/* ternary for showing cart or empty message based on cart status */}
                 {
-                this.state.cart.menu_items == '' 
+                this.state.cart.items == '' 
                 ? 
                 'Your cart is empty' 
                 :

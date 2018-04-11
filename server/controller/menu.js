@@ -1,3 +1,5 @@
+const cloudinary = require('cloudinary');
+
 module.exports = {
   getMenuItems: (req, res) => {
     
@@ -88,5 +90,23 @@ module.exports = {
       console.log('deleteCategory err: ', err);
       res.status(500);
     });
+  },
+  signUpload: (req, res) => {
+    
+//get a time stamp in seconds which is UNIX format
+    const timestamp = Math.round((new Date()).getTime() / 1000);
+
+// Cloudinary API secret stored in the .env file
+    const api_secret  = process.env.CLOUDINARY_SECRET_API;
+
+//user built in cloudinary api sign request function to  create hashed signature with your api secret and UNIX timestamp
+    const signature = cloudinary.utils.api_sign_request({ timestamp: timestamp }, api_secret);
+
+// craft a signature payload to send to the client (timestamp and signature required, api_key either sent here or stored on client)
+    const payload = {
+        signature: signature,
+        timestamp: timestamp
+    };
+        res.json(payload);
   }
 }
