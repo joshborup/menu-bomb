@@ -11,5 +11,28 @@ module.exports = {
       console.log('restaurant controller - addProfileData err: ', err);
       res.status(400).send();
     });
+  },
+
+  getRestaurantInfo: (req, res) => {
+    const db = req.app.get('db');
+    const user_id = req.session.user.id;
+    db.get_restaurant_info(user_id).then(restaurant_info => {
+      res.status(200).send(restaurant_info);
+    }).catch( error => {
+      console.log('error at getRestaurantInfo controller', error);
+      res.status(400).send();
+    })
+  },
+
+  getRestaurantUserInfo: (req, res) => {
+    const db = req.app.get('db');
+    const {id} = req.session.user;
+    db.get_user_info(id).then(restaurant_user_info => {
+      res.status(200).send(restaurant_user_info);
+    }).catch( error => {
+      console.log('error at getRestaurantUserInfo controller', error);
+      res.status(400).send();
+    })
   }
+
 }

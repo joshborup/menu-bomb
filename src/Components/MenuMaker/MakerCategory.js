@@ -22,6 +22,7 @@ const ItemList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
 `
 
 const CatName = styled.h2`
@@ -34,6 +35,10 @@ const Input = styled.input`
   background: #E6E6E6;
   border: none;
   margin: 0 10px;
+  @media (max-width: 739px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `
 
 const ImgInput = styled.input`
@@ -46,6 +51,10 @@ const InputDescription = styled.input`
   background: #E9E9E9;
   border: none;
   margin: 0 10px;
+  @media (max-width: 739px) {
+    width: 90%;
+    margin: 0 auto 10px;
+  }
 `
 
 const FlexRow = styled.div`
@@ -53,7 +62,11 @@ const FlexRow = styled.div`
   flex-direction: row;
   justify-content: center;
   align-item: center;
-
+  @media (max-width: 739px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 const FlexCol = styled.div`
@@ -61,6 +74,10 @@ const FlexCol = styled.div`
   flex-direction: column;
   justify-content: center;
   align-item: center;
+  @media (max-width: 739px) {
+    width: 100%;
+    align-item: center;
+  }
 `
 const ButtonContainer = styled.div`
   min-height: 100%;
