@@ -10,12 +10,62 @@ import takeOutImg from './assets/take-out.jpg';
 import cookImg from './assets/cook.jpeg';
 import SvgIcon from 'material-ui';
 import Search from 'material-ui/svg-icons/action/search';
+import SearchItem from './SearchItem';
 
 import Footer from '../Shared/Footer';
 
 class Home extends Component {
-    
+    constructor(props){
+        super(props)
+        this.state = {
+            search: '',
+            food: ''
+        }
+    }
+
+    componentDidMount(){
+        axios.get(`/api/search-food?search=${this.state.search}`).then(response => {
+            this.setState({
+                food: response.data
+            })
+        })
+    }
+
+    searchFood = (input) => {
+        this.setState({
+            search: input
+        })
+    } 
+
+    submitSearchOnEnter = (e) => {
+        console.log(e.key)
+        if(e.key == "Enter"){
+            console.log('hit');
+            axios.get(`/api/search-food?search=${this.state.search}`).then(response => {
+                this.setState({
+                    food: response.data
+                })
+            })
+        }
+    }
+
+    submitSearch = () => {
+        axios.get(`/api/search-food?search=${this.state.search}`).then(response => {
+            this.setState({
+                food: response.data
+            })
+        })
+    }
+
   render() {
+    console.log('food search ------------', this.state.food)
+    const searchList = this.state.food ? this.state.food.map(e => {
+        return(
+            <Link to={`/testMenu/${e.restaurant_id}`}>
+                <SearchItem info={e} />
+            </Link>
+        )
+    }) : 'nothing to see here'
 
     const style = {
         width: '40px',
@@ -27,12 +77,15 @@ class Home extends Component {
             <Header />
             <div className="home-hero">
                 <h1 className="home-hero-text">Build your brand. Sell more food.</h1>
-                <div className='search-bar-container'>
-                    <input className='search-bar' placeholder='Search...'/>
-                    <Search style={style} color='white'/>
+                <div onKeyPress={(e) => this.submitSearchOnEnter(e)} className='search-bar-container'>
+                    <input onChange={(e) => this.searchFood(e.target.value)} value={this.state.search} className='search-bar' placeholder='Search...'/>
+                    <Search onClick={() => this.submitSearch()} style={style} color='white' />
                 </div>
             </div>
             <div className="home-content-container">
+                <div className='search-items-homepage'>
+                    {searchList}
+                </div>
             <div className="grid-container">
             <h1 className="home-icon-header">Did you know...?</h1>
                 <div className="grid-items">
@@ -42,6 +95,7 @@ class Home extends Component {
                 </div>
             </div>
             <div className="home-inner-container">
+        
             <h1 className="home-icon-header">Our services can help you blow the competition away</h1>
                 <div className="home-content">
                     <div className="home-content-text-1"><img src={computerImg} className="home-content-img-1"/>Menu Bomb is a cutting edge web service helping restaurants succeed in a competitive market</div>

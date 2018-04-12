@@ -3,6 +3,11 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.home-container a {
+    text-decoration: none;
+    color: black;
+}
+
 .home-inner-container {
     max-width: 1200px;
     background-color: #FFFFFF;
@@ -119,8 +124,14 @@ b {
     font-weight: 700;
 }
 
+.home-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 .home-content-container > *+* {
     margin: 10px auto;
+    
 } 
 
 .search-bar-container {
@@ -149,6 +160,15 @@ b {
 .search-bar:focus {
     flex:1;
     outline: none;
+}
+
+.search-items-homepage {
+    display: flex;
+    width: 100%;
+    overflow:scroll;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 @media (max-width: 739px) {

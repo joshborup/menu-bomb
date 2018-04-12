@@ -2,9 +2,9 @@ const cloudinary = require('cloudinary');
 
 module.exports = {
   getMenuItems: (req, res) => {
-    
+
     const id = req.params.id;
-    
+
     const db = req.app.get('db');
     db.get_menu_items(id).then( items => {
       res.json(items);
@@ -15,7 +15,7 @@ module.exports = {
   },
   getMenuCategories: (req, res) => {
     const id = req.params.id;
-    
+
     const db = req.app.get('db');
     db.get_menu_categories(id).then( categories => {
       res.json(categories);
@@ -26,7 +26,7 @@ module.exports = {
   },
   addCategory: (req, res) => {
     let {restaurantId, category} = req.body;
-    
+
     const db = req.app.get('db');
     db.add_category([restaurantId, category]).then( category => {
       res.json(category[0]);
@@ -39,7 +39,7 @@ module.exports = {
     const db = req.app.get('db');
     let {restaurantId, name, price, description, catId, imageUrl} = req.body
 
-    
+
     db.add_new_menu_item([restaurantId, name, price, description, imageUrl, catId]).then(response=> {
       console.log(response);
       res.status(200).send(response)
@@ -62,7 +62,7 @@ module.exports = {
     db.update_menu_item(name, price, description, imageurl, id).then( response => {
       console.log(response)
       res.json(response[0]);
-      
+
     }).catch( err => {
       console.log('updateItem err: ', err);
       res.status(500);
@@ -92,7 +92,7 @@ module.exports = {
     });
   },
   signUpload: (req, res) => {
-    
+
 //get a time stamp in seconds which is UNIX format
     const timestamp = Math.round((new Date()).getTime() / 1000);
 
@@ -108,5 +108,14 @@ module.exports = {
         timestamp: timestamp
     };
         res.json(payload);
+  },
+  getSearchItems: (req, res) => {
+    const db = req.app.get('db');
+    const { search } = req.query
+    console.log( search );
+    db.search_food(search).then(response => {
+      console.log(response);
+      res.json(response);
+    })
   }
 }

@@ -120,7 +120,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Cart/> : '' }
+                            {this.props.user.user_type === 'customer' ? <Cart/> : ''}
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>
