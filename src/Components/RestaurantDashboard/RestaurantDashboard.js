@@ -12,14 +12,40 @@ import RaisedButton from 'material-ui/RaisedButton';
 class RestaurantDashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: false};
+        this.state = {
+            open: false,
+            restInfo: "",
+            userInfo: ""
+        };
       }
+
+    componentDidMount() {
+        console.log("component did mount");
+        function getRestaurantInfo () {
+            return axios.get('/api/restaurant-info')
+        }
+
+        function getUserInfo () {
+            return axios.get('/api/restaurant-user-info')
+        }
+
+        axios.all([getRestaurantInfo(), getUserInfo()]).then(axios.spread((restInfo, userInfo) => {
+            console.log("user info:", userInfo);
+            console.log("restInfo: ", restInfo.data[0].name);
+            this.setState({
+                restInfo: restInfo.data, 
+                userInfo: userInfo.data[0]
+            });
+            console.log("state", this.state);
+        }))
+    }
 
     handleToggle = () => this.setState({open: !this.state.open});
 
     handleClose = () => this.setState({open: false});
 
   render() {
+      console.log(this.state.restInfo);
     return (
         <div className="restaurant-dashboard-container">
             <Header />
@@ -31,11 +57,13 @@ class RestaurantDashboard extends Component {
                                 onRequestChange={(open) => this.setState({open})}>
                                 <div className="dashboard-left-panel">
                                     <div className="dashboard-info">
-                                        <div className="dashboard-panel-info panel-name"><span className="bold-text">Business Name: </span>Amelio's Pizza, Pasta, and Wings</div>
-                                        <div className="dashboard-panel-info panel-description"><span className="bold-text">Business Description: </span>A place for families to eat italian food in Phoenix.</div>
-                                        <div className="dashboard-panel-info panel-address"><span className="bold-text">Street Address: </span>123 Main Street</div>
-                                        <div className="dashboard-panel-info panel-address"><span className="bold-text">City, State, Zip: </span>Phoenix, AZ 85255</div>
-                                        <div className="dashboard-panel-info panel-hours"><span className="bold-text">Business Hours: </span>Tuesday-Sunday 12-8pm</div>
+                                        <div className="dashboard-panel-info panel-name"><span className="bold-text">Business Name: </span>{this.state.restInfo ? this.state.restInfo[0].name : <div>[Restaurant Name]</div>}</div>
+                                        <div className="dashboard-panel-info panel-description"><span className="bold-text">Business Description: </span>{this.state.restInfo ? this.state.restInfo[0].description : <div>[Restaurant Description]</div>}</div>
+                                        {/* <div className="dashboard-panel-info panel-address"><span className="bold-text">Street Address: </span>{this.state.restInfo ? this.state.restInfo[0].name : <div>[Restaurant Name]</div>}</div>
+                                        <div className="dashboard-panel-info panel-address"><span className="bold-text">City, State, Zip: </span>{this.state.restInfo}</div> */}
+                                        <div className="dashboard-panel-info panel-hours"><span className="bold-text">Business Hours: </span>{this.state.restInfo ? this.state.restInfo[0].open_time : <div>[Restaurant Hours]</div>}</div>
+                                        <div className="dashboard-panel-info panel-hours"><span className="bold-text">Contact Person: </span>{this.state.userInfo ? this.state.userInfo.first_name : <div>[Contact Person]</div>}{this.state.userInfo ? this.state.userInfo.last_name : <div></div>}</div>
+                                        <div className="dashboard-panel-info panel-hours"><span className="bold-text">Contact Number: </span>{this.state.userInfo ? this.state.userInfo.phone : <div>[Contact Phone Number]</div>}</div>
                                     </div>    
                                         <div className="panel-buttons">
                                             <button className="panel-button" onClick={this.handleClose}>Close</button>
@@ -46,8 +74,8 @@ class RestaurantDashboard extends Component {
                     <div className="restaurant-dashboard-inner">
                         <div className="dashboard-main">
                             <div className="restaurant-info">
-                                <h1 className="restaurant-name">Amelio's Pizza, Pasta, and Wings</h1>
-                                <p>A place for families to eat italian food in Phoenix.</p>
+                            <h1 className="restaurant-name">{this.state.restInfo ? this.state.restInfo[0].name : <div>Login to view restaurant dashboard</div>}</h1>
+                                <p>{this.state.restInfo.description}</p>
                                 <div className="restaurant-info-button">    
                                     <RaisedButton
                                         label="Restaurant Info"

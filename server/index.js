@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 const user = require('./controller/user');
-const orders = require('./controller/orders')
+const orders = require('./controller/orders');
 const restaurant = require('./controller/restaurant');
-const customer = require('./controller/customer')
+const customer = require('./controller/customer');
 const menu = require('./controller/menu');
 require('dotenv').config();
 
@@ -49,11 +49,14 @@ app.get('/api/menu-categories/:id', menu.getMenuCategories);
 app.post('/api/category', menu.addCategory);
 app.delete('/api/category/:id', menu.deleteCategory);
 
-app.put('/api/user-data-customer-update', customer.update)
+app.put('/api/user-data-customer-update', customer.update);
 
-app.post('/api/add_new_item', menu.addItem)
-app.put('/api/menu-item', menu.updateItem)
+app.post('/api/add_new_item', menu.addItem);
+app.put('/api/menu-item', menu.updateItem);
 app.delete('/api/menu-item/:id', menu.deleteItem);
+
+app.get('/api/restaurant-info', restaurant.getRestaurantInfo);
+app.get('/api/restaurant-user-info', restaurant.getRestaurantUserInfo);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));
