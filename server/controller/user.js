@@ -14,7 +14,6 @@ module.exports = {
 
          bcrypt.hash(password, saltRounds).then(hashedPassword => {
             db.register_user([email, phone, address1, address2, firstName, lastName, hashedPassword, userType]).then(response =>{
-                    
                  //set user to a session if succsesful login
                  const user = {
                     id: response[0].id,
@@ -26,8 +25,11 @@ module.exports = {
                     lastName: response[0].last_name,
                     userType: response[0].user_type
                 }
-
+                if(user.userType === 'customer') {
+                    db.create_customer_profile(user.id).then( customer => console.log('customer created: ', customer));
+                }
                 req.session.user = user;
+                req.session.cart = {items: []};
                 res.send(req.session.user);
                 // res.redirect(`/${req.session.user.userType}`)
 
@@ -61,6 +63,7 @@ module.exports = {
                         }
 
                         req.session.user = user;
+                        req.session.cart = {nextId: 0,items: []};
                         
                         res.send(req.session.user);
                     } else {

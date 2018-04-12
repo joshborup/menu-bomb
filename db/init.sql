@@ -1,4 +1,3 @@
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   first_name TEXT NOT NULL,
@@ -71,4 +70,17 @@ CREATE TABLE order_items (
   notes TEXT
 );
 
+CREATE TABLE carts (
+  id SERIAL PRIMARY KEY,
+  restaurant_id INTEGER NOT NULL REFERENCES restaurant_profiles(id),
+  customer_id INTEGER NOT NULL REFERENCES customer_profiles(id)
+);
+
+CREATE TABLE cart_items (
+  id SERIAL PRIMARY KEY,
+  cart_id INTEGER NOT NULL REFERENCES carts(id),
+  menu_item_id INTEGER NOT NULL REFERENCES menu_items(id),
+  quantity INTEGER NOT NULL,
+  notes TEXT
+);
 

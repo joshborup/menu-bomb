@@ -15,7 +15,9 @@ const InnerBox = styled.div`
   margin: 0 auto;
   padding-top: 20px;
   height: 100%;
+  flex-wrap: wrap;
   justify-content: space-between;
+
 `
 
 const RestTitle = styled.h1`

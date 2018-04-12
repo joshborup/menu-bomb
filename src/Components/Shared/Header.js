@@ -5,8 +5,8 @@ import Logo from './logo2.png'
 import styled from "styled-components";
 import { connect } from 'react-redux';
 import axios from 'axios';
+import Cart from './Cart';
 import { fetchUserData , fetchCart } from '../../redux/reducer';
-import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import './header.css';
 
 
@@ -25,10 +25,27 @@ const InnerBox = styled.div`
     background-color: #C71B04;
     height: 100%;
     justify-content: space-between;
+    @media(max-width: 739px){
+        flex-direction: column;
+    }
 `
 const LogoTag = styled.img`
     width: 270px;
+    transition: .3sec;
+    @media(max-width: 739px){
+        width: 180px;
+        transition: .3sec;
+    }
 `
+
+const CartIcon = styled.div`
+    width: 80px;
+    height: 50px;
+    background: red;
+    z-index: 3px;
+    margin: 0 px;
+`
+
 const FlexRow = styled.div`
     display: flex;
     flex-direction: row;
@@ -40,12 +57,23 @@ const LinksContainer = styled.ul`
     justify-content: center;
     align-items: center;
     list-style-type: none;
+    @media(max-width: 739px){
+        padding-bottom: 10px;
+    }
 `
 const ListItem = styled.li`
     margin: 0px 10px;
     color: white;
     font-size: 20px;
-    
+    @media(max-width: 739px){
+        font-size: 16px;
+    }
+`
+
+const MiddleRow = styled.div`
+@media(max-width: 739px){
+    display: none;
+}
 `
 
 class Header extends Component {
@@ -72,18 +100,7 @@ class Header extends Component {
             }
         })
     }
-    
-    showCart() {
-        this.setState({
-            show: true
-        })
-    }
 
-    hideCart() {
-        this.setState({
-            show: false
-        })
-    }
 
     render() {
         return (
@@ -103,7 +120,7 @@ class Header extends Component {
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
                             {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
                             {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><LogoTag src={ShoppingCart}/></Link> : '' }
+                            {this.props.user.user_type === 'customer' ? <Cart/> : '' }
                         </LinksContainer>
                     </FlexRow>
                 </InnerBox>

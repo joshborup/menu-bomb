@@ -15,8 +15,14 @@ const InnerBox = styled.div`
 `
 const ItemList = styled.div`
   display: flex;
+  width:100%
   flex-direction: row;
+  justify-content: space-between;
+  max-width: 1200px;
   flex-wrap: wrap;
+  @media (max-width: 739px) {
+    justify-content: center;
+  }
 `
 
 const CatTitle = styled.h2`

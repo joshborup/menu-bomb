@@ -2,24 +2,35 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import './Home.css';
+import styled from "styled-components";
 import Header from '../Shared/Header';
 import computerImg from './assets/computer-img.jpeg';
 import menuImg from './assets/menu.jpeg';
 import takeOutImg from './assets/take-out.jpg';
 import cookImg from './assets/cook.jpeg';
 import SvgIcon from 'material-ui';
+import Search from 'material-ui/svg-icons/action/search';
 
 import Footer from '../Shared/Footer';
 
 class Home extends Component {
-
+    
   render() {
+
+    const style = {
+        width: '40px',
+        height: '40px'
+    }
+    
     return (
         <div className="home-container">
             <Header />
             <div className="home-hero">
                 <h1 className="home-hero-text">Build your brand. Sell more food.</h1>
-                <button className="home-hero-button">Register</button>
+                <div className='search-bar-container'>
+                    <input className='search-bar' placeholder='Search...'/>
+                    <Search style={style} color='white'/>
+                </div>
             </div>
             <div className="home-content-container">
             <div className="grid-container">
