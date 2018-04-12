@@ -25,9 +25,17 @@ const InnerBox = styled.div`
     background-color: #C71B04;
     height: 100%;
     justify-content: space-between;
+    @media(max-width: 739px){
+        flex-direction: column;
+    }
 `
 const LogoTag = styled.img`
     width: 270px;
+    transition: .3sec;
+    @media(max-width: 739px){
+        width: 180px;
+        transition: .3sec;
+    }
 `
 
 const CartIcon = styled.div`
@@ -49,12 +57,23 @@ const LinksContainer = styled.ul`
     justify-content: center;
     align-items: center;
     list-style-type: none;
+    @media(max-width: 739px){
+        padding-bottom: 10px;
+    }
 `
 const ListItem = styled.li`
     margin: 0px 10px;
     color: white;
     font-size: 20px;
-    
+    @media(max-width: 739px){
+        font-size: 16px;
+    }
+`
+
+const MiddleRow = styled.div`
+@media(max-width: 739px){
+    display: none;
+}
 `
 
 class Header extends Component {

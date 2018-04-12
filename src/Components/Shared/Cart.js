@@ -8,6 +8,7 @@ import CartItem from './CartItem';
 import currency from 'currency.js';
 import axios from 'axios';
 
+
 class Cart extends Component {
 
   constructor(props) {
@@ -33,12 +34,7 @@ class Cart extends Component {
     
 }
 
-    // resetCart = () => {
-    //     this.setState({
-    //         user: this.props.user,
-    //         cart: this.props.cart
-    //     })
-    // }
+
 
   handleToggle = () => this.setState({open: !this.state.open});
 
@@ -140,12 +136,19 @@ class Cart extends Component {
 
     
 
-    const cartItemList = this.props.cart.items ? this.props.cart.items.map(e => {
+
+
+
+    const cartItemList = this.props.cart.items ? 
+    
+    this.props.cart.items.map(item => {
         return(
-            <CartItem key={`${e.cartItemId}`} quantity={e.quantity} id={e.cartItemId} removeFromCart={this.props.removeFromCart} name={e.name} price={e.price}/>
+            <CartItem key={`${item.cartItemId}`} quantity={item.quantity} id={item.cartItemId} removeFromCart={this.props.removeFromCart} name={item.name} price={item.price}/>
         )
 
-    }):'Loading...'
+    })
+ 
+    :'Loading...'
 
     console.log(this.props.cart.items)
     return (
@@ -154,7 +157,7 @@ class Cart extends Component {
           onClick={this.handleToggle}
           style={CartStyle} color='#ffffff'
         />
-        <Drawer docked={false} width={400} openSecondary={true} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
+        <Drawer docked={false} width={380} openSecondary={true} open={this.state.open} onRequestChange={(open) => this.setState({open})}>
             <CloseMenu onClick={this.handleToggle}>x</CloseMenu>
             <DrawerContainer>
                 <Title>Cart for {this.state.user.first_name}</Title>

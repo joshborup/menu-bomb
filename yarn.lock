@@ -4876,6 +4876,10 @@ nopt@^4.0.1:
     abbrev "1"
     osenv "^0.1.4"
 
+normalize-css-color@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/normalize-css-color/-/normalize-css-color-1.0.2.tgz#02991e97cccec6623fe573afbbf0de6a1f3e9f8d"
+
 normalize-package-data@^2.3.2, normalize-package-data@^2.3.4:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.0.tgz#12f95a307d58352075a04907b84ac8be98ac012f"
@@ -5965,6 +5969,12 @@ react-scripts@1.1.1:
     whatwg-fetch "2.0.3"
   optionalDependencies:
     fsevents "^1.1.3"
+
+react-spring@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-4.0.4.tgz#0accd2dc96b7b8f851e8b71065eff65d9e4a3215"
+  dependencies:
+    normalize-css-color "^1.0.2"
 
 react-transition-group@^1.2.1:
   version "1.2.1"

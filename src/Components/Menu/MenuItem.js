@@ -4,7 +4,8 @@ import currency from "currency.js";
 
 const Wrapper = styled.div`
   height: 100px;
-  width: 49%;
+  width: 48%;
+  min-width: 360px;
   background-color: white;
   box-shadow: 1px 2px 5px rgba(0,0,0,0.45);
   overflow:hidden;
@@ -14,6 +15,9 @@ const Wrapper = styled.div`
   &:hover{
     cursor:pointer;
     box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
+  }
+  @media (max-width: 739px) {
+    width: 100%;
   }
 `
 
@@ -97,7 +101,7 @@ export default class MenuItem extends Component{
     const {name, price, description, imageurl, category, id} = this.props.item;
     console.log('props: ', this.props)
 
-    const descriptionCutoff = description.length > 100 ? `${description.substring(0, 100)}...` : description
+    const descriptionCutoff = description.length > 50 ? `${description.substring(0, 50)}...` : description
     return (
       <Wrapper key={`item-${id}`} className='menu-item-container' onClick={(e) => this.props.handleOpen(this.props.item)}>
         <InnerBox>
