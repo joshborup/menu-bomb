@@ -56,6 +56,7 @@ app.post('/api/add_new_item', menu.addItem);
 app.put('/api/menu-item', menu.updateItem);
 app.delete('/api/menu-item/:id', menu.deleteItem);
 
+app.get('/api/cart-items', cart.getItems);
 app.get('/api/restaurant-info', restaurant.getRestaurantInfo);
 app.get('/api/restaurant-user-info', restaurant.getRestaurantUserInfo);
 app.post('/api/cart-item', cart.addItem);
