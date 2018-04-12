@@ -56,12 +56,9 @@ app.post('/api/add_new_item', menu.addItem);
 app.put('/api/menu-item', menu.updateItem);
 app.delete('/api/menu-item/:id', menu.deleteItem);
 
-<<<<<<< HEAD
 app.get('/api/cart-items', cart.getItems);
-=======
 app.get('/api/restaurant-info', restaurant.getRestaurantInfo);
 app.get('/api/restaurant-user-info', restaurant.getRestaurantUserInfo);
->>>>>>> 6f1eb724dde82fbec5cdf70aadb425fe30ded1c8
 app.post('/api/cart-item', cart.addItem);
 app.delete('/api/cart-item/:cartItemId', cart.deleteItem);
 app.get('/api/upload-signature', menu.signUpload);
