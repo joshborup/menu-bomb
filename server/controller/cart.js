@@ -1,8 +1,10 @@
 module.exports = {
+  getItems: (req, res) => {
+    res.json(req.session.cart.items);
+  },
   addItem: (req, res) => {
     const db = req.app.get('db');
-    const quantity = 1; // QUANTITY IS HARDED-CODED FOR NOW
-    const {id, restaurantid, name, price, description, categoryid, imageurl, category, notes} = req.body; 
+    // const {id, restaurantid, name, price, description, categoryid, imageurl, category, notes} = req.body; 
     const cart = Object.assign({}, req.session.cart);
     const items = cart.items.splice();
 
@@ -13,12 +15,9 @@ module.exports = {
 
     // CREATE A NEW ITEM OBJECT TO THROW INTO THE CART
     // WARNING:::: CHILDREN NOT ALLOWED IN CART
-    const newItem = {
-      cartItemId: cart.nextId,
-      itemId: id,
-      quantity: quantity,
-      notes: notes,
-    };
+    const newItem = Object.assign({}, req.body);
+    newItem.cartItemId = cart.nextId;
+
     // INCREMENT nextId FOR THE NEXT CART ITEM THAT WILL BE ADDED
     cart.nextId++;
     // ADD NEW ITEM TO ITEMS ARRAY, AND PUT ITEMS BACK INTO CART

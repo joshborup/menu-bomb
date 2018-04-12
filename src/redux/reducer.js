@@ -64,10 +64,14 @@ export function fetchLoginEmail(email){
     }
 }
 
-export function fetchCart(cart){
+export function fetchCart(){
+    const cart = Object.assign({}, initialState.cart); //COPY INITIAL STATE
     return {
         type: FETCH_CART,
-        payload: cart
+        payload: axios.get('/api/cart-items').then( cartItems => {
+            cart.items = cartItems.data;
+            return cart;
+        })
     }
 }
 
