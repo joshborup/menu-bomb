@@ -68,6 +68,7 @@ outline: none;
     background: #E9E9E9;
     width: 300px;
     display: flex;
+    margin: 10px auto;
     justify-content: center;
     align-items: center;
     border: 2px black dashed;
