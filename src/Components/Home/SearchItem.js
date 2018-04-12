@@ -16,12 +16,12 @@ const SearchItem = (props) => {
         border-radius: 3px;
     `
     const Title = styled.h2`
-        font-size: 18px;
+        font-size: 14px;
         margin: 5px 0px;
         color: grey;
     `
     const ItemName = styled.h1`
-        font-size: 22px;
+        font-size: 18px;
         font-weight: bolder;
         margin: 5px 0px;
     `
@@ -29,7 +29,8 @@ const SearchItem = (props) => {
         width: 100%;
         overflow: hidden;
         height: 150px;
-        border-radius: 3px;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
         border-bottom: 1px lightgrey solid;
     `
     const FoodImage = styled.img`
