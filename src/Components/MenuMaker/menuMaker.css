@@ -73,3 +73,9 @@ outline: none;
     border: 2px black dashed;
     cursor: pointer;
 }
+
+@media (max-width: 740px) {
+    .menu-maker-component .add-cat input {
+        width: 100%;
+    }
+}

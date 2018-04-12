@@ -12,8 +12,9 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/menu-bomb/image/u
 const USD = value => currency(value, {symbol: "$", precision: 2});
 
 const Wrapper = styled.div`
-  width: 49%;
   height: 100px;
+  width: 48%;
+  min-width: 350px;
   background-color: white;
   box-shadow: 1px 4px 5px rgba(0,0,0,0.45);
   overflow:hidden;
@@ -21,6 +22,9 @@ const Wrapper = styled.div`
   margin 5px 5px;
   &:hover{
     box-shadow: 0.5px 2px 2.5px rgba(0,0,0,0.45);
+  }
+  @media (max-width: 739px) {
+    width: 100%;
   }
 `
 
@@ -65,7 +69,7 @@ const Description = styled.textarea`
   }
 `
 const ImageContainer = styled.div`
-  width: 50%;
+  width: 200px;
   overflow: hidden;
   display: flex;
   align-items: center;

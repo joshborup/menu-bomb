@@ -22,6 +22,7 @@ const ItemList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
 `
 
 const CatName = styled.h2`
@@ -53,7 +54,11 @@ const FlexRow = styled.div`
   flex-direction: row;
   justify-content: center;
   align-item: center;
-
+  @media (max-width: 739px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 `
 
 const FlexCol = styled.div`
