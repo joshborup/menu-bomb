@@ -42,9 +42,8 @@ export default class Menu extends Component {
       const menu = [];
       for(let category of uniqueCategories) {
         let itemsByCategory = this.props.menuItems.filter( item => item.category === category);
-        console.log('itemsByCategory: ', itemsByCategory)
         menu.push(
-          <MenuCategory menuItems={itemsByCategory} category={category} handleOpen={this.props.handleOpen}/>
+          <MenuCategory key={`render-category-${itemsByCategory[0].categoryid}`} menuItems={itemsByCategory} category={category} handleOpen={this.props.handleOpen}/>
         )
       }
       return menu;
@@ -56,7 +55,6 @@ export default class Menu extends Component {
   
   render() {
     const menu = this.getMenuCategories();
-    console.log(this.props.restaurantName);
     return (
       <div>
       <Header />

@@ -3,7 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import styled from "styled-components";
 import { connect } from 'react-redux';
-import { fetchUserData, removeFromCart } from '../../redux/reducer';
+import { fetchUserData, removeFromCart, fetchCart } from '../../redux/reducer';
 import CartItem from './CartItem';
 import currency from 'currency.js';
 import axios from 'axios';
@@ -16,23 +16,22 @@ class Cart extends Component {
     this.state = {
         open: false,
         user: '',
-        cart: '',
+        cart: {items: []},
         restaurant: ''
     };
   }
 
-  componentDidMount(){
-    axios.get(`/api/restaurant-name/${1}`).then(response => {
-        console.log(response.data[0].name)
-        this.setState({
-            user: this.props.user,
-            cart: this.props.cart,
-            restaurant: response.data[0].name
-       })
-    })
-   
-    
-}
+    componentDidMount(){
+        this.props.fetchCart();
+        axios.get(`/api/restaurant-name/${1}`).then(response => {
+            console.log(response.data[0].name)
+            this.setState({
+                user: this.props.user,
+                cart: this.props.cart,
+                restaurant: response.data[0].name
+            })
+        })
+    }
 
 
 
@@ -165,7 +164,7 @@ class Cart extends Component {
                 {cartItemList}  
                 {/* ternary for showing cart or empty message based on cart status */}
                 {
-                this.state.cart.items == '' 
+                !this.props.cart.items.length
                 ? 
                 'Your cart is empty' 
                 :
@@ -202,7 +201,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
     fetchUserData: fetchUserData,
-    removeFromCart: removeFromCart
+    removeFromCart: removeFromCart,
+    fetchCart: fetchCart
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
