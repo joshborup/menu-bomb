@@ -3,7 +3,7 @@ import Drawer from 'material-ui/Drawer';
 import ShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
 import styled from "styled-components";
 import { connect } from 'react-redux';
-import { fetchUserData, removeFromCart, fetchCart } from '../../redux/reducer';
+import { fetchUserData, removeFromCart, fetchCart, checkout } from '../../redux/reducer';
 import CartItem from './CartItem';
 import currency from 'currency.js';
 import axios from 'axios';
@@ -182,7 +182,7 @@ class Cart extends Component {
                             <Bold>Total</Bold> {currency(this.props.cart.total).format(true)}
                         </FlexRow>
                     </TotalContainer>
-                    <CheckOutButton>Checkout</CheckOutButton>
+                    <CheckOutButton onClick={() => {this.props.checkout().then(response => window.location.href = '/customer/orders')}}>Checkout</CheckOutButton>
                 </CheckoutTotalContainer>
                 }
             </DrawerContainer>
@@ -202,7 +202,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
     fetchUserData: fetchUserData,
     removeFromCart: removeFromCart,
-    fetchCart: fetchCart
+    fetchCart: fetchCart,
+    checkout: checkout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
