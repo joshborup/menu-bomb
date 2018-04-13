@@ -99,7 +99,6 @@ export default class MenuItem extends Component{
 
   render() {
     const {name, price, description, imageurl, category, id} = this.props.item;
-    console.log('props: ', this.props)
 
     const descriptionCutoff = description.length > 50 ? `${description.substring(0, 50)}...` : description
     return (

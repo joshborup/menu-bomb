@@ -15,7 +15,7 @@ const Orders = (props) => {
         )
     }): ''
     return (
-        <div class='orders-display'>
+        <div className='orders-display'>
             <div>
                 <div>
                     <h1>Orders</h1>

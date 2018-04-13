@@ -2,12 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
+const nodeMailer = require('nodemailer')
 const user = require('./controller/user');
 const orders = require('./controller/orders');
 const restaurant = require('./controller/restaurant');
 const customer = require('./controller/customer');
 const menu = require('./controller/menu');
 const cart = require('./controller/cart');
+const message = require('./controller/message');
 require('dotenv').config();
 
 const app = express();
@@ -56,7 +58,7 @@ app.post('/api/add_new_item', menu.addItem);
 app.put('/api/menu-item', menu.updateItem);
 app.delete('/api/menu-item/:id', menu.deleteItem);
 
-app.get('/api/cart-items', cart.getItems);
+app.get('/api/cart', cart.getCart);
 app.get('/api/restaurant-info', restaurant.getRestaurantInfo);
 app.get('/api/restaurant-user-info', restaurant.getRestaurantUserInfo);
 app.post('/api/cart-item', cart.addItem);
@@ -67,6 +69,8 @@ app.get('/api/search-food', menu.getSearchItems);
 app.get('/api/orders', restaurant.getOrders);
 
 app.get('/api/order-items', restaurant.getOrderItems)
+
+app.post('api/send-message', message.sendMessage);
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));
