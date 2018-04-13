@@ -8,6 +8,7 @@ import SvgIcon from 'material-ui';
 import './RestaurantDashboard.css';
 import Drawer from 'material-ui/Drawer';
 import RaisedButton from 'material-ui/RaisedButton';
+import Orders from './Orders'
 
 class RestaurantDashboard extends Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class RestaurantDashboard extends Component {
         this.state = {
             open: false,
             restInfo: "",
-            userInfo: ""
+            userInfo: "",
+            orderInfo: ''
         };
       }
 
@@ -28,13 +30,19 @@ class RestaurantDashboard extends Component {
         function getUserInfo () {
             return axios.get('/api/restaurant-user-info')
         }
+        
+        function getOrderInfo() {
+            return axios.get('/api/orders')
+        }
 
-        axios.all([getRestaurantInfo(), getUserInfo()]).then(axios.spread((restInfo, userInfo) => {
+        axios.all([getRestaurantInfo(), getUserInfo(), getOrderInfo()]).then(axios.spread((restInfo, userInfo, orderInfo) => {
             console.log("user info:", userInfo);
             console.log("restInfo: ", restInfo.data[0].name);
+            console.log("orderInfo ---------", orderInfo.data)
             this.setState({
                 restInfo: restInfo.data, 
-                userInfo: userInfo.data[0]
+                userInfo: userInfo.data[0],
+                orderInfo: orderInfo.data
             });
             console.log("state", this.state);
         }))
@@ -45,7 +53,14 @@ class RestaurantDashboard extends Component {
     handleClose = () => this.setState({open: false});
 
   render() {
-      console.log(this.state.restInfo);
+    console.log(this.state.orderInfo);
+    const openOrders = this.state.orderInfo ? this.state.orderInfo.map(e => {
+        return(
+            <Orders info={e} />
+        )
+    
+    }): 'Loading...'
+    
     return (
         <div className="restaurant-dashboard-container">
             <Header />
@@ -86,7 +101,8 @@ class RestaurantDashboard extends Component {
                             <div className="open-orders">
                                 <h3 className="open-orders-subheader">Open Orders</h3>
                                 <div className="open-orders-inner-container">
-                                    <div className="open-order-container">
+                                        {openOrders}
+                                    {/* <div className="open-order-container">
                                         <div className="open-order-text">
                                             <h4 className="open-order-item-name">Triple Play Sliders</h4>
                                             <p className="open-order-customer">Customer: Jenny Smith</p>
@@ -98,8 +114,9 @@ class RestaurantDashboard extends Component {
                                             <button className="open-order-button start-order-button">Start Order</button>
                                             <button className="open-order-button close-order-button">Close Order</button>
                                         </div>
-                                    </div>
-                                    <div className="open-order-container">
+                                    </div> */}
+                                    
+                                    {/* <div className="open-order-container">
                                     <div className="open-order-text">
                                             <h4 className="open-order-item-name">Triple Play Sliders</h4>
                                             <p className="open-order-customer">Customer: Jenny Smith</p>
@@ -111,8 +128,8 @@ class RestaurantDashboard extends Component {
                                             <button className="open-order-button start-order-button">Start Order</button>
                                             <button className="open-order-button close-order-button">Close Order</button>
                                         </div>
-                                    </div>
-                                    <div className="open-order-container">
+                                    </div> */}
+                                    {/* <div className="open-order-container">
                                     <div className="open-order-text">
                                             <h4 className="open-order-item-name">Triple Play Sliders</h4>
                                             <p className="open-order-customer">Customer: Jenny Smith</p>
@@ -124,7 +141,7 @@ class RestaurantDashboard extends Component {
                                             <button className="open-order-button start-order-button">Start Order</button>
                                             <button className="open-order-button close-order-button">Close Order</button>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                             </div>
                         </div>

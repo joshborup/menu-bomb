@@ -33,6 +33,22 @@ module.exports = {
       console.log('error at getRestaurantUserInfo controller', error);
       res.status(400).send();
     })
-  }
+  },
 
+  getOrders: (req, res) => {
+    const db = req.app.get('db');
+    const {id} = req.session.user;
+    db.get_orders(id).then(response => {
+      console.log(response)
+      res.send(response);
+    })
+  },
+  getOrderItems: (req, res) => {
+    const {customerId} = req.query;
+    const db = req.app.get('db');
+    console.log( customerId )
+    db.get_order_info([customerId]).then(response => {
+      res.send(response);
+    })
+  }
 }

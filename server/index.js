@@ -63,7 +63,10 @@ app.post('/api/cart-item', cart.addItem);
 app.delete('/api/cart-item/:cartItemId', cart.deleteItem);
 app.get('/api/upload-signature', menu.signUpload);
 
-app.get('/api/search-food', menu.getSearchItems)
+app.get('/api/search-food', menu.getSearchItems);
+app.get('/api/orders', restaurant.getOrders);
+
+app.get('/api/order-items', restaurant.getOrderItems)
 
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));

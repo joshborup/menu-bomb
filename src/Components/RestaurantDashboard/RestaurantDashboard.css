@@ -1,5 +1,6 @@
 .restaurant-dashboard-container {
     font-family: 'Montserrat', sans-serif;
+    background: #edeced;
 }
 
 .restaurant-dashboard-inner {
@@ -23,6 +24,7 @@
 .dashboard-main {
     max-width: 1200px;
     display: inline-block;
+    width: 100%;
 }
 
 .restaurant-name {
