@@ -158,6 +158,12 @@ b {
     
 }
 
+
+
+.search-bar-container > div:focus ~ .search-bar{
+    background: green;
+}
+
 .search-bar:focus {
     flex:1;
     outline: none;

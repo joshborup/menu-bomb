@@ -80,6 +80,7 @@ class Home extends Component {
                 <div onKeyPress={(e) => this.submitSearchOnEnter(e)} className='search-bar-container'>
                     <input onChange={(e) => this.searchFood(e.target.value)} value={this.state.search} className='search-bar' placeholder='Search...'/>
                     <Search onClick={() => this.submitSearch()} style={style} color='white' />
+                   
                 </div>
             </div>
             <div className="home-content-container">
