@@ -72,5 +72,6 @@ app.get('/api/order-items', restaurant.getOrderItems)
 
 app.post('api/send-message', message.sendMessage);
 
+app.post('/api/checkout', cart.checkout);
 const PORT = 4000;
 app.listen(PORT, ()=> console.log(`Listening on port ${PORT}`));

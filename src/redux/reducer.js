@@ -20,6 +20,7 @@ const FETCH_LOGIN_EMAIL = 'FETCH_LOGIN_EMAIL';
 const FETCH_CART = 'FETCH_CART';
 const ADD_TO_CART = 'ADD_TO_CART';
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+const CHECKOUT = 'CHECKOUT'
 
 export default function(state=initialState, action){
     switch(action.type){
@@ -42,7 +43,8 @@ export default function(state=initialState, action){
         case REMOVE_FROM_CART + '_FULFILLED':
 
             return{...state, cart: action.payload};
-
+        case CHECKOUT + '_FULFILLED':
+            return{...state, cart: action.payload};
         default:
 
             return state;
@@ -89,6 +91,19 @@ export function addToCart(selectedItem){
             const newCart = calculateTotals(cart); //RECALCULATE TOTALS (TAXES, SUBTOTAL, ETC.)
             return newCart;
         }).catch( err => console.log('addToCart err: ', err ))
+    }
+}
+
+export function checkout() {
+    return {
+        type: CHECKOUT,
+        payload: axios.get(`/api/cart/`).then( fetchedCart => {
+            const cart = calculateTotals(fetchedCart.data);
+            return axios.post('/api/checkout', cart).then( response => {
+                const emptyCart  = calculateTotals(response.data);
+                return emptyCart;
+            }).catch(err => console.log('checkout err: ', err));
+        }).catch(err => console.log('get cart during checkout err: ', err))
     }
 }
 
