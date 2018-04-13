@@ -31,7 +31,7 @@ export default function(state=initialState, action){
     
             return {...state, loginEmail: action.payload};
 
-        case FETCH_CART:
+        case FETCH_CART + '_FULFILLED':
 
             return {...state, cart: action.payload};
 
@@ -65,13 +65,12 @@ export function fetchLoginEmail(email){
 }
 
 export function fetchCart(){
-    const cart = Object.assign({}, initialState.cart); //COPY INITIAL STATE
     return {
         type: FETCH_CART,
-        payload: axios.get('/api/cart-items').then( cartItems => {
-            cart.items = cartItems.data;
+        payload: axios.get('/api/cart').then( fetchedCart => {
+            const cart  = calculateTotals(fetchedCart.data);
             return cart;
-        })
+        }).catch(err => console.log('fetchCart err: ', err))
     }
 }
 
@@ -83,7 +82,6 @@ export function addToCart(selectedItem){
         // POST ITEM TO DATABASE - RETURNS THE NEW CART ITEM WHICH WE WILL USE TO REFERENCE
         // THE ID AND CART ID
         payload: axios.post('/api/cart-item', newItem).then( cartItem => {
-            console.log('session item: ', cartItem);
             // MAKE A COPY OF THE ADDED ITME
             newItem.cartItemId = cartItem.data.cartItemId; // GET THE ID OF THE ITEM
 
@@ -95,36 +93,31 @@ export function addToCart(selectedItem){
 }
 
 export function removeFromCart(cartItemId){
-        return {
-            type: REMOVE_FROM_CART,
-            payload: axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
-                const cart = {...initialState.cart}
-                const itemIndex = cart.items.findIndex( item => item.cartItemId === cartItemId);
-                console.log("cart----->", cart.items)
-                console.log("index----->", itemIndex)
-                cart.items.splice(itemIndex, 1);
-                const newCart = calculateTotals(cart);
-                return newCart;
-            })
-        }
+    return {
+        type: REMOVE_FROM_CART,
+        payload: axios.delete(`/api/cart-item/${cartItemId}`).then( response => {
+            return axios.get('/api/cart').then( fetchedCart => {
+                const cart  = calculateTotals(fetchedCart.data);
+                return cart;
+            }).catch(err => console.log('fetchCart err: ', err))
+        })
+    }
     
 }
 
 function calculateTotals(cart) {
     let total = 0;
-    console.log("cart calc----->", cart)
-    cart.items.forEach(item => {
-        
+    const cartWithTotals = Object.assign({}, cart);
+    cartWithTotals.items.forEach(item => {
         total = currency(total).add(currency(item.price).multiply(item.quantity).value).value;
-        console.log("total calc", total)
     });
     
     const subTotal = total;
     const salesTax = currency(subTotal).multiply(TAXES).value;
     total = currency(subTotal).add(salesTax).value;
 
-    cart.total = total;
-    cart.subTotal = subTotal;
-    cart.salesTax = salesTax;
-    return cart;
+    cartWithTotals.total = total;
+    cartWithTotals.subTotal = subTotal;
+    cartWithTotals.salesTax = salesTax;
+    return cartWithTotals;
 }

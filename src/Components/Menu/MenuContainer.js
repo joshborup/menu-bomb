@@ -26,12 +26,11 @@ export default class MenuContainer extends Component {
     }
 
     axios.all([getMenuItems(), restaurantName()]).then(axios.spread((menuItems, name) => {
-      console.log(menuItems.data, name.data[0].name)
         this.setState({
           restaurantName: name.data[0].name,
           menuItems: menuItems.data
         })  
-    }));
+    })).catch( err => console.log('getItems and restaurantName err: ', err));
   }
   
   handleOpen = (item) => {
@@ -74,7 +73,7 @@ resetQuantity = () => {
   
   render() {
     return (
-      <div class='menu-container-component'>
+      <div className='menu-container-component'>
         <Modal modalStatus={this.state.open} changeQuantityAdd={this.changeQuantityAdd} quantity={this.state.selectedItem.quantity} changeQuantitySub={this.changeQuantitySub} resetQuantity={this.resetQuantity} handleOpen={this.handleOpen} handleClose={this.handleClose} selectedItem={this.state.selectedItem}/>
         {this.state.menuItems && <Menu restaurantName={this.state.restaurantName} menuItems={this.state.menuItems} handleClose={this.handleClose} handleOpen={this.handleOpen}/>}
       </div>

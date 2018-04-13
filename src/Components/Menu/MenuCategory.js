@@ -44,9 +44,8 @@ export default class MenuCategory extends Component {
   getMenuItems() {
     let menuItems = [];
     menuItems = this.props.menuItems.map( item => {
-      console.log('item: ', item)
       return (
-        <MenuItem item={item} handleOpen={this.props.handleOpen}/>
+        <MenuItem key={`render-item-${item.id}`} item={item} handleOpen={this.props.handleOpen}/>
       )
     })
     return menuItems;

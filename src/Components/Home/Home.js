@@ -37,7 +37,7 @@ class Home extends Component {
             <h1 className="home-icon-header">Did you know...?</h1>
                 <div className="grid-items">
                     <div className="grid-item"><i className="material-icons home-info-icon">attach_money</i><p><b>$799 billion:</b> Restaurant industry sales.</p></div>
-                    <div className="grid-item"><i class="material-icons home-info-icon">location_on</i><p><b>1 million+:</b> Restaurant locations in the United States.</p></div>
+                    <div className="grid-item"><i className="material-icons home-info-icon">location_on</i><p><b>1 million+:</b> Restaurant locations in the United States.</p></div>
                     <div className="grid-item"><i className="material-icons home-info-icon">store_mall_directory</i><p><b>7 in 10:</b> Restaurants that are single-unit operations.</p></div>
                 </div>
             </div>

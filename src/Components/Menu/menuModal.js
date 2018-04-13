@@ -150,7 +150,6 @@ constructor(props){
       boxShadow: '1px 2px 3px rgba(0,0,0,0.4)'
     }
 
-    console.log('state item test _____________:', this.state.selectedItem)
     return (
       <div className='login-modal-container'>
         <Dialog
@@ -172,7 +171,7 @@ constructor(props){
             <QuantityContainer>
 
               <SubtractAmmount onClick={()=> this.props.changeQuantitySub()}>-</SubtractAmmount>
-              <QuantityDisplay value={this.props.quantity}/>
+              <QuantityDisplay readOnly value={this.props.quantity}/>
               <AddAmmount onClick={()=> this.props.changeQuantityAdd()}>+</AddAmmount>
       
             </QuantityContainer>
