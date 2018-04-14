@@ -12,7 +12,7 @@ export default class Orders extends Component {
     }
 
     componentDidMount(){
-        axios.get(`/api/order-items?customerId=${this.props.info.customer_id}`).then(response => {
+        axios.get(`/api/order-items?customerId=${this.props.info.id}`).then(response => {
             
             this.setState({
                 items: response.data
@@ -22,15 +22,16 @@ export default class Orders extends Component {
 
     render() {
 
-
+        console.log(this.state.items)
         const itemList = this.state.items ? this.state.items.map(e => {
             return(
                 <OrderItem itemInfo={e} /> 
             )
         }): 'loading'
 
+        
        const customerName = this.state.items[0] ? `${this.state.items[0].first_name} ${this.state.items[0].last_name}` : 'loading!'
-         
+         console.log(customerName);
        const phoneNumber = this.state.items[0] ? `${this.state.items[0].phone}` : 'loading!'
 
         return (

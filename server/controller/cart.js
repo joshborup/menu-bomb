@@ -58,10 +58,13 @@ module.exports = {
     
     db.create_order([restaurantId, userId, total, subTotal, salesTax]).then( order => {
       let addItemsQuery = `INSERT INTO order_items (order_id, name, price, description, image_url, category, quantity, notes) VALUES `;
+      
       cart.items.map( (item, i, arr) => {
+
         let {name, price, description, imageurl, category, quantity, notes} = item;
+
         let statementSuffix = i === arr.length -1 ? ' RETURNING *;' : ', ';
-        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity},${statementSuffix}, '${notes}'`;
+        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity},'${notes}')${statementSuffix}`;
       });
       
       db.query(addItemsQuery).then( addedItems => {

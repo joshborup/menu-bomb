@@ -48,6 +48,7 @@ module.exports = {
     const db = req.app.get('db');
     console.log( customerId )
     db.get_order_info([customerId]).then(response => {
+      console.log(response)
       res.send(response);
     })
   }

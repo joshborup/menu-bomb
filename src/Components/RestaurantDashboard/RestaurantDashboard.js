@@ -59,11 +59,6 @@ class RestaurantDashboard extends Component {
     handleClose = () => this.setState({open: false});
 
   render() {
-    
-
-    const uniqueCategories = this.state.orderInfo? Array.from(new Set(this.state.items.map( item => item.id))) : 'hello'
-
-    console.log(uniqueCategories)
 
     const openOrders = this.state.orderInfo ? this.state.orderInfo.map(e => {
         return(
