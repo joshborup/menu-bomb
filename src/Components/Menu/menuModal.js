@@ -10,7 +10,7 @@ class DialogExampleModal extends Component {
 constructor(props){
   super(props)
   this.state = {
-    
+    text: ''
   };
 }
 
@@ -47,6 +47,8 @@ constructor(props){
 //     quantity: 1
 //   })
 // }
+
+  
   
 
   render() {
@@ -149,7 +151,7 @@ constructor(props){
       outline: 'none',
       boxShadow: '1px 2px 3px rgba(0,0,0,0.4)'
     }
-
+    console.log(this.state.text);
     return (
       <div className='login-modal-container'>
         <Dialog
@@ -168,6 +170,7 @@ constructor(props){
               <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
+            <textarea value={this.props.text} onChange={(e) => this.props.changeHandler(e.target.value)}/>
             <QuantityContainer>
 
               <SubtractAmmount onClick={()=> this.props.changeQuantitySub()}>-</SubtractAmmount>
@@ -176,7 +179,9 @@ constructor(props){
       
             </QuantityContainer>
             <AddButton onClick={() => {
-              this.props.addToCart(this.props.selectedItem)
+              const selectedItem = {...this.props.selectedItem}
+              selectedItem.notes = this.props.text
+              this.props.addToCart(selectedItem)
               this.props.handleOpen(this.props.selectedItem)
               this.props.resetQuantity()
               }}> Add to Order </AddButton>

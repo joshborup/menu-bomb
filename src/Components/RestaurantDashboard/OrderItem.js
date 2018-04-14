@@ -22,7 +22,7 @@ const OrderItem = (props) => {
                 <span></span>
             </div>
             <div>
-                <span>Instructions</span>
+                <span>Notes</span>
                 {props.itemInfo.notes}
                 <span></span>
             </div>

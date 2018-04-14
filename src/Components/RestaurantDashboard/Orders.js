@@ -27,20 +27,39 @@ export default class Orders extends Component {
             )
         }): 'loading'
 
-        console.log(this.props.info)
+       const customerName = this.state.items[0] ? `${this.state.items[0].first_name} ${this.state.items[0].last_name}` : 'loading!'
+         
+       const phoneNumber = this.state.items[0] ? `${this.state.items[0].phone}` : 'loading!'
+
         return (
-            <div>
+            <div className='indiv-order-container'>
                 <div className='individual-orders'>
                     <div>
-                        {this.props.info.total}
+                       <span>Order #:</span>
+                       <span className='bolder'>{this.props.info.id}</span>
                     </div>
                     <div>
-                        
+                       <span>Order for: </span>
+                       <span className='bolder'>{customerName}</span>
                     </div>
-                    <details>
-                        {itemList}
-                    </details>
+                    <div>
+                       <span>Phone #: </span>
+                       <span className='bolder'>{phoneNumber}</span>
+                    </div>
+                    <div>
+                        <span>Order time:</span>
+                        <span className='bolder'>{this.props.info.order_time}</span>
+                    </div>
+                    <div className='total-container'>
+                        <span>SubTotal ${this.props.info.sub_total}</span>
+                        <span>Sales Tax ${this.props.info.sales_tax}</span>
+                        <span className='bolder'>Total ${this.props.info.total}</span>
+                    </div>
                 </div>
+                <details>
+                        <summary>Order Info</summary>
+                        {itemList}
+                </details>
             </div>
         );
     }

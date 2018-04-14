@@ -12,7 +12,8 @@ export default class MenuContainer extends Component {
         menuItems: null,
         open: false,
         selectedItem: {},
-        restaurantName:''
+        restaurantName:'',
+        text: ''
       }
   }
   componentDidMount() {
@@ -65,6 +66,12 @@ export default class MenuContainer extends Component {
   }
 }
 
+changeHandler = (text) => {
+  this.setState({
+    text: text
+  })
+}
+
 resetQuantity = () => {
   this.setState({
     selectedItem: {...this.state.selectedItem, quantity: 1}
@@ -74,7 +81,7 @@ resetQuantity = () => {
   render() {
     return (
       <div className='menu-container-component'>
-        <Modal modalStatus={this.state.open} changeQuantityAdd={this.changeQuantityAdd} quantity={this.state.selectedItem.quantity} changeQuantitySub={this.changeQuantitySub} resetQuantity={this.resetQuantity} handleOpen={this.handleOpen} handleClose={this.handleClose} selectedItem={this.state.selectedItem}/>
+        <Modal modalStatus={this.state.open} text={this.state.text} changeQuantityAdd={this.changeQuantityAdd} quantity={this.state.selectedItem.quantity} changeQuantitySub={this.changeQuantitySub} resetQuantity={this.resetQuantity} handleOpen={this.handleOpen} handleClose={this.handleClose} selectedItem={this.state.selectedItem} changeHandler={this.changeHandler}/>
         {this.state.menuItems && <Menu restaurantName={this.state.restaurantName} menuItems={this.state.menuItems} handleClose={this.handleClose} handleOpen={this.handleOpen}/>}
       </div>
     );

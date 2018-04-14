@@ -56,12 +56,12 @@ module.exports = {
     const {total, subTotal, salesTax} = cart;
     const db = req.app.get('db');
     
-    db.create_order([restaurantId, userId, total, subTotal, salesTax ]).then( order => {
-      let addItemsQuery = `INSERT INTO order_items (order_id, name, price, description, image_url, category, quantity) VALUES `;
+    db.create_order([restaurantId, userId, total, subTotal, salesTax]).then( order => {
+      let addItemsQuery = `INSERT INTO order_items (order_id, name, price, description, image_url, category, quantity, notes) VALUES `;
       cart.items.map( (item, i, arr) => {
-        let {name, price, description, imageurl, category, quantity} = item;
+        let {name, price, description, imageurl, category, quantity, notes} = item;
         let statementSuffix = i === arr.length -1 ? ' RETURNING *;' : ', ';
-        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity})${statementSuffix}`;
+        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity})${statementSuffix}, '${notes}'`;
       });
       
       db.query(addItemsQuery).then( addedItems => {
