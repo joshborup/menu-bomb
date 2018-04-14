@@ -17,7 +17,8 @@ class RestaurantDashboard extends Component {
             open: false,
             restInfo: "",
             userInfo: "",
-            orderInfo: ''
+            orderInfo: '',
+            items: ''
         };
       }
 
@@ -35,6 +36,10 @@ class RestaurantDashboard extends Component {
             return axios.get('/api/orders')
         }
 
+        // function getOrderItems() {
+        //     return axios.get(`/api/order-items?customerId=${this.props.info.customer_id}`)
+        // }
+
         axios.all([getRestaurantInfo(), getUserInfo(), getOrderInfo()]).then(axios.spread((restInfo, userInfo, orderInfo) => {
             console.log("user info:", userInfo);
             console.log("restInfo: ", restInfo.data[0].name);
@@ -42,7 +47,8 @@ class RestaurantDashboard extends Component {
             this.setState({
                 restInfo: restInfo.data, 
                 userInfo: userInfo.data[0],
-                orderInfo: orderInfo.data
+                orderInfo: orderInfo.data,
+                
             });
             console.log("state", this.state);
         }))
@@ -53,7 +59,12 @@ class RestaurantDashboard extends Component {
     handleClose = () => this.setState({open: false});
 
   render() {
-    console.log(this.state.orderInfo);
+    
+
+    const uniqueCategories = this.state.orderInfo? Array.from(new Set(this.state.items.map( item => item.id))) : 'hello'
+
+    console.log(uniqueCategories)
+
     const openOrders = this.state.orderInfo ? this.state.orderInfo.map(e => {
         return(
             <Orders info={e} />

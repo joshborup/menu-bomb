@@ -21,6 +21,8 @@ export default class Orders extends Component {
     }
 
     render() {
+
+
         const itemList = this.state.items ? this.state.items.map(e => {
             return(
                 <OrderItem itemInfo={e} /> 

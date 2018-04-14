@@ -61,7 +61,7 @@ module.exports = {
       cart.items.map( (item, i, arr) => {
         let {name, price, description, imageurl, category, quantity, notes} = item;
         let statementSuffix = i === arr.length -1 ? ' RETURNING *;' : ', ';
-        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity})${statementSuffix}, '${notes}'`;
+        addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity},${statementSuffix}, '${notes}'`;
       });
       
       db.query(addItemsQuery).then( addedItems => {
