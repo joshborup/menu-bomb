@@ -74,7 +74,8 @@ changeHandler = (text) => {
 
 resetQuantity = () => {
   this.setState({
-    selectedItem: {...this.state.selectedItem, quantity: 1}
+    selectedItem: {...this.state.selectedItem, quantity: 1},
+    text:''
   })
 }
   

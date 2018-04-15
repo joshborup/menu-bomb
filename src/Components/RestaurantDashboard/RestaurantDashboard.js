@@ -36,14 +36,8 @@ class RestaurantDashboard extends Component {
             return axios.get('/api/orders')
         }
 
-        // function getOrderItems() {
-        //     return axios.get(`/api/order-items?customerId=${this.props.info.customer_id}`)
-        // }
 
         axios.all([getRestaurantInfo(), getUserInfo(), getOrderInfo()]).then(axios.spread((restInfo, userInfo, orderInfo) => {
-            console.log("user info:", userInfo);
-            console.log("restInfo: ", restInfo.data[0].name);
-            console.log("orderInfo ---------", orderInfo.data)
             this.setState({
                 restInfo: restInfo.data, 
                 userInfo: userInfo.data[0],
@@ -73,7 +67,7 @@ class RestaurantDashboard extends Component {
                     
                             <Drawer
                                 docked={false}
-                                width={300}
+                                width={380}
                                 open={this.state.open}
                                 onRequestChange={(open) => this.setState({open})}>
                                 <div className="dashboard-left-panel">

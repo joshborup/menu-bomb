@@ -14,41 +14,7 @@ constructor(props){
   };
 }
 
-// componentWillReceiveProps(){
-//   console.log(this.props.selectedItem)
-//   this.setState({
-//     selectedItem: this.props.selectedItem
-//   })
-// }
 
-//  changeQuantityAdd = () => {
-//     if(this.state.quantity >= 1){
-//       this.setState({
-
-//           quantity: this.state.quantity + 1
-//       })
-//     }
-//  }
-
-//  changeQuantitySub = () => {
-//   if(this.state.quantity > 1){
-//     this.setState({
-//       quantity: this.state.quantity - 1
-//     })
-//   }else if(this.state.quantity == 1){
-//     this.setState({
-//       quantity: 1
-//     })
-//   }
-// }
-
-// resetQuantity = () => {
-//   this.setState({
-//     quantity: 1
-//   })
-// }
-
-  
   
 
   render() {
@@ -124,6 +90,21 @@ constructor(props){
       border: none;
     `
 
+    const noteStyle = {
+
+      width:'100%',
+      height:'60px',
+      background:'#EDEDED',
+      border:'none',
+      outline:'none',
+      margin:'15px 0px 5px',
+      fontSize:'16px',
+      
+
+    }
+    
+    
+    
     const customContentStyle = {
       width: '100%',
       maxWidth: '400px',
@@ -170,7 +151,7 @@ constructor(props){
               <Price>{currency(this.props.selectedItem.price).format(true)}</Price>
               <h2>{this.props.selectedItem.description}</h2>
             </div>
-            <textarea value={this.props.text} onChange={(e) => this.props.changeHandler(e.target.value)}/>
+            <textarea style={noteStyle} value={this.props.text} onChange={(e) => this.props.changeHandler(e.target.value)}/>
             <QuantityContainer>
 
               <SubtractAmmount onClick={()=> this.props.changeQuantitySub()}>-</SubtractAmmount>
