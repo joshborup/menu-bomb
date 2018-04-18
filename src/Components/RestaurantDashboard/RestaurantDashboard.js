@@ -89,7 +89,7 @@ class RestaurantDashboard extends Component {
                     <div className="restaurant-dashboard-inner">
                         <div className="dashboard-main">
                             <div className="restaurant-info">
-                            <h1 className="restaurant-name">{this.state.restInfo ? this.state.restInfo[0].name : <div>Login to view restaurant dashboard</div>}</h1>
+                            {this.state.restInfo ? <h1 className="restaurant-name"> {this.state.restInfo[0].name} </h1>: <div>Login to view restaurant dashboard</div>}
                                 <p>{this.state.restInfo.description}</p>
                                 <div className="restaurant-info-button">    
                                     <RaisedButton
