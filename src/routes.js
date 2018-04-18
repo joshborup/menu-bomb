@@ -17,6 +17,7 @@ export default (
         <Route path='/customer/account' component={AccountContainer} />
         <Route path='/testMenu/:id' component={testMenu} />
         <Route path='/restaurant/orders' component={RestaurantDashboard} />
+        <Route path='/restaurant/account' component=''/>
         <Route path='/testMenuMaker/:restaurantId' component={testMenuMaker} />
         <Route path='/testregister/:userType' component={RegisterRestaurant} />
     </Switch>

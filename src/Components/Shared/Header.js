@@ -115,13 +115,37 @@ class Header extends Component {
                     </div>
 
                     <FlexRow>
+
+                        {this.props.user.user_type === 'customer'
+
+                         ?
+
                         <LinksContainer>
-                        <Link to='/'><ListItem>Home</ListItem></Link>
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/orders'><ListItem>Orders</ListItem></Link> : ''}
-                            {this.props.user.user_type === 'customer' ? <Link to='/customer/account'><ListItem>Account</ListItem></Link> : ''}
-                            {this.props.user ? <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link> : <ListItem><LoginModal/></ListItem>}
-                            {this.props.user.user_type === 'customer' ? <Cart/> : ''}
+                            <Link to='/'><ListItem>Home</ListItem></Link>
+                            <Link to='/customer/orders'><ListItem>Orders</ListItem></Link>
+                            <Link to='/customer/account'><ListItem>Account</ListItem></Link>
+                            <Link to='/customer' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link>
+                            <Cart/>
+                        </LinksContainer> 
+
+                        : this.props.user.user_type === 'restaurant'
+
+                         ?
+
+                         <LinksContainer>
+                            <Link to='/'><ListItem>Home</ListItem></Link>
+                            <Link to='/restaurant/orders'><ListItem>Orders</ListItem></Link>
+                            <Link to='/restaurant/account'><ListItem>Account</ListItem></Link>
+                            <Link to='/restaurant' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link>
+                        </LinksContainer> 
+
+                        :
+
+                        <LinksContainer>
+                            <Link to='/'><ListItem>Home</ListItem></Link>
+                            <ListItem><LoginModal/></ListItem>
                         </LinksContainer>
+                        }
                     </FlexRow>
                 </InnerBox>
             </Wrapper>

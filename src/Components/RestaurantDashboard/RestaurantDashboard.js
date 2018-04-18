@@ -102,46 +102,6 @@ class RestaurantDashboard extends Component {
                                 <h3 className="open-orders-subheader">Open Orders</h3>
                                 <div className="open-orders-inner-container">
                                         {openOrders}
-                                    {/* <div className="open-order-container">
-                                        <div className="open-order-text">
-                                            <h4 className="open-order-item-name">Triple Play Sliders</h4>
-                                            <p className="open-order-customer">Customer: Jenny Smith</p>
-                                            <p className="open-order-customer-phone">Customer Phone Number: 555-555-5555</p>
-                                            <p className="open-order-notes">Notes: no pickles and double ketchup. Make the bun extra fluffy and the ketchup swirl in a counter clockwise pattern. THANKS</p>
-                                        </div>
-                                        <div className="open-order-buttons">
-                                            <button className="open-order-button view-customer-file-button">View Customer File</button>
-                                            <button className="open-order-button start-order-button">Start Order</button>
-                                            <button className="open-order-button close-order-button">Close Order</button>
-                                        </div>
-                                    </div> */}
-                                    
-                                    {/* <div className="open-order-container">
-                                    <div className="open-order-text">
-                                            <h4 className="open-order-item-name">Triple Play Sliders</h4>
-                                            <p className="open-order-customer">Customer: Jenny Smith</p>
-                                            <p className="open-order-customer-phone">Customer Phone Number: 555-555-5555</p>
-                                            <p className="open-order-notes">Notes: no pickles and double ketchup. Make the bun extra fluffy and the ketchup swirl in a counter clockwise pattern. THANKS</p>
-                                        </div>
-                                        <div className="open-order-buttons">
-                                            <button className="open-order-button view-customer-file-button">View Customer File</button>
-                                            <button className="open-order-button start-order-button">Start Order</button>
-                                            <button className="open-order-button close-order-button">Close Order</button>
-                                        </div>
-                                    </div> */}
-                                    {/* <div className="open-order-container">
-                                    <div className="open-order-text">
-                                            <h4 className="open-order-item-name">Triple Play Sliders</h4>
-                                            <p className="open-order-customer">Customer: Jenny Smith</p>
-                                            <p className="open-order-customer-phone">Customer Phone Number: 555-555-5555</p>
-                                            <p className="open-order-notes">Notes: no pickles and double ketchup. Make the bun extra fluffy and the ketchup swirl in a counter clockwise pattern. THANKS</p>
-                                        </div>
-                                        <div className="open-order-buttons">
-                                            <button className="open-order-button view-customer-file-button">View Customer File</button>
-                                            <button className="open-order-button start-order-button">Start Order</button>
-                                            <button className="open-order-button close-order-button">Close Order</button>
-                                        </div>
-                                    </div> */}
                                 </div>
                             </div>
                         </div>
