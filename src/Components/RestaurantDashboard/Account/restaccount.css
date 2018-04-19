@@ -77,3 +77,39 @@
 .rest-account-display .account-info > div > div span {
     width: 180px;
 }
+
+.rest-account-display .account-info.rest-info > div:first-child {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    margin: 0 auto;
+} 
+
+.rest-account-display .account-info > div:first-child  img{
+    width: 100%;
+
+} 
+
+.rest-account-display button {
+    height: 40px;
+    width: 120px;
+    cursor: pointer;
+    background: #FFFFFF;
+    color: white;
+    font-size: 16px;
+    border-radius: 3px;
+    border: none;
+    margin: 10px 0px;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.45);
+    font-weight: 600px;
+    transition: .4;
+}
+
+.rest-account-display .edit-button {
+    background: #50BAF9;
+
+}
+
+.rest-account-display .save-button {
+    background: #FB6A6D;
+}

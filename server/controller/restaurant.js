@@ -51,5 +51,30 @@ module.exports = {
       console.log(response)
       res.send(response);
     })
+  },
+  updateInformation: (req, res) => {
+    const db = req.app.get('db');
+    const { firstName, lastName, email, logo, restaurantName, description, address2, address1, phone } = req.body
+    
+    db.update_rest_info([req.session.user.id, firstName, lastName, email, logo, restaurantName, description, address2, address1, phone]).then(response => {
+      console.log('updateInfo', response);
+
+      const user = {
+        id: response[0].id,
+        email: response[0].email,
+        phone: response[0].phone,
+        address1: response[0].address_1,
+        address2: response[0].address_2,
+        firstName: response[0].first_name,
+        lastName: response[0].last_name,
+        userType: response[0].user_type,
+        restaurantName: response[0].name,
+        logo: response[0].logo_url,
+        description: response[0].description
+    }
+
+    req.session.user = user
+      res.status(200).send(req.session.user)
+    })
   }
 }
