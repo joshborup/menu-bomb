@@ -71,14 +71,16 @@
     margin: 0 auto;
     padding: 5px;
     color: #171736;
-    width: 70%;
+    width: 80%;
     flex-wrap: wrap;
     justify-content: center;
 }
 .home-content-img {
     width: 300px;
 }
-
+.home-content > div {
+    margin: 10px;
+}
 .home-icon-header {
     font-size: 30px;
     padding-top: 20px;
@@ -231,7 +233,11 @@ b {
     .home-hero {
         background-size: cover;
     }
+    .home-content > div {
+        font-size: 20px;
+    }
+    .home-content-img {
+        width: 200px;
+    }
 }
 
-@media (max-width: 450px) {
-}

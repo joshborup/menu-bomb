@@ -61,7 +61,7 @@ class Home extends Component {
     console.log('food search ------------', this.state.food)
     const searchList = this.state.food ? this.state.food.map(e => {
         return(
-            <Link to={`/testMenu/${e.restaurant_id}`}>
+            <Link to={`/menu/${e.restaurant_id}`}>
                 <SearchItem info={e} />
             </Link>
         )
