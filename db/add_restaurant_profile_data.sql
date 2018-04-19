@@ -1,5 +1,5 @@
-INSERT INTO restaurant_profiles (user_id, description, logo_url, background_url, delivers, alcohol)
-VALUES($1,$2,$3,$4,$5,$6)
+INSERT INTO restaurant_profiles (user_id, name, description, logo_url, background_url, delivers, alcohol)
+VALUES($1,$2,$3,$4,$5,$6,$7)
 RETURNING *;
 
 -- CREATE TABLE restaurant_profiles (

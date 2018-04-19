@@ -7,7 +7,8 @@ CREATE TABLE users (
   address_1 TEXT NOT NULL,
   address_2 TEXT,
   user_type TEXT NOT NULL,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  first_time BOOLEAN
 );
 
 CREATE TABLE restaurant_profiles (

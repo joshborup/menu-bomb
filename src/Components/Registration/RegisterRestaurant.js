@@ -4,7 +4,7 @@ import axios from 'axios';
 import './registerRestaurant.css'
 
 
-function isValid(password, email, phone, address1, address2, firstName, lastName) {
+function isValid(password, email, phone, address1, address2, firstName, lastName, restaurantName) {
     // true means invalid
     return {
         password: password.length === 0,
@@ -14,6 +14,7 @@ function isValid(password, email, phone, address1, address2, firstName, lastName
         address2: address2.length === 0,
         firstName: firstName.length === 0,
         lastName: lastName.length ===0,
+        restaurantName: restaurantName.length===0
     };
   }
 
@@ -30,6 +31,7 @@ export default class RegisterRestaurant extends Component {
             address2: '',
             firstName: '',
             lastName: '',
+            restaurantName:'',
             password: '',
     // Touched will prevent the Input fields from defaulting to the error border before the user has inputted any value
             touched: {
@@ -40,6 +42,7 @@ export default class RegisterRestaurant extends Component {
                 address2: false,
                 firstName: false,
                 lastName: false,
+                restaurantName: false
             },
         }
 
@@ -49,6 +52,7 @@ export default class RegisterRestaurant extends Component {
             this.handleAddress1Change = this.handleAddress1Change.bind(this)
             this.handleAddress2Change = this.handleAddress2Change.bind(this)
             this.handleFirstNameChange = this.handleFirstNameChange.bind(this)
+            this.handlerestaurantNameChange = this.handlerestaurantNameChange.bind(this)
             
             }
             handlePasswordChange(event) {
@@ -72,6 +76,9 @@ export default class RegisterRestaurant extends Component {
             handleLastNameChange(event) {
                 this.setState({ lastName: event.target.value })
             }
+            handlerestaurantNameChange(event) {
+                this.setState({ restaurantName: event.target.value })
+            }
 
     // Handle Submit
             handleSubmit(event) {
@@ -81,17 +88,17 @@ export default class RegisterRestaurant extends Component {
                     console.log(this.state.email);
                     return;
                 }    
-                const{password, email, phone, address1, address2, firstName, lastName} = this.state
-                alert(`Registered as: ${firstName}, @ ${email}`);    
+                const{password, email, phone, address1, address2, firstName, lastName, restaurantName} = this.state
+                  
             }
             // This function will run the validate function against the user input values 
             canBeSubmitted() {
-                const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
+                const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName, this.state.restaurantName);
                 const isDisabled = Object.keys(errors).some(x => errors[x]);
                 console.log(this.state.email);
                 // const url = window.location.origin;
                 // const url = `${url}${this.props.match.params.userType}/orders`
-                axios.post('/register', {email: this.state.email, password: this.state.password, phone: this.state.phone, address1: this.state.address1, address2: this.state.address2, firstName: this.state.firstName, lastName: this.state.lastName, password: this.state.password, userType: this.props.match.params.userType}).then(response => {
+                axios.post('/register', {email: this.state.email, password: this.state.password, phone: this.state.phone, address1: this.state.address1, address2: this.state.address2, firstName: this.state.firstName, lastName: this.state.lastName, password: this.state.password, userType: this.props.match.params.userType, restaurantName: this.state.restaurantName}).then(response => {
                     window.location.href = `/${this.props.match.params.userType}/orders`
                 })
                 return !isDisabled;
@@ -110,7 +117,7 @@ export default class RegisterRestaurant extends Component {
                 const shouldShow = this.state.touched[field];
                 return hasError ? shouldShow : false;
             }
-            const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName);
+            const errors = isValid(this.state.password, this.state.email, this.state.phone, this.state.address1, this.state.address2, this.state.firstName, this.state.lastName, this.state.restaurantName);
             const isDisabled = Object.keys(errors).some(x => errors[x]);
             return (
     <div>
@@ -119,6 +126,14 @@ export default class RegisterRestaurant extends Component {
             <form  onSubmit={this.handleSubmit}>
                 <h1>Register</h1>
                 <h2>{this.props.match.params.userType}</h2>
+
+                {this.props.match.params.userType === 'restaurant' ? <input
+                className={errors.restaurantName ? "error" : ""}
+                type="text"
+                placeholder="Enter Restauraunt Name"
+                value={this.state.restaurantName}
+                onChange={(e) => this.handlerestaurantNameChange(e)}
+                />: ''}
 
                 <input
                 className={errors.email ? "error" : ""}

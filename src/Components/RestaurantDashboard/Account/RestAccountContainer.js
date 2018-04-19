@@ -13,12 +13,29 @@ class RestAccountContainer extends Component {
             disabled: false,
             firstName: '',
             lastName: '',
-            email: ''
+            email: '',
+            phone: '',
+            address1: '',
+            address2: '',
+            description: '',
+            restaurantName: ''
         };
       }
 
 
     componentDidMount(){
+        axios.get('/api/restaurant-profile-info').then(response => {
+            console.log(response.data)
+            
+            this.setState({
+
+                description: response.data.description,
+                restaurantName: response.data.restaurantName
+                
+            })
+      
+        })
+
         axios.get('/api/user-data').then(response => {
             console.log(response.data[0])
             
@@ -26,7 +43,10 @@ class RestAccountContainer extends Component {
 
                 firstName: response.data[0].first_name,
                 lastName: response.data[0].last_name,
-                email: response.data[0].email
+                email: response.data[0].email,
+                phone: response.data[0].phone,
+                address1: response.data[0].address_1,
+                address2: response.data[0].address_2,
             })
             //setting user session in redux for conditionally rendering links bases on usertype
              this.props.fetchUserData(response.data[0])
