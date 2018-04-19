@@ -4,7 +4,6 @@ const Order = (props) => {
     return (
         <div className='individual-order' >
             <div>
-                <img src={props.logo_url} />
                 <h2>{props.name}</h2>
             </div>
             <div>
