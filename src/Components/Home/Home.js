@@ -78,7 +78,7 @@ class Home extends Component {
             <div className="home-hero">
                 <h1 className="home-hero-text">Build your brand. Sell more food.</h1>
                 <div onKeyPress={(e) => this.submitSearchOnEnter(e)} className='search-bar-container'>
-                    <input onChange={(e) => this.searchFood(e.target.value)} value={this.state.search} className='search-bar' placeholder='Search...'/>
+                    <input onChange={(e) => this.searchFood(e.target.value)} value={this.state.search} className='search-bar' placeholder='Search by food description, or for a particular restaurant...'/>
                     <Search onClick={() => this.submitSearch()} style={style} color='white' />
                    
                 </div>
@@ -99,31 +99,31 @@ class Home extends Component {
         
             <h1 className="home-icon-header">Our services can help you blow the competition away</h1>
                 <div className="home-content">
-                    <div className="home-content-text-1"><img src={computerImg} className="home-content-img-1"/>Menu Bomb is a cutting edge web service helping restaurants succeed in a competitive market</div>
+                    <div className="home-content-text-1"><img src={computerImg} className="home-content-img-1"/><p>Menu Bomb is a cutting edge web service helping restaurants succeed in a competitive market</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-2"><img src={menuImg} className="home-content-img-2"/>Restaurants can manage their online presence by leveraging our Menu Builder feature</div>
+                    <div className="home-content-text-2"><img src={menuImg} className="home-content-img-2"/><p>Restaurants can manage their online presence by leveraging our Menu Builder feature</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-3"><img src={takeOutImg} className="home-content-img-3"/>Customers can browse a restaurant's online menu and place orders for take out</div>
+                    <div className="home-content-text-3"><img src={takeOutImg} className="home-content-img-3"/><p>Customers can browse a restaurant's online menu and place orders for take out</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/>Restaurant staff can view and manage orders placed online through the convenient Restaurant Dashboard</div>
+                    <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/><p>Restaurant staff can view and manage orders placed online through the convenient Restaurant Dashboard</p></div>
                 </div>
             </div>
             <div className="home-inner-container">
                 <h1 className="home-icon-header">Our simple process is easy and convenient:</h1>
                 <div className="home-content">
-                    <div className="home-content-text-1"><img src={computerImg} className="home-content-img-1"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
+                    <div className="home-content-text-1"><img src={computerImg} className="home-content-img-1"/><p>Placeholder text about how our services work, with a screenshot of a finished thing</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-2"><img src={menuImg} className="home-content-img-2"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
+                    <div className="home-content-text-2"><img src={menuImg} className="home-content-img-2"/><p>Placeholder text about how our services work, with a screenshot of a finished thing</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-3"><img src={takeOutImg} className="home-content-img-3"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
+                    <div className="home-content-text-3"><img src={takeOutImg} className="home-content-img-3"/><p>Placeholder text about how our services work, with a screenshot of a finished thing</p></div>
                 </div>
                 <div className="home-content">
-                    <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/>Placeholder text about how our services work, with a screenshot of a finished thing</div>
+                    <div className="home-content-text-4"><img src={cookImg} className="home-content-img-4"/><p>Placeholder text about how our services work, with a screenshot of a finished thing</p></div>
                 </div>
             </div>
             </div>
