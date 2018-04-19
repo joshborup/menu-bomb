@@ -77,7 +77,7 @@ module.exports = {
                             lastName: users[0].last_name,
                             userType: users[0].user_type,
                             restaurantName: users[0].name,
-                            logo: users[0].logo,
+                            logo: users[0].logo_url,
                             description: users[0].description
                         }
                         
@@ -110,7 +110,7 @@ module.exports = {
         })
     },
     sessionData: (req, res) => {
-            console.log('dddddsdkfaldjshflajdshflkajdhsflakjshd',req.session.user)
+            console.log(req.session.user)
             res.status(200).send(req.session.user)
         
     }

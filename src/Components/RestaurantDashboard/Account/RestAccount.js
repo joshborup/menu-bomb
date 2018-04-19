@@ -1,10 +1,12 @@
 import React from 'react';
 
 const RestAcount = (props) => {
+    console.log(props.user.logo)
     return (
         <div className='rest-account-display'>
             <div>
                 <h1>Account</h1>
+                {props.disabled ? <button className='edit-button' onClick={()=> props.disabledButton()}>edit</button> :  <button className='save-button' onClick={()=> props.save()}>Save</button>}
             </div>
             <div className='account-info'>
                     <div>
@@ -31,15 +33,20 @@ const RestAcount = (props) => {
                 <div>
                     <h2>Restauraunt info</h2>
                 </div>
-                <div className='account-info'>
+                <div className='account-info rest-info'>
+                {props.user.logo ? <div>
+                    <img src={props.user.logo} />
+                </div> : ''}
+                    <div>
+                       <div> <span>logo: </span><input onChange={(e) => props.handleImageUpload(e.target.files)} disabled={props.disabled} type='file' /></div>
+                    </div>
+
                     <div>
                        <div> <span>Restauraunt Name: </span><input onChange={(e) => props.nameChangeHandler('restaurantName', e.target.value)} disabled={props.disabled} value={props.user.restaurantName}/></div>
-                       
                     </div>
 
                     <div>
                        <div> <span>description: </span><textarea onChange={(e) => props.nameChangeHandler('description', e.target.value)} disabled={props.disabled} value={props.user.description}/></div>
-                       
                     </div>
                 </div>
         </div>
