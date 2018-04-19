@@ -135,6 +135,7 @@ class Header extends Component {
                          <LinksContainer>
                             <Link to='/'><ListItem>Home</ListItem></Link>
                             <Link to='/restaurant/orders'><ListItem>Orders</ListItem></Link>
+                            <Link to={`/restaurant/menumaker/${this.props.user.id}`}><ListItem>Menu Maker</ListItem></Link>
                             <Link to='/restaurant/account'><ListItem>Account</ListItem></Link>
                             <Link to='/restaurant' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link>
                         </LinksContainer> 

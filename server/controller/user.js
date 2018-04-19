@@ -1,3 +1,4 @@
+
 const bcrypt = require('bcrypt');
 
 module.exports = {
@@ -7,11 +8,11 @@ module.exports = {
 
          // user registration info deconstructed from body
          
-         const { email, phone, address1, address2, firstName, lastName, password, userType } = req.body;
+         const { email, phone, address1, address2, firstName, lastName, password, userType, restaurantName } = req.body;
 
          //saltrounds for bcrypt hashing
          const saltRounds = 12;
-
+        
          bcrypt.hash(password, saltRounds).then(hashedPassword => {
             db.register_user([email, phone, address1, address2, firstName, lastName, hashedPassword, userType]).then(response =>{
                  //set user to a session if succsesful login
@@ -25,12 +26,27 @@ module.exports = {
                     lastName: response[0].last_name,
                     userType: response[0].user_type
                 }
+
+                
                 if(user.userType === 'customer') {
-                    db.create_customer_profile(user.id).then( customer => console.log('customer created: ', customer));
+                    db.create_customer_profile(user.id).then( customer => {
+                        console.log('customer created: ', customer)
+
+                        req.session.user = user;
+                        req.session.cart = {items: []};
+                        res.send(req.session.user);
+                    });
+                }else if(user.userType === 'restaurant'){
+                     console.log('hitititititti')
+                    db.add_restaurant_profile_data([user.id, restaurantName, null, null, null, null, null]).then( restaurant => {
+                        console.log('restaurant created: ', restaurant)
+                        user.restaurantName = restaurant[0].name
+                        req.session.user = user;
+                        req.session.cart = {items: []};
+                        res.send(req.session.user);
+                    });
                 }
-                req.session.user = user;
-                req.session.cart = {items: []};
-                res.send(req.session.user);
+                
                 // res.redirect(`/${req.session.user.userType}`)
 
             }).catch(error => console.log(error))
@@ -49,7 +65,7 @@ module.exports = {
             if(users.length){
                 bcrypt.compare(password, users[0].password).then(passwordMatch => {
                     //if passwords match = true set users session
-                    console.log(users);
+                    
                     if(passwordMatch){
                         const user = {
                             id: users[0].id,
@@ -59,9 +75,12 @@ module.exports = {
                             address2: users[0].address_2,
                             firstName: users[0].first_name,
                             lastName: users[0].last_name,
-                            userType: users[0].user_type
+                            userType: users[0].user_type,
+                            restaurantName: users[0].name,
+                            logo: users[0].logo,
+                            description: users[0].description
                         }
-
+                        
                         req.session.user = user;
                         req.session.cart = {nextId: 0,items: []};
                         
@@ -86,9 +105,14 @@ module.exports = {
         const db = req.app.get('db');
 
         db.get_user(req.session.user.email).then(response => {
-            console.log(response)
+           
             res.status(200).send(response)
         })
+    },
+    sessionData: (req, res) => {
+            console.log('dddddsdkfaldjshflajdshflkajdhsflakjshd',req.session.user)
+            res.status(200).send(req.session.user)
+        
     }
 }
 

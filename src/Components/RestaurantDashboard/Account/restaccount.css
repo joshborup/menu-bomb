@@ -1,0 +1,79 @@
+.rest-account-display {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 20px 0px;
+    font-family: Montserrat;
+}
+
+.rest-account-display > div > h1 {
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.rest-account-display h2 {
+    font-size: 32px;
+}
+
+.rest-account-display .account-info {
+    padding: 10px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 3px;
+}
+
+.rest-account-display .account-info input {
+    height: 35px;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    background: #E6E6E6;
+    font-size: 16px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.rest-account-display .account-info textarea {
+    height: 65px;
+    width: 100%;
+    border-radius: 2px;
+    border: none;
+    background: #E6E6E6;
+    font-size: 16px;
+    margin-left: 10px;
+    text-align: center;
+    padding: 5px;
+}
+
+.rest-account-display .account-info > *+* {
+    margin: 10px 0px;
+    
+}
+
+.rest-account-display .account-info > div {
+    
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  
+}
+
+.rest-account-display .account-info > div > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: bolder;
+    font-family: Montserrat;
+    width: 100%;
+}
+
+.rest-account-display .account-info > div > div span {
+    width: 180px;
+}

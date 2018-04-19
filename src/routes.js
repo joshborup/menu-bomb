@@ -19,7 +19,7 @@ export default (
         <Route path='/testMenu/:id' component={testMenu} />
         <Route path='/restaurant/orders' component={RestaurantDashboard} />
         <Route path='/restaurant/account' component={RestAccountContainer}/>
-        <Route path='/testMenuMaker/:restaurantId' component={testMenuMaker} />
+        <Route path='/restaurant/menumaker/:restaurantId' component={testMenuMaker} />
         <Route path='/testregister/:userType' component={RegisterRestaurant} />
     </Switch>
 

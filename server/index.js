@@ -48,6 +48,8 @@ app.get('/api/get-order-by-id', orders.customer );
 
 app.get('/api/restaurant-name/:id', menu.restaurantName);
 
+app.get('/api/restaurant-profile-info', user.sessionData)
+
 app.get('/api/menu-categories/:id', menu.getMenuCategories);
 app.post('/api/category', menu.addCategory);
 app.delete('/api/category/:id', menu.deleteCategory);
@@ -68,7 +70,7 @@ app.get('/api/upload-signature', menu.signUpload);
 app.get('/api/search-food', menu.getSearchItems);
 app.get('/api/orders', restaurant.getOrders);
 
-app.get('/api/order-items', restaurant.getOrderItems)
+app.get('/api/order-items', restaurant.getOrderItems);
 
 app.post('api/send-message', message.sendMessage);
 
