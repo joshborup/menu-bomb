@@ -16,11 +16,11 @@ export default (
         <Route exact path='/' component={Home} />
         <Route path='/customer/orders' component={OrdersContainer} />
         <Route path='/customer/account' component={AccountContainer} />
-        <Route path='/testMenu/:id' component={testMenu} />
+        <Route path='/menu/:id' component={testMenu} />
         <Route path='/restaurant/orders' component={RestaurantDashboard} />
         <Route path='/restaurant/account' component={RestAccountContainer}/>
         <Route path='/restaurant/menumaker/:restaurantId' component={testMenuMaker} />
-        <Route path='/testregister/:userType' component={RegisterRestaurant} />
+        <Route path='/register/:userType' component={RegisterRestaurant} />
     </Switch>
 
 )

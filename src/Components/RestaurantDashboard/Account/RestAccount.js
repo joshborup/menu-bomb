@@ -34,9 +34,9 @@ const RestAcount = (props) => {
                     <h2>Restauraunt info</h2>
                 </div>
                 <div className='account-info rest-info'>
-                {props.user.logo ? <div>
+                <div>
                     <img src={props.user.logo} />
-                </div> : ''}
+                </div>
                     <div>
                        <div> <span>logo: </span><input onChange={(e) => props.handleImageUpload(e.target.files)} disabled={props.disabled} type='file' /></div>
                     </div>

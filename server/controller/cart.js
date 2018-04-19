@@ -62,11 +62,11 @@ module.exports = {
       cart.items.map( (item, i, arr) => {
 
         let {name, price, description, imageurl, category, quantity, notes} = item;
-
+        console.log(item)
         let statementSuffix = i === arr.length -1 ? ' RETURNING *;' : ', ';
         addItemsQuery +=  `(${order[0].id}, '${name}',${price},'${description}','${imageurl}','${category}',${quantity},'${notes}')${statementSuffix}`;
       });
-      
+      console.log(addItemsQuery);
       db.query(addItemsQuery).then( addedItems => {
         req.session.cart = {nextId: 0,items: []};
         res.json(req.session.cart);

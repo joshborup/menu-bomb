@@ -13,7 +13,7 @@ export default class Orders extends Component {
 
     componentDidMount(){
         axios.get(`/api/order-items?customerId=${this.props.info.id}`).then(response => {
-            
+            console.log(response)
             this.setState({
                 items: response.data
             })
@@ -22,7 +22,7 @@ export default class Orders extends Component {
 
     render() {
 
-        console.log(this.state.items)
+        
         const itemList = this.state.items ? this.state.items.map(e => {
             return(
                 <OrderItem itemInfo={e} /> 

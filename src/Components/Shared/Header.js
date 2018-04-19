@@ -80,11 +80,22 @@ class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
-            show: false
+            show: false,
+            restaurantId: ''
         }
     }
 
     componentDidMount(){
+
+        axios.get('/api/restaurant-profile-info').then(response => {
+            console.log(response.data)
+            
+            this.setState({
+                restaurantId: response.data.restuarantid,    
+            })
+      
+        })
+
         axios.get('/api/user-data').then(response => {
             console.log(response.data[0])
  
@@ -135,7 +146,7 @@ class Header extends Component {
                          <LinksContainer>
                             <Link to='/'><ListItem>Home</ListItem></Link>
                             <Link to='/restaurant/orders'><ListItem>Orders</ListItem></Link>
-                            <Link to={`/restaurant/menumaker/${this.props.user.id}`}><ListItem>Menu Maker</ListItem></Link>
+                            <Link to={`/restaurant/menumaker/${this.state.restaurantId}`}><ListItem>Menu Maker</ListItem></Link>
                             <Link to='/restaurant/account'><ListItem>Account</ListItem></Link>
                             <Link to='/restaurant' onClick={()=> this.logout()}><ListItem>Log out</ListItem></Link>
                         </LinksContainer> 

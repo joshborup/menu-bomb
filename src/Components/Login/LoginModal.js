@@ -112,8 +112,8 @@ class DialogExampleModal extends Component {
             <div className='modal-register'>
                 <h1>Register</h1>
                 <div>
-                    <Link to='/testregister/customer'><button className='btn'>Customer</button></Link>
-                    <Link to='/testregister/restaurant'><button className='btn'>Restaurant</button></Link>
+                    <Link to='/register/customer'><button className='btn'>Customer</button></Link>
+                    <Link to='/register/restaurant'><button className='btn'>Restaurant</button></Link>
                 </div>
             </div>
         </div>

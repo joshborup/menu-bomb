@@ -25,7 +25,7 @@ class RestaurantDashboard extends Component {
     componentDidMount() {
         console.log("component did mount");
         function getRestaurantInfo () {
-            return axios.get('/api/restaurant-info')
+            return axios.get('/api/restaurant-profile-info')
         }
 
         function getUserInfo () {
@@ -36,16 +36,16 @@ class RestaurantDashboard extends Component {
             return axios.get('/api/orders')
         }
 
+    
         
 
 
         axios.all([getRestaurantInfo(), getUserInfo(), getOrderInfo()]).then(axios.spread((restInfo, userInfo, orderInfo) => {
-            console.log(restInfo.data[0])
+            console.log(restInfo)
             this.setState({
                 restInfo: restInfo.data, 
                 userInfo: userInfo.data[0],
                 orderInfo: orderInfo.data,
-                
             });
             console.log("state", this.state);
         }))
@@ -72,7 +72,7 @@ class RestaurantDashboard extends Component {
                     <div className="restaurant-dashboard-inner">
                         <div className="dashboard-main">
                             <div className="restaurant-info">
-                            {this.state.restInfo ? <h1 className="restaurant-name"> {this.state.restInfo[0].name} </h1>: <div>Login to view restaurant dashboard</div>}
+                            {this.state.restInfo ? <h1 className="restaurant-name"> {this.state.restInfo.restaurantName} </h1>: <div>Login to view restaurant dashboard</div>}
                                 {/* <p>{this.state.restInfo.description}</p> */}
                                 {/* <div className="restaurant-info-button">    
                                     <RaisedButton

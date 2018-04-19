@@ -33,7 +33,10 @@ module.exports = {
                         console.log('customer created: ', customer)
 
                         req.session.user = user;
+                        req.session.user.customerId = customer.id
                         req.session.cart = {items: []};
+
+                        console.log(req.session.user);
                         res.send(req.session.user);
                     });
                 }else if(user.userType === 'restaurant'){
@@ -41,6 +44,7 @@ module.exports = {
                     db.add_restaurant_profile_data([user.id, restaurantName, null, null, null, null, null]).then( restaurant => {
                         console.log('restaurant created: ', restaurant)
                         user.restaurantName = restaurant[0].name
+                        user.restuarantid = restaurant[0].id
                         req.session.user = user;
                         req.session.cart = {items: []};
                         res.send(req.session.user);
@@ -58,14 +62,15 @@ module.exports = {
 
          // deconstruct email and password from passed in body
          const { email, password } = req.body;
-
+         console.log(email, password)
         //checking to see if the requested email is on the database 
         db.login_user(email).then(users => {
             //check that data is returned
+            console.log(users)
             if(users.length){
                 bcrypt.compare(password, users[0].password).then(passwordMatch => {
                     //if passwords match = true set users session
-                    
+                    console.log(passwordMatch)
                     if(passwordMatch){
                         const user = {
                             id: users[0].id,
@@ -78,7 +83,9 @@ module.exports = {
                             userType: users[0].user_type,
                             restaurantName: users[0].name,
                             logo: users[0].logo_url,
-                            description: users[0].description
+                            description: users[0].description,
+                            customerId: users[0].customerid,
+                            restuarantid: users[0].restuarantid
                         }
                         
                         req.session.user = user;
@@ -105,7 +112,7 @@ module.exports = {
         const db = req.app.get('db');
 
         db.get_user(req.session.user.email).then(response => {
-           
+           console.log('hit aww yeah', response)
             res.status(200).send(response)
         })
     },

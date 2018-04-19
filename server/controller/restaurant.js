@@ -37,8 +37,8 @@ module.exports = {
 
   getOrders: (req, res) => {
     const db = req.app.get('db');
-    const {id} = req.session.user;
-    db.get_orders(id).then(response => {
+    const {restuarantid} = req.session.user;
+    db.get_orders(restuarantid).then(response => {
       console.log(response)
       res.send(response);
     })
@@ -70,10 +70,12 @@ module.exports = {
         userType: response[0].user_type,
         restaurantName: response[0].name,
         logo: response[0].logo_url,
-        description: response[0].description
+        description: response[0].description,
+        restuarantid: response[0].restuarantid
     }
 
     req.session.user = user
+
       res.status(200).send(req.session.user)
     })
   }

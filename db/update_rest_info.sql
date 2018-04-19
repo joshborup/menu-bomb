@@ -13,7 +13,7 @@ address_2 = $9,
 phone = $10
 WHERE id = $1;
 
-SELECT * FROM users
+SELECT users.*, restaurant_profiles.id as restuarantid,	restaurant_profiles.user_id as rest_user_id, restaurant_profiles.name, restaurant_profiles.description, restaurant_profiles.logo_url, restaurant_profiles.background_url, restaurant_profiles.delivers, restaurant_profiles.alcohol FROM users
 JOIN restaurant_profiles
 ON (users.id = restaurant_profiles.user_id)
 WHERE users.id = $1;

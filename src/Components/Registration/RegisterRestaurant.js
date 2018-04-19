@@ -186,7 +186,7 @@ export default class RegisterRestaurant extends Component {
                 value={this.state.lastName}
                 onChange={(e) => this.handleLastNameChange(e)}
                 />
-                <button disabled={isDisabled} onClick={(e) => this.handleSubmit(e)}>Register</button>
+                <button  onClick={(e) => this.handleSubmit(e)}>Register</button>
             </form>
         </div>
     </div>
