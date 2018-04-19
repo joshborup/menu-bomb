@@ -77,7 +77,7 @@ class Footer extends Component {
   }
   render() {
     return (
-      <Wrapper className='fotter-container'>
+      <Wrapper className='footer-container'>
         <InnerBox>
           <FlexRow>
             <div>
