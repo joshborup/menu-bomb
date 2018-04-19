@@ -8,15 +8,24 @@ const RestAcount = (props) => {
             </div>
             <div className='account-info'>
                     <div>
-                       <div> <span>first name: </span><input onChange={(e) => props.nameChangeHandler('firstName', e.target.value)} disabled={props.disabled} value={props.firstName}/></div>
+                       <div> <span>first name: </span><input onChange={(e) => props.nameChangeHandler('firstName', e.target.value)} disabled={props.disabled} value={props.user.firstName}/></div>
                        
                     </div>
                     <div>
-                       <div><span>last name: </span><input onChange={(e) => props.nameChangeHandler('lastName', e.target.value)} disabled={props.disabled} value={props.lastName}/></div>
+                       <div><span>last name: </span><input onChange={(e) => props.nameChangeHandler('lastName', e.target.value)} disabled={props.disabled} value={props.user.lastName}/></div>
                        
                     </div>
                     <div>
-                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.email} /></div>
+                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.user.email} /></div>
+                    </div>
+                    <div>
+                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.user.email} /></div>
+                    </div>
+                    <div>
+                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.user.email} /></div>
+                    </div>
+                    <div>
+                        <div><span>Email: </span><input onChange={(e) => props.nameChangeHandler('email', e.target.value)} disabled={props.disabled} value={props.user.email} /></div>
                     </div>
                 </div>
         </div>

@@ -10,7 +10,7 @@ class RestAccountContainer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            disabled: true,
+            disabled: false,
             firstName: '',
             lastName: '',
             email: ''
@@ -23,6 +23,7 @@ class RestAccountContainer extends Component {
             console.log(response.data[0])
             
             this.setState({
+
                 firstName: response.data[0].first_name,
                 lastName: response.data[0].last_name,
                 email: response.data[0].email
@@ -50,11 +51,10 @@ class RestAccountContainer extends Component {
                 <Header />
                 {this.props.user.user_type === 'restaurant' ? 
                 <RestAccount 
-                    
                     disabledButton={this.editButton} 
                     disabled={this.state.disabled}
                     save={this.saveButton} 
-                    user={this.props.user} 
+                    user={this.state} 
                     nameChangeHandler={this.nameChangeHandler}
                  /> 
                  : 'Log in to view this page'}
